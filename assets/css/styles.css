@@ -1156,6 +1156,30 @@ body.no-scroll { overflow: hidden; }
   .hero__actions .btn { width: 100%; justify-content: center; }
 }
 
+/* ---------- "Por qué Balerco" en móvil: mazo de tarjetas ----------
+   Cada tarjeta se queda pegada arriba y la siguiente se le monta encima, de a
+   una, hasta la última; ahí el mazo se suelta y la página sigue.
+   Requisitos: una sola columna, fondo opaco (ya lo tienen) y el z-index al
+   revés del escritorio, porque aquí la que llega debe pintarse ENCIMA.      */
+@media (max-width: 700px) {
+  .why__grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-bottom: 10vh;        /* la última alcanza a leerse antes de irse */
+  }
+  .value {
+    position: sticky;
+    /* cada una se detiene 13px más abajo: queda a la vista el borde de la
+       anterior y se lee como un mazo */
+    top: calc(96px + var(--stack, 0) * 13px);
+    transform: none;             /* el abanico es solo de escritorio */
+  }
+  .value:nth-child(1) { --stack: 0; z-index: 1; }
+  .value:nth-child(2) { --stack: 1; z-index: 2; }
+  .value:nth-child(3) { --stack: 2; z-index: 3; }
+  .value:nth-child(4) { --stack: 3; z-index: 4; }
+}
+
 /* ---------- Preferencias de movimiento ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
