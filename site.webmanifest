@@ -1,0 +1,13 @@
+{
+  "name": "Balerco",
+  "short_name": "Balerco",
+  "description": "Parques infantiles, gimnasios biosaludables y mobiliario urbano en Bogotá y toda Colombia.",
+  "lang": "es-CO",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#F6851F",
+  "icons": [
+    { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

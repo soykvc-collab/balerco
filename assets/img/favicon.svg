@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Balerco">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBB03B"/>
+      <stop offset="1" stop-color="#F26B21"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#g)"/>
+  <!-- "B" geométrica -->
+  <path d="M20 15 h13 c6 0 10 3.4 10 8.4 0 3-1.5 5.2-4 6.4 3.1 1.1 5 3.6 5 6.9 0 5.3-4.2 8.3-10.6 8.3 H20 Z
+           M28 22 v6 h4.2 c2.4 0 3.8-1.1 3.8-3 0-1.9-1.4-3-3.8-3 Z
+           M28 34 v7 h4.8 c2.7 0 4.2-1.3 4.2-3.5 0-2.2-1.5-3.5-4.2-3.5 Z"
+        fill="#fff"/>
+</svg>
