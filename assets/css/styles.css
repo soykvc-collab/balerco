@@ -36,6 +36,9 @@
   --gap: clamp(16px, 4vw, 40px);
   /* ancho interior real del contenido (contenedor − canal) → todos los bloques alinean al mismo borde */
   --content-w: calc(var(--maxw) - 2 * var(--gap));
+  /* cuánto se mete la barra del nav respecto al borde de la tarjeta del hero:
+     en la referencia son ~35px en un portátil */
+  --nav-inset: clamp(10px, 2.4vw, 40px);
 
   --font-display: "Poppins", system-ui, -apple-system, sans-serif;
   --font-body: "Poppins", system-ui, -apple-system, sans-serif;
@@ -184,11 +187,11 @@ p { margin: 0; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 20px var(--gap);
+  padding: 20px calc(var(--gap) + var(--nav-inset));
   pointer-events: none;          /* deja pasar los clics salvo en la píldora */
 }
 .nav__inner {
-  max-width: var(--content-w);
+  max-width: calc(var(--content-w) - 2 * var(--nav-inset));
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -238,7 +241,7 @@ p { margin: 0; }
 .nav__toggle[aria-expanded="true"] span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
 .nav__mobile {
-  max-width: var(--content-w);
+  max-width: calc(var(--content-w) - 2 * var(--nav-inset));
   margin: 8px auto 0;
   background: var(--white);
   border-radius: var(--radius-sm);
