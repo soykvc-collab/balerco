@@ -719,9 +719,12 @@ p { margin: 0; }
   transform-origin: center;
   will-change: transform;
   border-radius: var(--radius-sm);
-  padding: 26px 24px 28px;
-  border: 2px solid var(--ink);
-  box-shadow: var(--shadow-toy-sm);
+  padding: 28px 26px 30px;
+  border: none;
+  box-shadow:
+    0 1px 2px rgba(22, 34, 59, .10),
+    0 8px 18px rgba(22, 34, 59, .13),
+    0 20px 40px rgba(22, 34, 59, .10);
   background: var(--sun);                  /* paleta viva, igual que el acordeón de arriba */
 }
 .value:nth-child(2) { background: var(--sky); }
@@ -735,6 +738,7 @@ p { margin: 0; }
   width: 66px; height: 66px; border-radius: 18px;
   display: grid; place-items: center; margin-bottom: 16px;
   background: #fff;                        /* el ícono resalta sobre el color */
+  box-shadow: 0 2px 6px rgba(22, 34, 59, .16);
 }
 /* emojis 3D (Fluent Emoji, licencia MIT) con una sombra suave para que se
    despeguen de la baldosa */
