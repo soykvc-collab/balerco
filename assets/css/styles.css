@@ -32,7 +32,8 @@
   --shadow-toy: 6px 6px 0 rgba(22,34,59,.16);
   --shadow-toy-sm: 4px 4px 0 rgba(22,34,59,.14);
 
-  --maxw: 1180px;
+  --maxw: 1320px;   /* el contenedor del sitio: más ancho = márgenes menos agresivos
+                       y el hero encoge menos, porque su tarjeta final es este mismo borde */
   --gap: clamp(16px, 4vw, 40px);
   /* ancho interior real del contenido (contenedor − canal) → todos los bloques alinean al mismo borde */
   --content-w: calc(var(--maxw) - 2 * var(--gap));
