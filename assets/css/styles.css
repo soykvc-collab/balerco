@@ -47,6 +47,8 @@
      En .hero__frame se limita además para que la tarjeta SIEMPRE quede más
      ancha que las secciones de abajo (si no, el acordeón se le sale). */
   --hero-inset: clamp(16px, 7vw, 200px);
+  --content-inset: max(var(--gap), (100% - var(--maxw)) / 2 + var(--gap));
+  --frame-inset: min(var(--hero-inset), var(--content-inset) * .78);
   /* corte inferior de la tarjeta del hero. OJO: .products se sube justo este
      valor para tucarse bajo la tarjeta, así que los dos deben leer el token. */
   --hero-bottom: clamp(28px, 5.5vh, 80px);
@@ -284,11 +286,6 @@ p { margin: 0; }
      --sp lo controla el scroll con suavizado en JS, para un movimiento fluido. */
   position: absolute;
   top: 0;
-  /* el margen del contenido: (pantalla − contenedor)/2 + canal */
-  --content-inset: max(var(--gap), (100% - var(--maxw)) / 2 + var(--gap));
-  /* el menor de los dos: así la tarjeta nunca se cierra más que las secciones,
-     y en pantallas anchas manda el 7vw */
-  --frame-inset: min(var(--hero-inset), var(--content-inset) * .78);
   left: calc(var(--sp, 0) * var(--frame-inset));
   right: calc(var(--sp, 0) * var(--frame-inset));
   bottom: calc(var(--sp, 0) * var(--hero-bottom));
@@ -775,10 +772,10 @@ p { margin: 0; }
 .step__body p { margin-top: 8px; color: var(--ink-soft); font-size: .98rem; }
 
 /* ---------- CIFRAS ---------- */
-.stats { padding: clamp(56px,8vw,100px) var(--gap); }
+.stats { padding: clamp(56px,8vw,100px) var(--frame-inset); }   /* mismo borde que la tarjeta del hero */
 .stats__grid {
-  max-width: var(--content-w);
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   background: var(--orange);               /* naranja de marca */
   border-radius: var(--radius);
   padding: clamp(28px,4vw,52px);
