@@ -1042,8 +1042,8 @@ p { margin: 0; }
   margin: 0;
   padding: 0;
   /* desvanece arriba y abajo para que no se corte en seco */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 9%, #000 91%, transparent 100%);
-          mask-image: linear-gradient(to bottom, transparent 0, #000 9%, #000 91%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 4%, #000 96%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 4%, #000 96%, transparent 100%);
 }
 .gallery__col {
   display: flex;
