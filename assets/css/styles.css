@@ -43,7 +43,10 @@
   /* la tarjeta final del hero ya NO se ata al borde del contenido: queda más
      ancha que las secciones, como en la referencia (allí el hero encogido
      ocupa ~92% y el contenido ~80%) */
-  --hero-inset: clamp(14px, 4vw, 72px);
+  --hero-inset: clamp(14px, 5vw, 88px);
+  /* corte inferior de la tarjeta del hero. OJO: .products se sube justo este
+     valor para tucarse bajo la tarjeta, así que los dos deben leer el token. */
+  --hero-bottom: clamp(28px, 5.5vh, 80px);
 
   --font-display: "Poppins", system-ui, -apple-system, sans-serif;
   --font-body: "Poppins", system-ui, -apple-system, sans-serif;
@@ -280,7 +283,7 @@ p { margin: 0; }
   top: 0;
   left: calc(var(--sp, 0) * var(--hero-inset));
   right: calc(var(--sp, 0) * var(--hero-inset));
-  bottom: calc(var(--sp, 0) * clamp(28px, 5.5vh, 80px));
+  bottom: calc(var(--sp, 0) * var(--hero-bottom));
   border-radius: calc(var(--sp, 0) * var(--radius));
   overflow: hidden;
   background: var(--ink);
@@ -435,7 +438,7 @@ p { margin: 0; }
   padding: 0;
   display: flex;
   flex-direction: column;
-  margin-top: calc(32px - clamp(40px, 8vh, 110px));   /* hueco final ≈ 32px */
+  margin-top: calc(32px - var(--hero-bottom));   /* hueco final ≈ 32px */
 }
 .products__head {
   order: 2;                       /* el título se dibuja bajo el acordeón */
