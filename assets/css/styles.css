@@ -445,8 +445,8 @@ p { margin: 0; }
   flex-direction: column;
   margin-top: calc(32px - var(--hero-bottom));   /* hueco final ≈ 32px */
 }
+.products > .products__head { order: 2; }   /* solo aquí: el título va bajo el acordeón */
 .products__head {
-  order: 2;                       /* el título se dibuja bajo el acordeón */
   margin-top: clamp(28px, 4vw, 44px);
   display: grid;
   grid-template-columns: 1fr 1fr;
