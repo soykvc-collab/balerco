@@ -23,7 +23,7 @@
         var target = document.querySelector(href);
         if (!target) return;
         e.preventDefault();
-        lenis.scrollTo(target, { offset: -96 });
+        lenis.scrollTo(target, { offset: -116 });
       });
     });
   }
