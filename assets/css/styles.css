@@ -81,7 +81,7 @@ p { margin: 0; }
 .skip-link:focus { left: 12px; }
 
 :focus-visible {
-  outline: 3px solid var(--sky);
+  outline: 3px solid #1A8FC4;    /* azul un punto más profundo: 3.6:1 sobre blanco */
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -425,9 +425,12 @@ p { margin: 0; }
   position: relative;
   z-index: 1;
   padding: 0;
+  display: flex;
+  flex-direction: column;
   margin-top: calc(32px - clamp(40px, 8vh, 110px));   /* hueco final ≈ 32px */
 }
 .products__head {
+  order: 2;                       /* el título se dibuja bajo el acordeón */
   margin-top: clamp(28px, 4vw, 44px);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -936,7 +939,10 @@ p { margin: 0; }
   color: var(--ink);
   resize: vertical;
 }
-.form__row input:focus, .form__row textarea:focus { outline: none; border-color: var(--orange); }
+.form__row input:focus, .form__row textarea:focus { border-color: var(--orange); }
+/* con mouse basta el borde naranja; con teclado se conserva el anillo global */
+.form__row input:focus:not(:focus-visible),
+.form__row textarea:focus:not(:focus-visible) { outline: none; }
 .form__note { min-height: 1em; font-size: .92rem; font-weight: 600; }
 .form__note.is-ok { color: var(--grass); }
 .form__note.is-err { color: var(--berry); }
@@ -962,7 +968,7 @@ p { margin: 0; }
 .footer__social a:hover { background: var(--orange); color: var(--ink); transform: translateY(-3px); }
 
 .footer__col { display: flex; flex-direction: column; gap: 10px; }
-.footer__col h4 { font-size: 1.05rem; color: var(--sun); margin-bottom: 4px; }
+.footer__col h2 { font-size: 1.05rem; color: var(--sun); margin-bottom: 4px; }
 .footer__col a, .footer__col span { text-decoration: none; color: #c7d0e0; }
 .footer__col a:hover { color: #fff; }
 

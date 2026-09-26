@@ -9,7 +9,7 @@
        Edita estas líneas con tus palabras clave principales.
        ============================================================ -->
   <title>Balerco | Parques infantiles, juegos y mobiliario urbano en Bogotá</title>
-  <meta name="description" content="Diseñamos, fabricamos e instalamos parques infantiles, gimnasios biosaludables, mobiliario urbano y superficies de seguridad en Bogotá y toda Colombia. Lugares mágicos, seguros y divertidos." />
+  <meta name="description" content="Diseñamos, fabricamos e instalamos parques infantiles, gimnasios biosaludables y mobiliario urbano en Bogotá y toda Colombia. Lugares mágicos, seguros y divertidos." />
   <meta name="keywords" content="parques infantiles, juegos infantiles, estructuras de juego, gimnasios biosaludables, mobiliario urbano, pisos de caucho, parques Bogotá, Balerco, playground Colombia" />
   <meta name="author" content="Balerco" />
   <meta name="robots" content="index, follow" />
@@ -42,7 +42,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/lenis.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=67" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=69" />
 
   <!-- ============================================================
        SEO — DATOS ESTRUCTURADOS (JSON-LD)
@@ -179,10 +179,19 @@
     <!-- ===================== PRODUCTOS (acordeón) ===================== -->
     <section class="products" id="productos" aria-labelledby="products-title">
 
+      <div class="section-head products__head">
+        <span class="tag tag--sky">Qué hacemos</span>
+        <h2 class="section-title" id="products-title">Todo para crear el parque soñado</h2>
+        <p class="section-sub">
+          Cuatro líneas de producto que se combinan para transformar un espacio
+          vacío en un lugar donde jugar, moverse y encontrarse.
+        </p>
+      </div>
+
       <div class="accordion" role="list">
         <!-- Panel 1 -->
         <article class="panel panel--sun is-open" role="listitem" style="--panel: #FFC61E; --panel-deep:#E0A800;">
-          <img class="panel__img" src="assets/img/productos/parque-infantil-tobogan.webp" alt="Mamá con su hijo y una niña deslizándose en un tobogán de un parque infantil" loading="lazy" />
+          <img class="panel__img" src="assets/img/productos/parque-infantil-tobogan.webp" alt="Mamá con su hijo y una niña deslizándose en un tobogán de un parque infantil" loading="lazy"  width="900" height="1054" />
           <button class="panel__bar" aria-expanded="true" aria-controls="p1">
             <span class="panel__label">Parques infantiles</span>
           </button>
@@ -199,7 +208,7 @@
 
         <!-- Panel 2 -->
         <article class="panel panel--grass" role="listitem" style="--panel:#43B54A; --panel-deep:#2F8A35;">
-          <img class="panel__img" src="assets/img/productos/gimnasio-biosaludable-parque.webp" alt="Personas haciendo ejercicio en un gimnasio biosaludable al aire libre" loading="lazy" />
+          <img class="panel__img" src="assets/img/productos/gimnasio-biosaludable-parque.webp" alt="Personas haciendo ejercicio en un gimnasio biosaludable al aire libre" loading="lazy"  width="900" height="1128" />
           <button class="panel__bar" aria-expanded="false" aria-controls="p2">
             <span class="panel__label">Gimnasios biosaludables</span>
           </button>
@@ -216,7 +225,7 @@
 
         <!-- Panel 3 -->
         <article class="panel panel--orange" role="listitem" style="--panel:#F6851F; --panel-deep:#C4520B;">
-          <img class="panel__img" src="assets/img/productos/mobiliario-urbano-cancha-bogota.webp" alt="Vista aérea de una cancha multicolor de espacio público en Bogotá" loading="lazy" />
+          <img class="panel__img" src="assets/img/productos/mobiliario-urbano-cancha-bogota.webp" alt="Vista aérea de una cancha multicolor de espacio público en Bogotá" loading="lazy"  width="900" height="1126" />
           <button class="panel__bar" aria-expanded="false" aria-controls="p3">
             <span class="panel__label">Mobiliario urbano</span>
           </button>
@@ -232,7 +241,7 @@
 
         <!-- Panel 4 -->
         <article class="panel panel--berry" role="listitem" style="--panel:#E94F8A; --panel-deep:#C7386E;">
-          <img class="panel__img" src="assets/img/productos/superficies-seguridad-caucho.webp" alt="Vista aérea de un parque con superficie de seguridad en caucho de colores" loading="lazy" />
+          <img class="panel__img" src="assets/img/productos/superficies-seguridad-caucho.webp" alt="Vista aérea de un parque con superficie de seguridad en caucho de colores" loading="lazy"  width="900" height="712" />
           <button class="panel__bar" aria-expanded="false" aria-controls="p4">
             <span class="panel__label">Superficies de seguridad</span>
           </button>
@@ -246,24 +255,15 @@
           </div>
         </article>
       </div>
-      <div class="section-head products__head">
-        <span class="tag tag--sky">Qué hacemos</span>
-        <h2 class="section-title" id="products-title">Todo para crear el parque soñado</h2>
-        <p class="section-sub">
-          Cuatro líneas de producto que se combinan para transformar un espacio
-          vacío en un lugar donde jugar, moverse y encontrarse.
-        </p>
-      </div>
     </section>
 
 
     <!-- ===================== DESTACADO: video + tarjeta (pilares) ===================== -->
     <section class="feature" aria-labelledby="feature-title">
       <div class="feature__card">
-        <video class="feature__video" autoplay muted loop playsinline preload="metadata"
-               poster="assets/img/bogota-en-colores-poster.jpg" aria-hidden="true">
-          <source src="assets/video/bogota-en-colores.mp4" type="video/mp4" />
-        </video>
+        <video class="feature__video" muted loop playsinline preload="none"
+               poster="assets/img/bogota-en-colores-poster.jpg" aria-hidden="true"
+               data-src="assets/video/bogota-en-colores.mp4"></video>
 
         <button class="feature__play" type="button" data-video="assets/video/bogota-en-colores.mp4">
           Ver el video
@@ -350,7 +350,7 @@
                 data-full="assets/img/proyectos/tren-parque-bogota-idrd.jpg"
                 aria-label="Ampliar foto: parque temático El Tren para la Alcaldía de Bogotá">
           <img src="assets/img/proyectos/tren-parque-bogota-idrd.jpg" loading="lazy"
-               alt="Parque infantil en forma de tren rojo instalado por Balerco para la Alcaldía Mayor de Bogotá (IDRD)" />
+               alt="Parque infantil en forma de tren rojo instalado por Balerco para la Alcaldía Mayor de Bogotá (IDRD)"  width="1200" height="800" />
           <span class="gallery__cap">Parque temático El Tren · Alcaldía de Bogotá / IDRD</span>
         </button>
 
@@ -358,7 +358,7 @@
                 data-full="assets/img/proyectos/tobogan-espiral-parque-bogota.jpg"
                 aria-label="Ampliar foto: tobogán tubo en espiral">
           <img src="assets/img/proyectos/tobogan-espiral-parque-bogota.jpg" loading="lazy"
-               alt="Tobogán de tubo en espiral color naranja junto a una estructura de escalada con redes, en un parque de Bogotá" />
+               alt="Tobogán de tubo en espiral color naranja junto a una estructura de escalada con redes, en un parque de Bogotá"  width="1130" height="1193" />
           <span class="gallery__cap">Tobogán tubo en espiral · Parque urbano</span>
         </button>
 
@@ -366,7 +366,7 @@
                 data-full="assets/img/proyectos/parque-modular-familias-bogota.jpg"
                 aria-label="Ampliar foto: parque modular con familias jugando">
           <img src="assets/img/proyectos/parque-modular-familias-bogota.jpg" loading="lazy"
-               alt="Familias y niños jugando en un parque infantil modular verde y amarillo instalado por Balerco en Bogotá" />
+               alt="Familias y niños jugando en un parque infantil modular verde y amarillo instalado por Balerco en Bogotá"  width="1200" height="800" />
           <span class="gallery__cap">Parque modular · Espacio público, Bogotá</span>
         </button>
 
@@ -374,7 +374,7 @@
                 data-full="assets/img/proyectos/parque-tematico-submarino-bogota.jpg"
                 aria-label="Ampliar foto: zona temática infantil">
           <img src="assets/img/proyectos/parque-tematico-submarino-bogota.jpg" loading="lazy"
-               alt="Zona temática infantil con juegos coloridos sobre piso de caucho, con las montañas de Bogotá al fondo" />
+               alt="Zona temática infantil con juegos coloridos sobre piso de caucho, con las montañas de Bogotá al fondo"  width="1152" height="864" />
           <span class="gallery__cap">Zona temática infantil · Bogotá</span>
         </button>
 
@@ -382,7 +382,7 @@
                 data-full="assets/img/proyectos/estructura-helicoptero-bogota.jpg"
                 aria-label="Ampliar foto: estructura temática de helicóptero">
           <img src="assets/img/proyectos/estructura-helicoptero-bogota.jpg" loading="lazy"
-               alt="Estructura de juego temática en forma de helicóptero azul sobre superficie de caucho multicolor en un parque de Bogotá" />
+               alt="Estructura de juego temática en forma de helicóptero azul sobre superficie de caucho multicolor en un parque de Bogotá"  width="936" height="784" />
           <span class="gallery__cap">Estructura temática · Parque metropolitano</span>
         </button>
 
@@ -390,7 +390,7 @@
                 data-full="assets/img/proyectos/juegos-infantiles-bogota.jpg"
                 aria-label="Ampliar foto: juegos infantiles">
           <img src="assets/img/proyectos/juegos-infantiles-bogota.jpg" loading="lazy"
-               alt="Juegos infantiles coloridos para primera infancia sobre piso de caucho, con vista a la ciudad de Bogotá" />
+               alt="Juegos infantiles coloridos para primera infancia sobre piso de caucho, con vista a la ciudad de Bogotá"  width="1152" height="864" />
           <span class="gallery__cap">Juegos para primera infancia · Bogotá</span>
         </button>
       </div>
@@ -642,7 +642,7 @@
       </div>
 
       <nav class="footer__col" aria-label="Enlaces">
-        <h4>Explora</h4>
+        <h2>Explora</h2>
         <a href="#productos">Productos</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#proceso">Proceso</a>
@@ -650,7 +650,7 @@
       </nav>
 
       <div class="footer__col">
-        <h4>Contacto</h4>
+        <h2>Contacto</h2>
         <a href="mailto:contactenos@balerco.com.co">contactenos@balerco.com.co</a>
         <a href="tel:+573183381896">+57 318 338 1896</a>
         <span>Calle 71b No 27-10</span>
@@ -677,6 +677,6 @@
   </div>
 
   <script src="assets/js/lenis.min.js" defer></script>
-  <script src="assets/js/main.js?v=28" defer></script>
+  <script src="assets/js/main.js?v=29" defer></script>
 </body>
 </html>

@@ -396,6 +396,36 @@
   }
 
   /* ---- Modal de video (sección destacada) ---- */
+  /* ---- El video de la tarjeta destacada se descarga solo cuando la sección
+     se acerca a pantalla. Son 3,6 MB que antes pesaban en la primera carga
+     aunque el video estuviera muy por debajo del pliegue. ---- */
+  var lazyVideo = document.querySelector(".feature__video[data-src]");
+  if (lazyVideo) {
+    var cargarFeatureVideo = function () {
+      if (lazyVideo.dataset.loaded) return;
+      lazyVideo.dataset.loaded = "1";
+      var src = document.createElement("source");
+      src.src = lazyVideo.getAttribute("data-src");
+      src.type = "video/mp4";
+      lazyVideo.appendChild(src);
+      lazyVideo.load();
+      var pl = lazyVideo.play();
+      if (pl && pl.catch) pl.catch(function () {});
+    };
+    if ("IntersectionObserver" in window) {
+      var vio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          cargarFeatureVideo();
+          vio.disconnect();
+        });
+      }, { rootMargin: "400px 0px" });   /* arranca un poco antes de verse */
+      vio.observe(lazyVideo);
+    } else {
+      cargarFeatureVideo();
+    }
+  }
+
   var vmodal = document.getElementById("vmodal");
   var playBtn = document.querySelector(".feature__play");
   if (vmodal && playBtn && typeof vmodal.showModal === "function") {
