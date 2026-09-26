@@ -922,6 +922,13 @@ p { margin: 0; }
 
 @media (max-width: 699px) {
   .bubble { margin-right: 12px; }
+
+  .hero__frame {
+    left: 0;
+    right: 0;
+    /* a sangre por los lados: solo tiene sentido redondear abajo */
+    border-radius: 0 0 calc(var(--sp, 0) * var(--radius)) calc(var(--sp, 0) * var(--radius));
+  }
 }
 
 /* ---------- CONTACTO ---------- */
