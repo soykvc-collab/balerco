@@ -40,6 +40,10 @@
   /* cuánto se mete la barra del nav respecto al borde de la tarjeta del hero:
      en la referencia son ~35px en un portátil */
   --nav-inset: clamp(10px, 2.4vw, 40px);
+  /* la tarjeta final del hero ya NO se ata al borde del contenido: queda más
+     ancha que las secciones, como en la referencia (allí el hero encogido
+     ocupa ~92% y el contenido ~80%) */
+  --hero-inset: clamp(14px, 4vw, 72px);
 
   --font-display: "Poppins", system-ui, -apple-system, sans-serif;
   --font-body: "Poppins", system-ui, -apple-system, sans-serif;
@@ -274,9 +278,9 @@ p { margin: 0; }
      --sp lo controla el scroll con suavizado en JS, para un movimiento fluido. */
   position: absolute;
   top: 0;
-  left: calc(var(--sp, 0) * max(var(--gap), (100% - var(--maxw)) / 2 + var(--gap)));
-  right: calc(var(--sp, 0) * max(var(--gap), (100% - var(--maxw)) / 2 + var(--gap)));
-  bottom: calc(var(--sp, 0) * clamp(40px, 8vh, 110px));
+  left: calc(var(--sp, 0) * var(--hero-inset));
+  right: calc(var(--sp, 0) * var(--hero-inset));
+  bottom: calc(var(--sp, 0) * clamp(28px, 5.5vh, 80px));
   border-radius: calc(var(--sp, 0) * var(--radius));
   overflow: hidden;
   background: var(--ink);
