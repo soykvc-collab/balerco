@@ -412,7 +412,7 @@ p { margin: 0; }
 .mission__title em { font-style: normal; color: #FFF0D6; }   /* acento cálido */
 .mission__body {
   margin: clamp(22px, 3vw, 32px) auto 0;
-  max-width: 62ch;
+  max-width: 52ch;
   display: grid;
   gap: 16px;
 }
@@ -1213,6 +1213,35 @@ body.no-scroll { overflow: hidden; }
   .value:nth-child(4) { --stack: 3; z-index: 4; }
 }
 
+/* ---------- Control para detener el movimiento ----------
+   El carrusel y las cintas se pausan al pasar el mouse, pero en táctil no
+   existe el hover: sin este botón no habría forma de detenerlos.        */
+.motion-toggle {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1.5px solid rgba(22, 34, 59, .22);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: .86rem;
+  cursor: pointer;
+  transition: background .16s var(--ease), border-color .16s var(--ease), color .16s var(--ease);
+}
+.motion-toggle:hover { background: var(--cream-2); border-color: var(--ink); color: var(--ink); }
+.motion-toggle__icon { display: inline-flex; }
+.motion-toggle svg { fill: currentColor; display: block; }
+.motion-toggle .motion-toggle__play,
+.motion-toggle[aria-pressed="true"] .motion-toggle__pausa { display: none; }
+.motion-toggle[aria-pressed="true"] .motion-toggle__play { display: block; }
+
+.is-paused .gallery__col,
+.is-paused .marquee__track { animation-play-state: paused; }
+
 /* ---------- Preferencias de movimiento ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -1220,6 +1249,8 @@ body.no-scroll { overflow: hidden; }
   .reveal { opacity: 1; transform: none; }
   .mission .tag--outline, .mission__line, .mission__body p { transition-duration: .8s !important; }
   .gallery__col { animation-duration: 42s !important; }
+  .is-paused .gallery__col,
+  .is-paused .marquee__track { animation-play-state: paused !important; }
   .marquee__track { animation-duration: var(--mq-dur, 45s) !important; }
   .btn__arrow svg { transition-duration: .42s !important; }
   .panel { transition-duration: .72s, .46s, .46s, .4s !important; }

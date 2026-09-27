@@ -67,6 +67,12 @@ Ya está puesto tu **logo oficial** (`assets/img/logo.png`), tomado de tu sitio
 actual. Si tienes una versión en mejor resolución o en `.svg`, reemplaza ese
 archivo (con el mismo nombre) y listo.
 
+### Imagen al compartir el enlace
+
+Ya está generada en `assets/img/og-image.png` (1200×630). Es la que aparece
+cuando alguien pega el enlace en WhatsApp, Facebook o LinkedIn. Si cambias el
+diseño, el original editable está en `assets/img/og-image.svg`.
+
 ### Íconos 3D de las tarjetas
 
 Los cuatro íconos de "Por qué Balerco" (`assets/img/iconos/`) son emojis 3D de
@@ -131,11 +137,7 @@ conecta un servicio gratuito como **Formspree**:
 El botón de **WhatsApp** ya funciona y escribe al +57 318 338 1896.
 
 ### 6. Imagen para compartir en redes (Open Graph)
-Cuando alguien comparte el enlace en WhatsApp/Facebook, se muestra una imagen.
-Está diseñada en `assets/img/og-image.svg`, pero las redes prefieren `.png`.
-
-**Exporta el SVG a PNG de 1200×630 px** y guárdalo como
-`assets/img/og-image.png`. Puedes hacerlo gratis en <https://cloudconvert.com/svg-to-png>
+Ya está lista: `assets/img/og-image.png`. No tienes que hacer nada.
 (pon 1200×630) o con cualquier editor. Las etiquetas del `<head>` ya apuntan a
 ese archivo `.png`.
 

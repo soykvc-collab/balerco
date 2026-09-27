@@ -325,6 +325,21 @@
     window.addEventListener("resize", setMidP);
   }
 
+  /* ---- Botones para detener el contenido en movimiento ----
+     Requisito de accesibilidad: el carrusel y las cintas arrancan solos y
+     duran más de 5s. El hover no sirve en táctil. ---- */
+  Array.prototype.forEach.call(document.querySelectorAll(".motion-toggle"), function (btn) {
+    var destino = document.querySelector(btn.getAttribute("data-motion"));
+    if (!destino) return;
+    var etiqueta = btn.querySelector(".motion-toggle__label");
+    btn.addEventListener("click", function () {
+      var pausado = btn.getAttribute("aria-pressed") === "true";
+      btn.setAttribute("aria-pressed", String(!pausado));
+      destino.classList.toggle("is-paused", !pausado);
+      etiqueta.textContent = btn.getAttribute(!pausado ? "data-reanudar" : "data-pausar");
+    });
+  });
+
   var sectors = document.querySelector(".sectors");
   if (sectors) {
     if ("IntersectionObserver" in window) {
