@@ -1088,9 +1088,9 @@ p { margin: 0; }
 .gallery__foot { margin-top: 28px; padding: 0; text-align: left; }
 
 /* carrusel vertical continuo: dos columnas en sentidos opuestos */
+/* contenedor de las fotos: ancla el control de pausa a su borde */
+.gallery__media { grid-column: 1; grid-row: 1; position: relative; }
 .gallery {
-  grid-column: 1;
-  grid-row: 1;
   position: relative;
   height: clamp(430px, 56vh, 580px);
   overflow: hidden;
@@ -1215,7 +1215,7 @@ body.no-scroll { overflow: hidden; }
   .stats__grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-layout { grid-template-columns: 1fr; }
   .gallery__text { grid-column: 1; grid-row: 1; position: static; }
-  .gallery { grid-column: 1; grid-row: 2; }
+  .gallery__media { grid-column: 1; grid-row: 2; }
   .contact__grid { grid-template-columns: 1fr; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: 1 / -1; }
@@ -1276,22 +1276,34 @@ body.no-scroll { overflow: hidden; }
    El carrusel y las cintas se pausan al pasar el mouse, pero en táctil no
    existe el hover: sin este botón no habría forma de detenerlos.        */
 .motion-toggle {
-  margin-top: 18px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border: 1.5px solid rgba(22, 34, 59, .22);
+  gap: 7px;
+  padding: 7px 13px;
+  border: none;
   border-radius: var(--radius-pill);
-  background: var(--white);
-  color: var(--ink-soft);
+  background: rgba(22, 34, 59, .72);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  color: #fff;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: .86rem;
+  font-size: .8rem;
   cursor: pointer;
-  transition: background .16s var(--ease), border-color .16s var(--ease), color .16s var(--ease);
+  transition: background .16s var(--ease);
 }
-.motion-toggle:hover { background: var(--cream-2); border-color: var(--ink); color: var(--ink); }
+.motion-toggle:hover { background: var(--ink); }
+
+/* el control va SOBRE las fotos, anclado a su borde: así se lee como control
+   del carrusel y deja de competir con el CTA */
+.gallery__media > .motion-toggle {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 3;
+}
+/* el de sectores sí vive en la columna de texto */
+.sectors__head .motion-toggle { margin-top: 20px; }
 .motion-toggle__icon { display: inline-flex; }
 .motion-toggle svg { fill: currentColor; display: block; }
 .motion-toggle .motion-toggle__play,
