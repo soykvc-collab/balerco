@@ -419,7 +419,7 @@ p { margin: 0; }
 
 .mission__bubble--a { --dur: 7.8s; --delay: -0.9s; left: 17%;  top: 42%;    rotate: -7deg; }
 .mission__bubble--b { --dur: 6.8s; --delay: -2.9s; right: 15%; top: 26%;    rotate: 6deg; }
-.mission__bubble--c { --dur: 7.2s; --delay: -1.6s; left: 21%;  bottom: 27%; rotate: 4deg; }
+.mission__bubble--c { --dur: 7.2s; --delay: -1.6s; left: 15%;  bottom: 27%; rotate: 4deg; }
 
 @keyframes mission-flota {
   from { translate: 0 -9px; }
@@ -459,12 +459,16 @@ p { margin: 0; }
 }
 .mission__title em { font-style: normal; color: #FFF0D6; }   /* acento cálido */
 .mission__body {
-  margin: clamp(22px, 3vw, 32px) auto 0;
-  max-width: 52ch;
+  margin: clamp(24px, 3.2vw, 36px) auto 0;
+  max-width: 60ch;
   display: grid;
   gap: 16px;
 }
-.mission__body p { color: #fff; font-size: 1.08rem; }
+.mission__body p {
+  color: #fff;
+  font-size: clamp(1.12rem, 1.8vw, 1.45rem);
+  line-height: 1.5;
+}
 .mission__body strong { color: #fff; font-weight: 700; }
 
 /* Aparición del texto al entrar en pantalla */
