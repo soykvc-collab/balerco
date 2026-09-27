@@ -411,10 +411,10 @@ p { margin: 0; }
 
 /* Reparto: los márgenes laterales quedan libres porque el texto va centrado
    con 52ch de ancho; la cometa y el globo sí invaden un poco el titular. */
-.mission__icon--tobogan { --tam: clamp(70px, 9vw, 128px); --dur: 7.4s; --delay: -0.5s; left: 4%;  top: 17%;    rotate: -12deg; }
-.mission__icon--cometa  { --tam: clamp(58px, 7vw, 100px); --dur: 6.6s; --delay: -2.4s; right: 5%; top: 13%;    rotate: 14deg; }
-.mission__icon--arbol   { --tam: clamp(62px, 8vw, 112px); --dur: 8.0s; --delay: -1.3s; left: 8%;  bottom: 13%; rotate: 6deg; }
-.mission__icon--balon   { --tam: clamp(52px, 6vw, 92px);  --dur: 7.0s; --delay: -3.2s; right: 9%; bottom: 17%; rotate: -8deg; }
+.mission__icon--tobogan { --tam: clamp(96px, 13vw, 196px); --dur: 7.4s; --delay: -0.5s; left: 4%;  top: 17%;    rotate: -12deg; }
+.mission__icon--cometa  { --tam: clamp(72px, 9.5vw, 142px); --dur: 6.6s; --delay: -2.4s; right: 5%; top: 13%;    rotate: 14deg; }
+.mission__icon--arbol   { --tam: clamp(84px, 11.5vw, 172px); --dur: 8.0s; --delay: -1.3s; left: 8%;  bottom: 13%; rotate: 6deg; }
+.mission__icon--balon   { --tam: clamp(58px, 7vw, 108px);  --dur: 7.0s; --delay: -3.2s; right: 9%; bottom: 17%; rotate: -8deg; }
 .mission__icon--globo   { --tam: clamp(48px, 5.6vw, 86px);--dur: 6.2s; --delay: -1.8s; right: 19%; top: 46%;   rotate: 9deg; }
 
 .mission__bubble--a { --dur: 7.8s; --delay: -0.9s; left: 17%;  top: 42%;    rotate: -7deg; }
@@ -432,10 +432,10 @@ p { margin: 0; }
   .mission__icon--globo,
   .mission__bubble--a,
   .mission__bubble--c { display: none; }
-  .mission__icon--tobogan { left: 2%;  top: 8%; }
-  .mission__icon--cometa  { right: 3%; top: 6%; }
-  .mission__icon--arbol   { left: 3%;  bottom: 7%; }
-  .mission__icon--balon   { right: 4%; bottom: 9%; }
+  .mission__icon--tobogan { --tam: clamp(64px, 16vw, 104px); left: 2%;  top: 8%; }
+  .mission__icon--cometa  { --tam: clamp(56px, 14vw, 92px);  right: 3%; top: 6%; }
+  .mission__icon--arbol   { --tam: clamp(58px, 15vw, 96px);  left: 3%;  bottom: 7%; }
+  .mission__icon--balon   { --tam: clamp(48px, 12vw, 80px);  right: 4%; bottom: 9%; }
   .mission__bubble--b     { right: 6%; top: 50%; }
 }
 @media (max-width: 560px) {
