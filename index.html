@@ -43,7 +43,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/lenis.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=85" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=86" />
 
   <!-- ============================================================
        SEO — DATOS ESTRUCTURADOS (JSON-LD)
@@ -286,16 +286,17 @@
 
     <!-- ===================== MISIÓN (banda naranja a todo el ancho) ===================== -->
     <section class="mission" id="nosotros" aria-labelledby="mission-title">
-      <svg class="mission__deco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <!-- composición geométrica plana (constructivista): cuñas, cruz y círculo -->
-        <polygon class="mission__wedge" points="0,0 585,0 0,395" />
-        <polygon class="mission__wedge mission__wedge--dark" points="1440,0 940,0 1440,470" />
-        <polygon class="mission__wedge mission__wedge--sun" points="1440,560 1440,300 1105,560" />
-        <rect class="mission__diamond" x="1160" y="34" width="132" height="132" transform="rotate(45 1226 100)" />
-        <circle class="mission__ring" cx="1226" cy="100" r="104" />
-        <circle class="mission__dot" cx="150" cy="468" r="86" />
-        <rect class="mission__bar" x="300" y="520" width="360" height="18" />
-      </svg>
+      <!-- adornos: iconos 3D de parque y burbujas sueltas alrededor del texto -->
+      <div class="mission__deco" aria-hidden="true">
+        <img class="mission__icon mission__icon--tobogan" src="assets/img/iconos/deco-tobogan.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
+        <img class="mission__icon mission__icon--globo" src="assets/img/iconos/deco-globo.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
+        <img class="mission__icon mission__icon--arbol" src="assets/img/iconos/deco-arbol.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
+        <img class="mission__icon mission__icon--balon" src="assets/img/iconos/deco-balon.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
+        <img class="mission__icon mission__icon--cometa" src="assets/img/iconos/deco-cometa.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
+        <span class="mission__bubble mission__bubble--a">Jugar</span>
+        <span class="mission__bubble mission__bubble--b">Imaginar</span>
+        <span class="mission__bubble mission__bubble--c">Crecer</span>
+      </div>
       <div class="mission__inner">
         <span class="tag tag--outline">Nuestra misión</span>
         <h2 class="mission__title" id="mission-title">

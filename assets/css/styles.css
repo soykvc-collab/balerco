@@ -378,22 +378,70 @@ p { margin: 0; }
   text-align: center;
   color: #fff;
 }
-.mission__deco {                            /* cintas curvas de fondo */
+/* Adornos: el fondo queda plano y los iconos 3D y las burbujas se reparten
+   alrededor del texto, algunos montándose sobre el titular (como la referencia).
+   Todo es decorativo: va fuera del árbol accesible y no captura clics.        */
+.mission__deco {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
   pointer-events: none;
-  overflow: visible;
+  overflow: hidden;
 }
-/* toda la composición dentro de la gama naranja */
-.mission__wedge { fill: #8E3907; opacity: .55; }
-.mission__wedge--dark { fill: #6E2B05; opacity: .5; }
-.mission__wedge--sun  { fill: #FBB03B; opacity: .34; }
-.mission__diamond { fill: #FBB03B; opacity: .5; }
-.mission__ring    { fill: none; stroke: #FFD9A8; stroke-width: 10; opacity: .45; }
-.mission__dot     { fill: #FFD9A8; opacity: .26; }
-.mission__bar     { fill: #F6851F; opacity: .6; }
+.mission__icon,
+.mission__bubble {
+  position: absolute;
+  animation: mission-flota var(--dur, 7s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+.mission__icon {
+  width: var(--tam, 110px);
+  height: auto;
+  filter: drop-shadow(0 10px 18px rgba(22, 34, 59, .22));
+}
+.mission__bubble {
+  display: inline-block;
+  padding: 9px 20px;
+  border: 2px solid rgba(255, 255, 255, .8);
+  border-radius: var(--radius-pill);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(.86rem, 1.3vw, 1.02rem);
+  white-space: nowrap;
+}
+
+/* Reparto: los márgenes laterales quedan libres porque el texto va centrado
+   con 52ch de ancho; la cometa y el globo sí invaden un poco el titular. */
+.mission__icon--tobogan { --tam: clamp(70px, 9vw, 128px); --dur: 7.4s; --delay: -0.5s; left: 4%;  top: 17%;    rotate: -12deg; }
+.mission__icon--cometa  { --tam: clamp(58px, 7vw, 100px); --dur: 6.6s; --delay: -2.4s; right: 5%; top: 13%;    rotate: 14deg; }
+.mission__icon--arbol   { --tam: clamp(62px, 8vw, 112px); --dur: 8.0s; --delay: -1.3s; left: 8%;  bottom: 13%; rotate: 6deg; }
+.mission__icon--balon   { --tam: clamp(52px, 6vw, 92px);  --dur: 7.0s; --delay: -3.2s; right: 9%; bottom: 17%; rotate: -8deg; }
+.mission__icon--globo   { --tam: clamp(48px, 5.6vw, 86px);--dur: 6.2s; --delay: -1.8s; right: 19%; top: 46%;   rotate: 9deg; }
+
+.mission__bubble--a { --dur: 7.8s; --delay: -0.9s; left: 17%;  top: 42%;    rotate: -7deg; }
+.mission__bubble--b { --dur: 6.8s; --delay: -2.9s; right: 15%; top: 26%;    rotate: 6deg; }
+.mission__bubble--c { --dur: 7.2s; --delay: -1.6s; left: 21%;  bottom: 27%; rotate: 4deg; }
+
+@keyframes mission-flota {
+  from { translate: 0 -9px; }
+  to   { translate: 0 9px; }
+}
+
+/* Pantallas medianas y móvil: el texto ocupa casi todo el ancho, así que
+   sobreviven solo las cuatro esquinas y más pequeñas. */
+@media (max-width: 900px) {
+  .mission__icon--globo,
+  .mission__bubble--a,
+  .mission__bubble--c { display: none; }
+  .mission__icon--tobogan { left: 2%;  top: 8%; }
+  .mission__icon--cometa  { right: 3%; top: 6%; }
+  .mission__icon--arbol   { left: 3%;  bottom: 7%; }
+  .mission__icon--balon   { right: 4%; bottom: 9%; }
+  .mission__bubble--b     { right: 6%; top: 50%; }
+}
+@media (max-width: 560px) {
+  .mission__bubble--b { display: none; }
+}
+
 .mission__inner {
   position: relative;
   max-width: var(--content-w);
@@ -402,7 +450,7 @@ p { margin: 0; }
 .mission .tag--outline { color: #fff; }
 .mission__title {
   margin-top: 22px;
-  font-size: clamp(2.2rem, 5.4vw, 4.2rem);
+  font-size: clamp(2.3rem, 5.8vw, 4.6rem);
   font-weight: 800;
   line-height: 1.04;
   color: #fff;
@@ -1249,6 +1297,7 @@ body.no-scroll { overflow: hidden; }
   .reveal { opacity: 1; transform: none; }
   .mission .tag--outline, .mission__line, .mission__body p { transition-duration: .8s !important; }
   .gallery__col { animation-duration: 42s !important; }
+  .mission__icon, .mission__bubble { animation-duration: var(--dur, 7s) !important; }
   .is-paused .gallery__col,
   .is-paused .marquee__track { animation-play-state: paused !important; }
   .marquee__track { animation-duration: var(--mq-dur, 45s) !important; }
