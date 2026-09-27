@@ -192,6 +192,8 @@ p { margin: 0; }
 }
 .btn--ghost:hover { background: var(--ink); color: #fff; box-shadow: inset 0 0 0 2px var(--ink); transform: translate(-2px,-2px); }
 .btn--wa { --btn-bg: var(--grass); --btn-fg: #fff; }
+/* sobre una banda de color el naranja del botón principal se pierde */
+.btn--sobre-color { --btn-bg: var(--white); --btn-fg: var(--ink); }
 
 .btn--block { width: 100%; justify-content: center; }
 
@@ -415,11 +417,11 @@ p { margin: 0; }
 .mission__icon--cometa  { --tam: clamp(72px, 9.5vw, 142px); --dur: 6.6s; --delay: -2.4s; right: 5%; top: 13%;    rotate: 14deg; }
 .mission__icon--arbol   { --tam: clamp(84px, 11.5vw, 172px); --dur: 8.0s; --delay: -1.3s; left: 8%;  bottom: 13%; rotate: 6deg; }
 .mission__icon--balon   { --tam: clamp(58px, 7vw, 108px);  --dur: 7.0s; --delay: -3.2s; right: 9%; bottom: 17%; rotate: -8deg; }
-.mission__icon--globo   { --tam: clamp(48px, 5.6vw, 86px);--dur: 6.2s; --delay: -1.8s; right: 19%; top: 46%;   rotate: 9deg; }
+.mission__icon--globo   { --tam: clamp(48px, 5.6vw, 86px);--dur: 6.2s; --delay: -1.8s; right: 6%;  top: 52%;   rotate: 9deg; }
 
-.mission__bubble--a { --dur: 7.8s; --delay: -0.9s; left: 17%;  top: 42%;    rotate: -7deg; }
-.mission__bubble--b { --dur: 6.8s; --delay: -2.9s; right: 15%; top: 26%;    rotate: 6deg; }
-.mission__bubble--c { --dur: 7.2s; --delay: -1.6s; left: 15%;  bottom: 27%; rotate: 4deg; }
+.mission__bubble--a { --dur: 7.8s; --delay: -0.9s; left: 6%;   top: 44%;    rotate: -7deg; }
+.mission__bubble--b { --dur: 6.8s; --delay: -2.9s; right: 5%;  top: 30%;    rotate: 6deg; }
+.mission__bubble--c { --dur: 7.2s; --delay: -1.6s; left: 13%;  bottom: 33%; rotate: 4deg; }
 
 @keyframes mission-flota {
   from { translate: 0 -9px; }
@@ -450,31 +452,34 @@ p { margin: 0; }
 .mission .tag--outline { color: #fff; }
 .mission__title {
   margin-top: 22px;
-  font-size: clamp(2.3rem, 5.8vw, 4.6rem);
+  font-size: clamp(2.5rem, 7.4vw, 6.6rem);
   font-weight: 800;
-  line-height: 1.04;
+  line-height: .95;
+  letter-spacing: -.015em;
   color: #fff;
-  max-width: 20ch;
+  max-width: 14ch;
   margin-inline: auto;
 }
 .mission__title em { font-style: normal; color: #FFF0D6; }   /* acento cálido */
 .mission__body {
   margin: clamp(24px, 3.2vw, 36px) auto 0;
-  max-width: 60ch;
+  max-width: 44rem;
   display: grid;
   gap: 16px;
 }
 .mission__body p {
   color: #fff;
-  font-size: clamp(1.12rem, 1.8vw, 1.45rem);
-  line-height: 1.5;
+  font-size: clamp(1.15rem, 2vw, 1.6rem);
+  line-height: 1.45;
 }
 .mission__body strong { color: #fff; font-weight: 700; }
 
 /* Aparición del texto al entrar en pantalla */
 .mission__line { display: block; }
+.mission__cta { margin-top: clamp(26px, 3.4vw, 40px); }
 .mission .tag--outline,
 .mission__line,
+.mission__cta,
 .mission__body p {
   opacity: 0;
   transform: translateY(22px);
@@ -482,11 +487,13 @@ p { margin: 0; }
 }
 .mission.is-in .tag--outline,
 .mission.is-in .mission__line,
+.mission.is-in .mission__cta,
 .mission.is-in .mission__body p { opacity: 1; transform: none; }
 .mission.is-in .mission__line:nth-of-type(1) { transition-delay: .10s; }
 .mission.is-in .mission__line:nth-of-type(2) { transition-delay: .20s; }
+.mission.is-in .mission__line:nth-of-type(3) { transition-delay: .28s; }
 .mission.is-in .mission__body p:nth-child(1) { transition-delay: .32s; }
-.mission.is-in .mission__body p:nth-child(2) { transition-delay: .42s; }
+.mission.is-in .mission__cta { transition-delay: .46s; }
 
 /* ---------- PRODUCTOS (acordeón con fotos; se abre al pasar el mouse) ---------- */
 .products {
@@ -1299,7 +1306,7 @@ body.no-scroll { overflow: hidden; }
   html { scroll-behavior: auto; }
   * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
   .reveal { opacity: 1; transform: none; }
-  .mission .tag--outline, .mission__line, .mission__body p { transition-duration: .8s !important; }
+  .mission .tag--outline, .mission__line, .mission__body p, .mission__cta { transition-duration: .8s !important; }
   .gallery__col { animation-duration: 42s !important; }
   .mission__icon, .mission__bubble { animation-duration: var(--dur, 7s) !important; }
   .is-paused .gallery__col,
