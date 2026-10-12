@@ -596,8 +596,32 @@ p { margin: 0; }
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 26px 0;
+  padding: 64px 0;
 }
+/* el icono y el chevrón van absolutos para no tocar el centrado del rótulo vertical */
+.panel__ico, .panel__chevron {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  color: #fff;
+  opacity: .92;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 1px 6px rgba(22, 34, 59, .35));
+}
+.panel__ico { width: 23px; height: 23px; }
+.panel__chevron { width: 19px; height: 19px; }
+.panel__ico svg, .panel__chevron svg { width: 100%; height: 100%; display: block; }
+.panel__ico { top: 24px; }
+.panel__chevron {
+  bottom: 24px;
+  transition: rotate .42s var(--ease), opacity .28s var(--ease);
+}
+/* cerrado apunta hacia donde se abre; abierto, de vuelta */
+.panel.is-open .panel__chevron { rotate: 180deg; opacity: .55; }
+.panel__bar:hover .panel__chevron { opacity: 1; }
+
 .panel__label {
   font-family: var(--font-display);
   font-weight: 700;
@@ -1228,8 +1252,14 @@ body.no-scroll { overflow: hidden; }
   .accordion { flex-direction: column; min-height: 0; height: auto; }
   .panel { flex: none; flex-direction: column; }
   .accordion:has(.panel.is-open) .panel:not(.is-open) { scale: none; }
-  .panel__bar { width: 100%; flex: none; padding: 20px 24px; justify-content: flex-start; }
+  .panel__bar { width: 100%; flex: none; padding: 18px 20px; justify-content: flex-start;
+    align-items: center; gap: 13px; }
   .panel__label { writing-mode: horizontal-tb; transform: none; }
+  .panel__ico, .panel__chevron { position: static; translate: none; }
+  .panel__chevron { margin-left: auto; rotate: 90deg; }
+  .panel.is-open .panel__chevron { rotate: -90deg; }
+  /* abierta, el título ya está en el contenido: el icono sobre la foto estorba */
+  .panel.is-open .panel__ico { opacity: 0; }
   .panel__content { padding: 0 24px 26px; min-width: 0; opacity: 1; justify-content: flex-end; }
   .panel.is-open { min-height: 360px; }
   .panel.is-open .panel__label { opacity: 0; }
