@@ -847,6 +847,22 @@ p { margin: 0; }
 
 
 /* ---------- PROCESO ---------- */
+/* ---- banda que reemplaza la galería en la portada ---------------------- */
+.verproyectos { padding: clamp(40px, 6vw, 72px) 0; background: var(--white); }
+.verproyectos__inner {
+  max-width: var(--maxw); margin: 0 auto; padding: clamp(26px, 3.4vw, 44px) clamp(22px, 3vw, 44px);
+  background: var(--cream-2); border-radius: var(--radius);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: clamp(18px, 2.6vw, 34px);
+}
+.verproyectos__inner > div { flex: 1 1 24rem; min-width: 0; }
+.verproyectos p { margin-top: 10px; color: var(--ink-soft); max-width: 44rem; }
+.verproyectos .btn { flex: 0 0 auto; }
+
+/* la miga de pan de una página interna tiene que librar el nav fijo */
+.pagetop { max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(118px, 15vh, 168px) var(--gap) 0; }
+
 /* ---- páginas internas (Cómo trabajamos) --------------------------------
    El nav es fijo, así que el encabezado necesita aire arriba para no
    quedar debajo de la píldora.                                        */
