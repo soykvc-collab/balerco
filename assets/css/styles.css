@@ -847,6 +847,29 @@ p { margin: 0; }
 
 
 /* ---------- PROCESO ---------- */
+/* ---- páginas internas (Cómo trabajamos) --------------------------------
+   El nav es fijo, así que el encabezado necesita aire arriba para no
+   quedar debajo de la píldora.                                        */
+.pagehead { padding: clamp(128px, 17vh, 184px) 0 clamp(8px, 2vw, 24px); background: var(--white); }
+.pagehead__inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gap); }
+.pagehead h1 { margin-top: 12px; }
+.pagehead__lead {
+  margin-top: 16px; max-width: 46rem;
+  font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.6; color: var(--ink-soft);
+}
+.migas { font-size: .86rem; color: var(--ink-soft); margin-bottom: 18px; }
+.migas a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid rgba(22,34,59,.25); }
+.migas a:hover { color: var(--orange-deep); border-bottom-color: currentColor; }
+.migas span[aria-hidden] { margin: 0 6px; opacity: .5; }
+
+.pagecta { padding: 0 0 clamp(56px, 8vw, 100px); background: var(--white); }
+.pagecta__inner {
+  max-width: var(--maxw); margin: 0 auto; padding: clamp(28px, 4vw, 52px) var(--gap);
+  background: var(--cream-2); border-radius: var(--radius); text-align: center;
+}
+.pagecta h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); }
+.pagecta p { margin: 10px auto 22px; color: var(--ink-soft); max-width: 40rem; }
+
 .process { padding: clamp(48px,7vw,90px) 0; background: var(--white); }
 .steps {
   max-width: var(--maxw);
