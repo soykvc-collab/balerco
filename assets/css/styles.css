@@ -25,6 +25,11 @@
   --orange-2:   #FBB03B;   /* solo decorativo (formas de la misión) */
   --orange-ink: #8A3408;   /* texto secundario sobre fondos claros cálidos */
 
+  /* tarjetas de "por qué Balerco": un tono, pendiente del manual de marca */
+  --valor-fondo: #F7F8FA;
+  --valor-texto: var(--ink);
+  --valor-icono: var(--ink);
+
   --radius:     28px;
   --radius-sm:  16px;
   --radius-pill:999px;
@@ -521,7 +526,10 @@ p { margin: 0; }
 .products__head .tag { grid-area: tag; align-self: end; justify-self: start; }
 .products__head .section-sub { grid-area: sub; align-self: start; margin-top: 0; max-width: 46ch; }
 .accordion {
+  width: 100%;
   max-width: var(--maxw);
+  min-width: 0;
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 0 var(--gap);
   display: flex;
@@ -808,21 +816,25 @@ p { margin: 0; }
     0 1px 2px rgba(22, 34, 59, .10),
     0 8px 18px rgba(22, 34, 59, .13),
     0 20px 40px rgba(22, 34, 59, .10);
-  background: var(--sun);                  /* paleta viva, igual que el acordeón de arriba */
+  /* Un solo tono para las cuatro. Cuando lleguen los códigos de Alejandra
+     basta cambiar estas dos variables y se reskinean todas.              */
+  background: var(--valor-fondo);
+  color: var(--valor-texto);
 }
-.value:nth-child(2) { background: var(--sky); }
-.value:nth-child(3) { background: var(--grass); }
-.value:nth-child(4) { background: var(--berry); }
 .value:nth-child(1) { z-index: 4; }
 .value:nth-child(2) { z-index: 3; }
 .value:nth-child(3) { z-index: 2; }
 .value:nth-child(4) { z-index: 1; }
 .value__icon {
-  width: 66px; height: 66px; border-radius: 18px;
-  display: grid; place-items: center; margin-bottom: 16px;
-  background: #fff;                        /* el ícono resalta sobre el color */
-  box-shadow: 0 2px 6px rgba(22, 34, 59, .16);
+  width: 52px; height: 52px; border-radius: 14px;
+  display: grid; place-items: center; margin-bottom: 15px;
+  background: rgba(22, 34, 59, .06);
+  color: var(--valor-icono);
+  box-shadow: none;
 }
+.value__icon svg { display: block; }
+/* la tarjeta ya no lleva color de fondo: necesita un borde que la sostenga */
+.value { border: 1px solid rgba(22, 34, 59, .09); }
 /* emojis 3D (Fluent Emoji, licencia MIT) con una sombra suave para que se
    despeguen de la baldosa */
 .value__icon img {
@@ -830,8 +842,8 @@ p { margin: 0; }
   object-fit: contain;
   filter: drop-shadow(0 3px 5px rgba(22, 34, 59, .22));
 }
-.value h3 { font-size: 1.28rem; color: #fff; }
-.value p { margin-top: 10px; color: #fff; opacity: .94; font-size: .98rem; }
+.value h3 { font-size: 1.28rem; color: var(--valor-texto); }
+.value p { margin-top: 10px; color: var(--ink-soft); font-size: .98rem; }
 
 
 /* ---------- PROCESO ---------- */
@@ -1128,19 +1140,24 @@ p { margin: 0; }
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 4%, #000 96%, transparent 100%);
           mask-image: linear-gradient(to bottom, transparent 0, #000 4%, #000 96%, transparent 100%);
 }
+/* El movimiento lo lleva el JS sumando scroll, no una animación: así se
+   puede arrastrar con el dedo y con la rueda. */
 .gallery__col {
   display: flex;
   flex-direction: column;
+  min-height: 0;
+  min-width: 0;
   gap: clamp(12px, 1.4vw, 18px);
-  animation: gallery-up 42s linear infinite;
-  will-change: transform;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  touch-action: pan-y;
+  cursor: grab;
 }
-.gallery__col--down { animation-name: gallery-down; }
-@keyframes gallery-up   { from { transform: translateY(0); }    to { transform: translateY(-50%); } }
-@keyframes gallery-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
-/* al pasar el mouse se detiene para poder mirar y abrir una foto */
-.gallery:hover .gallery__col,
-.gallery:focus-within .gallery__col { animation-play-state: paused; }
+.gallery__col::-webkit-scrollbar { width: 0; height: 0; }
+.gallery__col:active { cursor: grabbing; }
 
 .gallery__item {
   position: relative;
@@ -1239,7 +1256,7 @@ body.no-scroll { overflow: hidden; }
   .stats__grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-layout { grid-template-columns: 1fr; }
   .gallery__text { grid-column: 1; grid-row: 1; position: static; }
-  .gallery__media { grid-column: 1; grid-row: 2; }
+  .gallery__media { grid-column: 1; grid-row: 2; min-width: 0; }
   .contact__grid { grid-template-columns: 1fr; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: 1 / -1; }
@@ -1254,7 +1271,8 @@ body.no-scroll { overflow: hidden; }
   .accordion:has(.panel.is-open) .panel:not(.is-open) { scale: none; }
   .panel__bar { width: 100%; flex: none; padding: 18px 20px; justify-content: flex-start;
     align-items: center; gap: 13px; }
-  .panel__label { writing-mode: horizontal-tb; transform: none; }
+  .panel__label { writing-mode: horizontal-tb; transform: none;
+    flex: 1 1 auto; min-width: 0; white-space: normal; }
   .panel__ico, .panel__chevron { position: static; translate: none; }
   .panel__chevron { margin-left: auto; rotate: 90deg; }
   .panel.is-open .panel__chevron { rotate: -90deg; }
@@ -1272,7 +1290,25 @@ body.no-scroll { overflow: hidden; }
   .why__grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .stats__grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery { height: 400px; }
+  /* En el teléfono el gesto vertical es de la página, así que la galería
+     se desplaza en horizontal: dos filas que se arrastran con el dedo. */
+  .gallery {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 1.4vw, 18px);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+  }
+  .gallery__col {
+    flex-direction: row;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    touch-action: pan-x;
+    scroll-snap-type: x proximity;
+  }
+  .gallery__item { width: 62vw; max-width: 280px; scroll-snap-align: center; }
   .footer__inner { grid-template-columns: 1fr; }
   .hero__actions { flex-wrap: wrap; }        /* en móvil los botones se apilan */
   .hero__actions .btn { width: 100%; justify-content: center; }

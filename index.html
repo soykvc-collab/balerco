@@ -43,7 +43,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/lenis.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=103" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=110" />
 
   <!-- ============================================================
        SEO — DATOS ESTRUCTURADOS (JSON-LD)
@@ -294,13 +294,9 @@
 
     <!-- ===================== MISIÓN (banda naranja a todo el ancho) ===================== -->
     <section class="mission" id="nosotros" aria-labelledby="mission-title">
-      <!-- adornos: iconos 3D de parque y burbujas sueltas alrededor del texto -->
+      <!-- adornos: solo las burbujas. Los iconos 3D salieron en la revisión del 13/10:
+           leían demasiado infantil para la nueva dirección de marca. -->
       <div class="mission__deco" aria-hidden="true">
-        <img class="mission__icon mission__icon--tobogan" src="assets/img/iconos/deco-tobogan.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
-        <img class="mission__icon mission__icon--globo" src="assets/img/iconos/deco-globo.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
-        <img class="mission__icon mission__icon--arbol" src="assets/img/iconos/deco-arbol.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
-        <img class="mission__icon mission__icon--balon" src="assets/img/iconos/deco-balon.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
-        <img class="mission__icon mission__icon--cometa" src="assets/img/iconos/deco-cometa.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
         <span class="mission__bubble mission__bubble--a">Jugar</span>
         <span class="mission__bubble mission__bubble--b">Imaginar</span>
         <span class="mission__bubble mission__bubble--c">Crecer</span>
@@ -424,32 +420,32 @@
       </div>
       <div class="why__grid">
         <article class="value">
-          <div class="value__icon value__icon--sun" aria-hidden="true">
-            <img src="assets/img/iconos/seguridad.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
+          <div class="value__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.2c0 4.8-3.2 8.6-7.5 10.3-4.3-1.7-7.5-5.5-7.5-10.3V6z"/><path d="m8.8 12 2.3 2.3 4.4-4.5"/></svg>
           </div>
           <h3>Seguridad certificada</h3>
           <p>Cumplimos las normas de seguridad infantil para que cada juego sea
             tan seguro como divertido.</p>
         </article>
         <article class="value">
-          <div class="value__icon value__icon--sky" aria-hidden="true">
-            <img src="assets/img/iconos/diseno.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
+          <div class="value__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4.2L20.2 8a2.9 2.9 0 1 0-4.1-4.1L4 15.9z"/><path d="m14.6 5.4 4.1 4.1"/><path d="M4 20l.9-3.2"/></svg>
           </div>
           <h3>Diseño a tu medida</h3>
           <p>Adaptamos cada proyecto al espacio, la edad y la identidad de tu
             comunidad. Nada de moldes repetidos.</p>
         </article>
         <article class="value">
-          <div class="value__icon value__icon--grass" aria-hidden="true">
-            <img src="assets/img/iconos/calidad.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
+          <div class="value__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="M3.2 12h17.6"/><path d="M12 3.2c2.5 2.6 2.5 15.2 0 17.6M12 3.2c-2.5 2.6-2.5 15.2 0 17.6"/></svg>
           </div>
           <h3>Calidad internacional</h3>
           <p>Trabajamos con una red de proveedores globales y materiales de larga
             duración pensados para la intemperie.</p>
         </article>
         <article class="value">
-          <div class="value__icon value__icon--berry" aria-hidden="true">
-            <img src="assets/img/iconos/acompanamiento.png" alt="" width="256" height="256" loading="lazy" decoding="async" />
+          <div class="value__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.2" cy="8" r="3.3"/><path d="M2.8 20.2c0-3.5 2.9-6.4 6.4-6.4s6.4 2.9 6.4 6.4"/><path d="M16.4 5.2a3.3 3.3 0 0 1 0 5.9M21.2 19.4c0-2.6-1.2-4.9-3-6.2"/></svg>
           </div>
           <h3>Acompañamiento total</h3>
           <p>Te guiamos desde la primera idea hasta la instalación y el
@@ -694,6 +690,6 @@
   </div>
 
   <script src="assets/js/lenis.min.js" defer></script>
-  <script src="assets/js/main.js?v=31" defer></script>
+  <script src="assets/js/main.js?v=35" defer></script>
 </body>
 </html>

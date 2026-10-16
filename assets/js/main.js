@@ -222,6 +222,85 @@
       }
       fillColumn(colA);
       fillColumn(colB);
+
+      /* ---- motor del carrusel ----------------------------------------
+         Antes el movimiento era una animación CSS sobre transform, y por
+         eso solo se podía pausar. Ahora cada columna es un contenedor con
+         scroll nativo y el movimiento automático va sumando scroll cuadro
+         a cuadro: el arrastre con el dedo, la rueda y el teclado funcionan
+         solos, con inercia, y sin pelearse con el scroll de la página.
+         En móvil el eje pasa a horizontal (ver CSS) porque ahí el gesto
+         vertical le pertenece a la página.                              */
+      var columnas = [
+        { el: colA, signo:  1 },
+        { el: colB, signo: -1 }   /* la segunda va al revés, como antes */
+      ];
+      var VEL = 14;               /* píxeles por segundo */
+      var ESPERA = 1600;          /* cuánto espera tras soltar, en ms */
+      var horizontal = false;
+      var tocando = 0;
+      var previo = 0;
+
+      function eje() { return horizontal ? "scrollLeft" : "scrollTop"; }
+      function largo(c) {
+        return horizontal ? c.scrollWidth - c.clientWidth : c.scrollHeight - c.clientHeight;
+      }
+      /* el contenido está duplicado: al pasar la mitad volvemos atrás y el
+         salto es invisible porque lo que se ve es idéntico */
+      function enrollar(c, signo) {
+        var mitad = (horizontal ? c.scrollWidth : c.scrollHeight) / 2;
+        if (mitad < 2) return;
+        var v = c[eje()];
+        if (signo > 0 && v >= mitad) c[eje()] = v - mitad;
+        else if (signo < 0 && v <= 0) c[eje()] = v + mitad;
+      }
+      function arranque() {
+        /* la columna que va "al revés" empieza por la mitad para tener
+           recorrido hacia atrás */
+        columnas.forEach(function (col) {
+          if (col.signo < 0) col.el[eje()] = (horizontal ? col.el.scrollWidth : col.el.scrollHeight) / 2;
+        });
+      }
+
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+      function quieto() {
+        return reduce.matches ||
+               document.hidden ||
+               galleryEl.classList.contains("is-paused") ||
+               Date.now() < tocando ||
+               (!horizontal && galleryEl.matches(":hover, :focus-within"));
+      }
+
+      function cuadro(ahora) {
+        var dt = previo ? Math.min(ahora - previo, 50) : 0;
+        previo = ahora;
+        if (!quieto() && dt) {
+          columnas.forEach(function (col) {
+            if (largo(col.el) < 1) return;
+            col.el[eje()] += col.signo * VEL * dt / 1000;
+            enrollar(col.el, col.signo);
+          });
+        }
+        requestAnimationFrame(cuadro);
+      }
+
+      /* mientras la persona arrastra o rueda, el automático se aparta */
+      function manos() { tocando = Date.now() + ESPERA; }
+      [colA, colB, galleryEl].forEach(function (c) {
+        ["pointerdown", "touchstart", "wheel", "keydown"].forEach(function (ev) {
+          c.addEventListener(ev, manos, { passive: true });
+        });
+      });
+
+      function medirEje() {
+        var antes = horizontal;
+        horizontal = window.matchMedia("(max-width: 699px)").matches;
+        if (horizontal !== antes) arranque();
+      }
+      medirEje();
+      arranque();
+      window.addEventListener("resize", medirEje);
+      requestAnimationFrame(cuadro);
     }
   }
 
