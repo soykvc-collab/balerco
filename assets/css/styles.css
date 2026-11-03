@@ -878,6 +878,29 @@ p { margin: 0; }
 .migas a:hover { color: var(--orange-deep); border-bottom-color: currentColor; }
 .migas span[aria-hidden] { margin: 0 6px; opacity: .5; }
 
+/* ---- casilla de autorización ---- */
+.form__consent {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin: 4px 0 6px;
+}
+.form__consent input {
+  flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px;
+  accent-color: var(--orange); cursor: pointer;
+}
+.form__consent label {
+  font-size: .86rem; line-height: 1.5; color: var(--ink-soft); cursor: pointer;
+}
+.form__consent a { color: var(--orange-deep); }
+.footer__bar a { color: inherit; }
+
+/* ---- páginas de texto legal ---- */
+.legal { padding: clamp(8px,1.6vw,20px) 0 clamp(56px,8vw,100px); background: var(--white); }
+.legal__inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gap); }
+.legal h2, .legal p { max-width: 46rem; }
+.legal h2 { font-size: clamp(1.05rem,1.8vw,1.3rem); margin-top: clamp(26px,3.4vw,40px); }
+.legal p { margin-top: 10px; color: var(--ink-soft); line-height: 1.75; }
+.legal a { color: var(--orange-deep); }
+
 .pagecta { padding: 0 0 clamp(56px, 8vw, 100px); background: var(--white); }
 .pagecta__inner {
   max-width: var(--maxw); margin: 0 auto; padding: clamp(28px, 4vw, 52px) var(--gap);

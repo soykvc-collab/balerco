@@ -332,7 +332,7 @@
     function tick(now) {
       var p = Math.min((now - t0) / dur, 1);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
+      el.textContent = Math.round(target * eased).toLocaleString("es-CO") + suffix;
       if (p < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -471,10 +471,14 @@
         var email = (form.email && form.email.value) || "";
         var tel = (form.telefono && form.telefono.value) || "";
         var msg = (form.mensaje && form.mensaje.value) || "";
+        /* queda constancia de que marcó la casilla y de cuándo */
+        var autorizo = form.autorizacion && form.autorizacion.checked
+          ? "Sí (" + new Date().toLocaleString("es-CO") + ")" : "No";
         var body =
           "Nombre: " + nombre + "%0D%0A" +
           "Correo: " + email + "%0D%0A" +
-          "Teléfono: " + tel + "%0D%0A%0D%0A" +
+          "Teléfono: " + tel + "%0D%0A" +
+          "Autoriza el tratamiento de datos: " + autorizo + "%0D%0A%0D%0A" +
           "Mensaje:%0D%0A" + encodeURIComponent(msg);
         window.location.href =
           "mailto:contactenos@balerco.com.co?subject=" +
