@@ -218,7 +218,7 @@ p { margin: 0; }
   align-items: center;
   background: var(--white);
   border-radius: 14px;
-  padding: 16px 16px 16px 24px;
+  padding: 10px 16px 10px 20px;   /* el logo manda la altura; la pildora mide lo mismo que antes */
   pointer-events: auto;
   border: 1px solid rgba(22, 34, 59, .10);   /* define la píldora sobre fondo blanco (sin sombra) */
 }
@@ -226,7 +226,7 @@ p { margin: 0; }
 .nav__links { justify-self: center; }
 .btn--nav { justify-self: end; }
 .nav__brand { display: inline-flex; align-items: center; }
-.brand-logo { height: 42px; width: auto; }
+.brand-logo { height: 56px; width: auto; }
 
 .nav__links {
   display: flex;
