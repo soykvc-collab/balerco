@@ -58,8 +58,8 @@
      valor para tucarse bajo la tarjeta, así que los dos deben leer el token. */
   --hero-bottom: clamp(28px, 5.5vh, 80px);
 
-  --font-display: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-body: "Poppins", system-ui, -apple-system, sans-serif;
+  --font-display: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-body: "Manrope", system-ui, -apple-system, sans-serif;
 
   --ease: cubic-bezier(.22,.61,.36,1);
 }
@@ -114,7 +114,7 @@ p { margin: 0; }
   padding: 0 var(--gap);
 }
 .section-title {
-  font-size: clamp(2rem, 5.2vw, 3.6rem);
+  font-size: clamp(1.9rem, 4.84vw, 3.24rem);
   max-width: 16ch;
   margin-top: 14px;
 }
@@ -325,7 +325,7 @@ p { margin: 0; }
 .hero__chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: clamp(14px, 1.6vw, 20px); }
 /* El titular es el protagonista */
 .hero__title {
-  font-size: clamp(2.3rem, 5vw, 4.4rem);
+  font-size: clamp(2.18rem, 4.65vw, 3.96rem);
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.03em;
@@ -457,7 +457,7 @@ p { margin: 0; }
 .mission .tag--outline { color: #fff; }
 .mission__title {
   margin-top: 22px;
-  font-size: clamp(2.5rem, 7.4vw, 6.6rem);
+  font-size: clamp(2.38rem, 6.88vw, 5.94rem);
   font-weight: 800;
   line-height: .95;
   letter-spacing: -.015em;
@@ -474,7 +474,7 @@ p { margin: 0; }
 }
 .mission__body p {
   color: #fff;
-  font-size: clamp(1.15rem, 2vw, 1.6rem);
+  font-size: clamp(1.09rem, 1.86vw, 1.44rem);
   line-height: 1.45;
 }
 .mission__body strong { color: #fff; font-weight: 700; }
@@ -665,7 +665,7 @@ p { margin: 0; }
   clip-path: inset(0 0 0 0);
   transform: translateX(0);
 }
-.panel__text h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); color: #fff; }
+.panel__text h3 { font-size: clamp(1.42rem, 2.23vw, 1.8rem); color: #fff; }
 .panel__text p  { color: rgba(255,255,255,.9); margin-top: 8px; max-width: 42ch; }
 .chip {
   display: inline-block;
@@ -719,7 +719,7 @@ p { margin: 0; }
   padding: 7px 15px;
   border-radius: var(--radius-pill);
 }
-.feature__title { margin-top: 18px; font-size: clamp(1.6rem, 2.6vw, 2.2rem); color: var(--rust); }
+.feature__title { margin-top: 18px; font-size: clamp(1.52rem, 2.42vw, 1.98rem); color: var(--rust); }
 .feature__pillars {
   list-style: none;
   margin: 24px 0 0;
@@ -906,7 +906,7 @@ p { margin: 0; }
   max-width: var(--maxw); margin: 0 auto; padding: clamp(28px, 4vw, 52px) var(--gap);
   background: var(--cream-2); border-radius: var(--radius); text-align: center;
 }
-.pagecta h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); }
+.pagecta h2 { font-size: clamp(1.33rem, 2.42vw, 1.8rem); }
 .pagecta p { margin: 10px auto 22px; color: var(--ink-soft); max-width: 40rem; }
 
 .process { padding: clamp(48px,7vw,90px) 0; background: var(--white); }
@@ -949,7 +949,7 @@ p { margin: 0; }
 .stat__num {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-size: clamp(2.47rem, 5.58vw, 3.78rem);
   color: #fff;
   line-height: 1;
   display: block;
@@ -1039,7 +1039,7 @@ p { margin: 0; }
   color: #fff;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.7rem, 3.6vw, 2.9rem);
+  font-size: clamp(1.61rem, 3.35vw, 2.61rem);
   line-height: 1;
   white-space: nowrap;
 }
@@ -1102,7 +1102,7 @@ p { margin: 0; }
   overflow: hidden;
 }
 .contact__intro { padding: clamp(28px,4vw,52px); }
-.contact__title { font-size: clamp(1.8rem, 4vw, 3rem); margin-top: 14px; max-width: 16ch; }
+.contact__title { font-size: clamp(1.71rem, 3.72vw, 2.7rem); margin-top: 14px; max-width: 16ch; }
 .contact__intro > p { margin-top: 16px; color: var(--ink-soft); max-width: 42ch; }
 .contact__details { list-style: none; padding: 0; margin: 26px 0; display: grid; gap: 14px; }
 .contact__details li { display: flex; align-items: center; gap: 12px; }
