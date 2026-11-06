@@ -579,7 +579,7 @@
     }
 
     document.addEventListener("click", function (e) {
-      var item = e.target.closest ? e.target.closest(".gallery__item") : null;
+      var item = e.target.closest ? e.target.closest(".gallery__item, .foto-zoom") : null;
       if (!item) return;
       var img = item.querySelector("img");
       openLightbox(item.getAttribute("data-full"), img ? img.alt : "");

@@ -1556,3 +1556,60 @@ body.no-scroll { overflow: hidden; }
   /* El encogimiento del hero está ligado al scroll del usuario (no es una
      animación autónoma), por eso se conserva también aquí. */
 }
+
+
+/* ---------- PROYECTOS EMBLEMÁTICOS ----------
+   Un bloque por parque: sitio, titular, el texto que ellos escribieron y tres
+   fotos. La primera va a lo ancho porque es la que muestra el elemento
+   protagonista del que habla el texto. Se alterna el fondo para que se lean
+   como cuatro fichas y no como una parrafada.                            */
+.proyecto { padding: clamp(40px, 6vw, 86px) 0; background: var(--white); }
+.proyecto:nth-of-type(even) { background: var(--cream-2); }
+.proyecto__inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gap); }
+
+.proyecto__lugar {
+  margin: 0;
+  font-weight: 700; font-size: .8rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--orange-deep);
+}
+.proyecto__titulo {
+  margin: 10px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3.4vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -.01em;
+}
+.proyecto__texto { margin-top: 16px; max-width: 68ch; }
+.proyecto__texto p { margin: 0 0 14px; color: var(--ink-soft); }
+.proyecto__texto p:last-child { margin-bottom: 0; }
+
+.proyecto__fotos {
+  margin-top: clamp(22px, 3.2vw, 38px);
+  display: grid; gap: clamp(12px, 1.6vw, 20px);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) {
+  .proyecto__fotos { grid-template-columns: 1fr 1fr; }
+  .foto-zoom--ancha { grid-column: 1 / -1; }
+}
+
+/* Cada foto es un boton: abre el visor a tamaño completo. */
+.foto-zoom {
+  display: block; width: 100%;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  border-radius: var(--radius-sm); overflow: hidden;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.foto-zoom img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 4 / 3; object-fit: cover;
+}
+.foto-zoom:hover { transform: translateY(-3px); box-shadow: var(--shadow-toy-sm); }
+.foto-zoom:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+
+/* ---------- cierre de la página de proyectos ---------- */
+.cierre { padding: clamp(48px, 7vw, 92px) 0; background: var(--white); text-align: center; }
+.cierre__inner { max-width: 44rem; margin: 0 auto; padding: 0 var(--gap); }
+.cierre__title { font-family: var(--font-display); font-size: clamp(1.45rem, 3.4vw, 2.4rem); margin: 0; }
+.cierre p { margin: 14px 0 26px; color: var(--ink-soft); }
