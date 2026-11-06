@@ -20,20 +20,36 @@ pierde lo que hayan acumulado.
 | ------------------ | ---------------------------- |
 | `/`                | `/`                          |
 | `/contactanos/`    | `/#contacto`                 |
-| `/balerco-lab/`    | por decidir — ver nota        |
-| `/breeze/`         | por decidir — ver nota        |
-| `/proludic/`       | por decidir — ver nota        |
-| `/ropecamp/`       | por decidir — ver nota        |
+| `/balerco-lab/`    | `/#nosotros`                 |
+| `/breeze/`         | `/marcas.html` — ver nota     |
+| `/proludic/`       | `/marcas.html` — ver nota     |
+| `/ropecamp/`       | `/marcas.html` — ver nota     |
 
-**Nota sobre las cuatro de marcas.** Breeze, Proludic y Ropecamp son
-fabricantes; Balerco Lab parece una línea propia. El sitio nuevo no tiene
-páginas equivalentes. Hay que preguntarle al cliente si esas marcas siguen
-vigentes:
+**`/balerco-lab/` no es una marca aliada.** Leí la página: es el "quiénes
+somos" de Balerco, con misión y visión. De hecho, la frase del pie del sitio
+nuevo ("Contamos con todas las herramientas para crear lugares soñados…")
+sale de ahí. Va a `/#nosotros`.
 
-- Si siguen: lo mejor es darles su propia página en el sitio nuevo y redirigir
-  cada una a la suya. Son páginas con nombre de marca, que es justo el tipo de
-  búsqueda que trae gente que ya sabe lo que quiere.
-- Si no siguen: redirigir las cuatro a `/#productos`.
+**Las otras tres sí son fabricantes.** Proludic (francés, equipamiento de
+juego y deporte), Ropecamp (estructuras de cuerda y tubo) y Breeze Creative
+(experiencias interactivas y realidad aumentada). En la reunión el cliente
+dijo que quiere quitarles protagonismo y venderse como empresa.
+
+Quitarles protagonismo no es lo mismo que botar el tráfico. Lo que
+recomiendo es una página propia, `marcas.html`, con un apartado por
+fabricante. Así:
+
+- Quien busque "Proludic Colombia" cae en una página **de Balerco**.
+- Las marcas salen de la portada, que es lo que pidieron.
+- La redirección 301 aterriza en una página del mismo tema, que es la
+  condición para que pase el valor completo.
+
+La alternativa —un apartado dentro de la portada— no sirve igual: `/#marcas`
+no es una dirección distinta para Google, así que el valor se consolidaría en
+la portada y ninguna búsqueda por nombre de marca encontraría nada.
+
+El texto para esa página ya existe: lo escribieron ellos en las páginas
+actuales.
 
 También conviene revisar `/feed/` y `/comments/feed/`, que son los canales RSS
 que genera WordPress. No hacen falta en el sitio nuevo.
