@@ -920,17 +920,43 @@ p { margin: 0; }
   padding: clamp(26px, 3.4vw, 44px) clamp(34px, 4.6vw, 44px)
            clamp(26px, 3.4vw, 44px) clamp(22px, 3vw, 44px);
   background: var(--cream-2); border-radius: var(--radius);
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  gap: clamp(18px, 3.2vw, 48px);
+  /* Rejilla, no flex: el botón ocupa la fila del titular y se centra contra
+     él. Centrándolo contra el bloque completo (etiqueta + titular + texto)
+     caía 8px por debajo del centro del titular, que es donde el ojo lo busca. */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "tag    ."
+    "titulo boton"
+    "texto  .";
+  column-gap: clamp(18px, 3.2vw, 48px);
 }
 /* a partir de aquí la tarjeta convive con otras cajas a lo ancho: el aire
    desigual del comparativo (pensado para 375) se leería como un error. */
 @media (min-width: 760px) {
   .verproyectos__inner { padding-left: clamp(30px, 3.4vw, 44px); padding-right: clamp(30px, 3.4vw, 44px); }
 }
-.verproyectos__inner > div { flex: 1 1 24rem; min-width: 0; }
-.verproyectos .section-title { max-width: none; }
-.verproyectos p { margin-top: 10px; color: var(--ink-soft); max-width: 44rem; }
+/* El aire entre etiqueta y titular lo pone la etiqueta, no el titular: si
+   vive como margen superior del h2 entra en su fila de rejilla y desplaza
+   7px el centro contra el que se alinea el botón. */
+.verproyectos .tag { grid-area: tag; justify-self: start; margin-bottom: 14px; }
+.verproyectos .section-title { grid-area: titulo; max-width: none; margin-top: 0; }
+.verproyectos p {
+  grid-area: texto; margin-top: 10px; color: var(--ink-soft); max-width: 44rem;
+  /* La última línea arrastra media interlínea invisible ((1.65em − 1em) / 2)
+     que hacía la tarjeta más baja de abajo. Se descuenta del alto. */
+  margin-bottom: -0.325em;
+}
+
+/* El contenedor no cabe en dos columnas: el titular se quedaría en cuatro
+   renglones contra un botón de 283px. */
+@media (max-width: 899px) {
+  .verproyectos__inner {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "tag" "titulo" "texto" "boton";
+  }
+  .verproyectos .btn { margin-top: clamp(18px, 2.6vw, 26px); }
+}
 
 /* La foto de proyectos: a sangre, cuadrada en movil y apaisada en escritorio. */
 .verproyectos__foto { margin: clamp(18px, 3.4vw, 28px) 0 0; }
@@ -941,7 +967,7 @@ p { margin: 0; }
 @media (min-width: 560px) {
   .verproyectos__foto img { aspect-ratio: 16 / 9; }
 }
-.verproyectos .btn { flex: 0 0 auto; }
+.verproyectos .btn { grid-area: boton; align-self: center; justify-self: start; }
 
 /* la miga de pan de una página interna tiene que librar el nav fijo */
 .pagetop { max-width: var(--maxw); margin: 0 auto;
