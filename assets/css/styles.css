@@ -1213,7 +1213,15 @@ p { margin: 0; }
   gap: 40px;
 }
 .brand-logo--footer { height: 56px; width: auto; }
-.footer__pitch { margin-top: 18px; max-width: 40ch; color: #F1F2F3; }
+/* Va un punto por encima del cuerpo: es el unico parrafo del pie y, ahora que
+   ocupa todo el ancho, al tamano de los enlaces se veia desvalido. */
+.footer__pitch {
+  margin-top: 18px;
+  max-width: 40ch;
+  color: #F1F2F3;
+  font-size: clamp(1.02rem, 2.1vw, 1.18rem);
+  line-height: 1.6;
+}
 .footer__social { display: flex; gap: 12px; margin-top: 20px; }
 .footer__social a {
   width: 42px; height: 42px; border-radius: 50%;
