@@ -21,9 +21,9 @@ pierde lo que hayan acumulado.
 | `/`                | `/`                          |
 | `/contactanos/`    | `/#contacto`                 |
 | `/balerco-lab/`    | `/#nosotros`                 |
-| `/breeze/`         | `/marcas.html` — ver nota     |
-| `/proludic/`       | `/marcas.html` — ver nota     |
-| `/ropecamp/`       | `/marcas.html` — ver nota     |
+| `/breeze/`         | `/marcas.html#breeze-creative` |
+| `/proludic/`       | `/marcas.html#proludic`      |
+| `/ropecamp/`       | `/marcas.html#ropecamp`      |
 
 **`/balerco-lab/` no es una marca aliada.** Leí la página: es el "quiénes
 somos" de Balerco, con misión y visión. De hecho, la frase del pie del sitio
@@ -35,9 +35,9 @@ juego y deporte), Ropecamp (estructuras de cuerda y tubo) y Breeze Creative
 (experiencias interactivas y realidad aumentada). En la reunión el cliente
 dijo que quiere quitarles protagonismo y venderse como empresa.
 
-Quitarles protagonismo no es lo mismo que botar el tráfico. Lo que
-recomiendo es una página propia, `marcas.html`, con un apartado por
-fabricante. Así:
+Quitarles protagonismo no es lo mismo que botar el tráfico. La solución
+—ya construida— es una página propia, `marcas.html`, con un apartado por
+fabricante y un único enlace desde la sección de Productos. Así:
 
 - Quien busque "Proludic Colombia" cae en una página **de Balerco**.
 - Las marcas salen de la portada, que es lo que pidieron.
@@ -48,8 +48,9 @@ La alternativa —un apartado dentro de la portada— no sirve igual: `/#marcas`
 no es una dirección distinta para Google, así que el valor se consolidaría en
 la portada y ninguna búsqueda por nombre de marca encontraría nada.
 
-El texto para esa página ya existe: lo escribieron ellos en las páginas
-actuales.
+El texto de esa página sale de lo que ellos mismos escribieron en las
+páginas actuales. Falta pedirles los logos de los tres fabricantes y
+confirmar si Breeze Creative sigue vigente en el portafolio.
 
 También conviene revisar `/feed/` y `/comments/feed/`, que son los canales RSS
 que genera WordPress. No hacen falta en el sitio nuevo.
@@ -67,7 +68,8 @@ El cambio no toca el código del sitio.
 
 ## 3. Orden del cambio
 
-1. Decidir qué pasa con las cuatro páginas de marcas (punto 1).
+1. ~~Decidir qué pasa con las cuatro páginas de marcas (punto 1).~~ Hecho:
+   `/balerco-lab/` va a `/#nosotros` y las otras tres a `marcas.html`.
 2. Montar el sitio en Cloudflare Pages o Netlify desde este repositorio.
 3. Cargar ahí las redirecciones 301 de la tabla.
 4. Recién entonces apuntar el DNS de `balerco.co` al alojamiento nuevo.

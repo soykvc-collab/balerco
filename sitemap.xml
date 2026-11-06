@@ -19,6 +19,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://balerco.co/marcas.html</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://balerco.co/politica-de-datos.html</loc>
     <lastmod>2026-11-03</lastmod>
     <changefreq>yearly</changefreq>

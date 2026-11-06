@@ -1651,3 +1651,50 @@ body.no-scroll { overflow: hidden; }
 .cierre__inner { max-width: 44rem; margin: 0 auto; padding: 0 var(--gap); }
 .cierre__title { font-family: var(--font-display); font-size: clamp(1.45rem, 3.4vw, 2.4rem); margin: 0; }
 .cierre p { margin: 14px 0 26px; color: var(--ink-soft); }
+
+/* ---------- fabricantes aliados (marcas.html) ----------
+   Una lista, no un escaparate: el cliente pidio bajarle protagonismo a las
+   marcas, asi que cada una entra como ficha de texto, sin logos ni fotos que
+   compitan con el trabajo propio de Balerco.                              */
+.marcas { padding: clamp(28px, 4vw, 56px) 0 clamp(8px, 2vw, 24px); background: var(--white); }
+.marcas__inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gap); }
+.marcas__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(16px, 2.2vw, 24px); }
+@media (min-width: 900px) { .marcas__lista { grid-template-columns: repeat(3, 1fr); } }
+
+.marca {
+  background: var(--valor-fondo);
+  border-radius: var(--radius-sm);
+  padding: clamp(22px, 2.6vw, 32px);
+  /* el ancla aterriza debajo de la barra fija, no detras de ella */
+  scroll-margin-top: clamp(96px, 14vh, 150px);
+}
+.marca__meta {
+  margin: 0; font-weight: 700; font-size: .78rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--sky-deep);
+}
+.marca__nombre {
+  margin: 10px 0 0; font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.4vw, 1.75rem); line-height: 1.15;
+}
+.marca__texto { margin: 12px 0 0; color: var(--ink-soft); line-height: 1.6; }
+.marca__chips { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+/* .chip hereda --panel de los acordeones del home; aqui no existe ese token */
+.marca__chips .chip { margin-top: 0; background: #E4E7EC; }
+
+/* ---------- enlace discreto a los fabricantes, al pie de Productos ---------- */
+.products__aliados {
+  /* .products es flex-column y su titular lleva order:2, asi que el enlace
+     necesita order:3 para quedar al final de la seccion y no entre medias. */
+  order: 3;
+  width: 100%; max-width: var(--maxw); box-sizing: border-box;
+  margin: clamp(16px, 2.2vw, 26px) auto 0;
+  padding: 0 var(--gap);
+}
+.products__aliados a {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 700; color: var(--ink); text-decoration: none;
+  border-bottom: 2px solid var(--orange);
+  padding-bottom: 2px;
+}
+.products__aliados a:hover { color: var(--orange-deep); }
+.products__aliados svg { flex: none; }
