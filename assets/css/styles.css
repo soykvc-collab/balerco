@@ -1212,7 +1212,9 @@ p { margin: 0; }
   grid-template-columns: 1.6fr 1fr 1fr;
   gap: 40px;
 }
-.brand-logo--footer { height: 56px; width: auto; }
+/* Version propia del pie: el lema va en blanco, porque el azul del original
+   no se lee sobre el fondo pizarra. */
+.brand-logo--footer { height: clamp(76px, 9vw, 96px); width: auto; }
 /* Va un punto por encima del cuerpo: es el unico parrafo del pie y, ahora que
    ocupa todo el ancho, al tamano de los enlaces se veia desvalido. */
 .footer__pitch {
