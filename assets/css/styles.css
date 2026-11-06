@@ -544,7 +544,9 @@ p { margin: 0; }
      la devuelve al mismo canal que el resto de la sección. */
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* el titular pide más canal que el bloque de la derecha: con 1fr 1fr el
+     párrafo (que es corto) dejaba un hueco muerto contra el borde derecho. */
+  grid-template-columns: 1.25fr 1fr;
   grid-template-rows: auto auto auto;
   grid-template-areas:
     "title tag"
@@ -556,7 +558,9 @@ p { margin: 0; }
 /* izquierda: el título solo · derecha: etiqueta, párrafo y enlace como un bloque, centrado junto al título */
 .products__head .section-title { grid-area: title; align-self: center; margin-top: 0; }
 .products__head .tag { grid-area: tag; align-self: end; justify-self: start; }
-.products__head .section-sub { grid-area: sub; align-self: start; margin-top: 0; max-width: 46ch; }
+/* sin tope de 46ch: la propia columna ya lo deja en ~55 caracteres por línea,
+   dentro del rango legible, y así el párrafo llega al borde derecho. */
+.products__head .section-sub { grid-area: sub; align-self: start; margin-top: 0; max-width: none; }
 .accordion {
   width: 100%;
   max-width: var(--maxw);
@@ -1408,7 +1412,9 @@ body.no-scroll { overflow: hidden; }
     grid-template-columns: 1fr;
     grid-template-areas: "tag" "title" "sub" "link";
   }
-  .products__head .section-sub { margin-top: 4px; }
+  /* apilada ya no hay columna que acote la línea: sin tope llegaría a ~87
+     caracteres, fuera del rango legible. */
+  .products__head .section-sub { margin-top: 4px; max-width: 62ch; }
   .products__aliados { margin-top: 6px; }
   .why__track { height: auto; }
   .why__stage { position: static; min-height: 0; padding: 0; }
