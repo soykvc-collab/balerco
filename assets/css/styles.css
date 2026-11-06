@@ -735,14 +735,21 @@ p { margin: 0; }
 .feature__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 .feature__panel {
+  /* La tarjeta ya no va de borde a borde: se ajusta a su contenido y se
+     centra en el costado derecho. Antes ocupaba el 91% del alto del video
+     y dejaba 119px muertos entre los pilares y el pie. */
   position: absolute;
-  top: clamp(16px, 2vw, 24px);
+  top: 50%;
   right: clamp(16px, 2vw, 24px);
-  bottom: clamp(16px, 2vw, 24px);
-  width: min(420px, 38%);
+  transform: translateY(-50%);
+  /* el tope de 360px es el que libera el video en pantallas anchas; el 38%
+     evita que en pantallas medianas la tarjeta se estreche tanto que los
+     pilares se partan en tres renglones y vuelva a crecer a lo alto. */
+  width: clamp(330px, 38%, 360px);
+  max-height: calc(100% - 2 * clamp(16px, 2vw, 24px));
   background: var(--dest-bg);
   border-radius: calc(var(--radius) - 8px);
-  padding: clamp(24px, 3vw, 36px);
+  padding: clamp(20px, 2.4vw, 30px);
   display: flex;
   flex-direction: column;
   color: var(--dest-ink);
@@ -772,18 +779,19 @@ p { margin: 0; }
 }
 .feature__pillars {
   list-style: none;
-  margin: 24px 0 0;
+  margin: 18px 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px 20px;
+  gap: 16px 14px;
 }
 .feature__pillars li { display: flex; flex-direction: column; gap: 2px; }
 .feature__pillars strong { font-size: .91rem; font-weight: 700; color: var(--dest-ink); }
 .feature__pillars span { font-size: .82rem; line-height: 1.4; color: var(--dest-soft); }
+/* sin alto fijo ya no hay hueco que repartir: el pie va pegado a los pilares */
 .feature__meta {
-  margin-top: auto;
-  padding-top: 24px;
+  margin-top: 0;
+  padding-top: 18px;
   text-align: center;
 }
 .feature__meta span { font-size: .88rem; font-weight: 600; color: var(--dest-ink); }
@@ -903,14 +911,22 @@ p { margin: 0; }
 /* ---- banda que reemplaza la galería en la portada ---------------------- */
 .verproyectos { padding: clamp(40px, 6vw, 72px) 0; background: var(--white); }
 .verproyectos__inner {
-  max-width: var(--maxw); margin: 0 auto;
+  /* --content-w, no --maxw: así esta tarjeta y la del destacado comparten
+     borde. Con --maxw salía 40px más ancha por lado y las dos cajas grises
+     de la portada no coincidían. */
+  max-width: var(--content-w); margin: 0 auto;
   /* El comparativo deja mas aire a la derecha que a la izquierda: 25 px
      contra 35 px sobre una pantalla de 375. */
   padding: clamp(26px, 3.4vw, 44px) clamp(34px, 4.6vw, 44px)
            clamp(26px, 3.4vw, 44px) clamp(22px, 3vw, 44px);
   background: var(--cream-2); border-radius: var(--radius);
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  gap: clamp(18px, 2.6vw, 34px);
+  gap: clamp(18px, 3.2vw, 48px);
+}
+/* a partir de aquí la tarjeta convive con otras cajas a lo ancho: el aire
+   desigual del comparativo (pensado para 375) se leería como un error. */
+@media (min-width: 760px) {
+  .verproyectos__inner { padding-left: clamp(30px, 3.4vw, 44px); padding-right: clamp(30px, 3.4vw, 44px); }
 }
 .verproyectos__inner > div { flex: 1 1 24rem; min-width: 0; }
 .verproyectos .section-title { max-width: none; }
@@ -1407,7 +1423,8 @@ body.no-scroll { overflow: hidden; }
   .feature__card { min-height: 0; display: flex; flex-direction: column; background: var(--dest-bg); }
   .feature__video { position: relative; aspect-ratio: 16 / 9; height: auto; }
   .feature__play { bottom: auto; top: calc((100vw - 2 * var(--gap)) * 9 / 16 - 60px); }
-  .feature__panel { position: static; width: auto; border-radius: 0; }
+  .feature__panel { position: static; width: auto; border-radius: 0;
+                    transform: none; max-height: none; padding: clamp(24px, 4vw, 32px); }
   .products__head {
     grid-template-columns: 1fr;
     grid-template-areas: "tag" "title" "sub" "link";
