@@ -869,13 +869,28 @@ p { margin: 0; }
 /* ---- banda que reemplaza la galería en la portada ---------------------- */
 .verproyectos { padding: clamp(40px, 6vw, 72px) 0; background: var(--white); }
 .verproyectos__inner {
-  max-width: var(--maxw); margin: 0 auto; padding: clamp(26px, 3.4vw, 44px) clamp(22px, 3vw, 44px);
+  max-width: var(--maxw); margin: 0 auto;
+  /* El comparativo deja mas aire a la derecha que a la izquierda: 25 px
+     contra 35 px sobre una pantalla de 375. */
+  padding: clamp(26px, 3.4vw, 44px) clamp(34px, 4.6vw, 44px)
+           clamp(26px, 3.4vw, 44px) clamp(22px, 3vw, 44px);
   background: var(--cream-2); border-radius: var(--radius);
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: clamp(18px, 2.6vw, 34px);
 }
 .verproyectos__inner > div { flex: 1 1 24rem; min-width: 0; }
+.verproyectos .section-title { max-width: none; }
 .verproyectos p { margin-top: 10px; color: var(--ink-soft); max-width: 44rem; }
+
+/* La foto de proyectos: a sangre, cuadrada en movil y apaisada en escritorio. */
+.verproyectos__foto { margin: clamp(18px, 3.4vw, 28px) 0 0; }
+.verproyectos__foto img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 1 / 1; object-fit: cover;
+}
+@media (min-width: 560px) {
+  .verproyectos__foto img { aspect-ratio: 16 / 9; }
+}
 .verproyectos .btn { flex: 0 0 auto; }
 
 /* la miga de pan de una página interna tiene que librar el nav fijo */
@@ -956,7 +971,7 @@ p { margin: 0; }
 .stats__grid {
   max-width: none;
   margin: 0;
-  background: var(--orange);               /* naranja de marca */
+  background: var(--grass);                /* verde: asi lo pide el comparativo */
   border-radius: var(--radius);
   padding: clamp(28px,4vw,52px);
   display: grid;
