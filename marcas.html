@@ -44,7 +44,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/lenis.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=142" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=143" />
 
   <script type="application/ld+json">
   {
@@ -152,61 +152,99 @@
       </div>
     </section>
 
+    <!-- Cada fabricante es una banda: mosaico de su propio trabajo al fondo y
+         la ficha encima, igual que el destacado de la portada. La tarjeta
+         alterna de lado para que las tres no se lean como una plantilla. -->
     <section class="marcas" aria-label="Fabricantes que representamos">
-      <div class="marcas__inner">
-        <ul class="marcas__lista" role="list">
 
-          <li class="marca" id="proludic">
-            <p class="marca__meta">Francia · Juego y deporte</p>
-            <h2 class="marca__nombre">Proludic</h2>
-            <p class="marca__texto">
-              Fabricante francés con más de treinta años diseñando áreas de juego
-              y deporte al aire libre. Su catálogo supera los 800 productos entre
-              estructuras de juego, zonas deportivas, equipos de ejercicio y
-              mobiliario para exteriores.
-            </p>
-            <p class="marca__chips">
-              <span class="chip">Juego</span>
-              <span class="chip">Deporte</span>
-              <span class="chip">Ejercicio al aire libre</span>
-              <span class="chip">Mobiliario exterior</span>
-            </p>
-          </li>
+      <article class="marca marca--izq" id="proludic">
+        <div class="marca__fotos">
+          <img src="assets/img/marcas/proludic-avion.webp" width="900" height="675"
+               loading="lazy" decoding="async"
+               alt="Estructura de juego Proludic en forma de avión, con toboganes y hélices, sobre superficie de caucho azul." />
+          <img src="assets/img/marcas/proludic-torre-madera.webp" width="900" height="675"
+               loading="lazy" decoding="async"
+               alt="Niños subiendo por una torre de juego de madera con tobogán en un parque Proludic." />
+          <img src="assets/img/marcas/proludic-tematico.webp" width="900" height="675"
+               loading="lazy" decoding="async"
+               alt="Juego temático Proludic con figuras de animales y paneles de colores junto a un caserío." />
+        </div>
+        <div class="marca__tarjeta">
+          <span class="tag tag--sky">Francia · Juego y deporte</span>
+          <h2 class="marca__nombre">Proludic</h2>
+          <p class="marca__texto">
+            Fabricante francés con más de treinta años diseñando áreas de juego
+            y deporte al aire libre. Su catálogo supera los 800 productos entre
+            estructuras de juego, zonas deportivas, equipos de ejercicio y
+            mobiliario para exteriores.
+          </p>
+          <p class="marca__chips">
+            <span class="chip">Juego</span>
+            <span class="chip">Deporte</span>
+            <span class="chip">Ejercicio al aire libre</span>
+            <span class="chip">Mobiliario exterior</span>
+          </p>
+        </div>
+      </article>
 
-          <li class="marca" id="breeze-creative">
-            <p class="marca__meta">Experiencias interactivas</p>
-            <h2 class="marca__nombre">Breeze Creative</h2>
-            <p class="marca__texto">
-              Juego digital aplicado al espacio físico: areneros de realidad
-              aumentada, dibujos que cobran vida en pantalla y superficies que
-              responden al movimiento. Es la línea con la que un parque suma una
-              experiencia distinta a la de una estructura de juego.
-            </p>
-            <p class="marca__chips">
-              <span class="chip">Realidad aumentada</span>
-              <span class="chip">Juego digital</span>
-              <span class="chip">Interior y exterior</span>
-            </p>
-          </li>
+      <article class="marca marca--der" id="breeze-creative">
+        <div class="marca__fotos">
+          <img src="assets/img/marcas/breeze-suelo-interactivo.webp" width="900" height="674"
+               loading="lazy" decoding="async"
+               alt="Grupo de niños alrededor de un suelo interactivo de Breeze Creative que proyecta un paisaje." />
+          <img src="assets/img/marcas/breeze-exhibicion.webp" width="900" height="674"
+               loading="lazy" decoding="async"
+               alt="Montaje interactivo de Breeze Creative dentro de un centro de exhibición temático." />
+          <img src="assets/img/marcas/breeze-draw-alive.webp" width="900" height="674"
+               loading="lazy" decoding="async"
+               alt="Niña coloreando una ficha de Draw Alive, el sistema de dibujo que cobra vida en pantalla." />
+        </div>
+        <div class="marca__tarjeta">
+          <span class="tag tag--berry">Experiencias interactivas</span>
+          <h2 class="marca__nombre">Breeze Creative</h2>
+          <p class="marca__texto">
+            Juego digital aplicado al espacio físico: areneros de realidad
+            aumentada, dibujos que cobran vida en pantalla y superficies que
+            responden al movimiento. Es la línea con la que un parque suma una
+            experiencia distinta a la de una estructura de juego.
+          </p>
+          <p class="marca__chips">
+            <span class="chip">Realidad aumentada</span>
+            <span class="chip">Juego digital</span>
+            <span class="chip">Interior y exterior</span>
+          </p>
+        </div>
+      </article>
 
-          <li class="marca" id="ropecamp">
-            <p class="marca__meta">Estructuras de cuerda</p>
-            <h2 class="marca__nombre">Ropecamp</h2>
-            <p class="marca__texto">
-              Estructuras de aventura en cuerda y tubo, con una tecnología de
-              cable patentada que sostiene redes de trepa, pirámides y recorridos
-              en altura. Son los juegos que mejor funcionan cuando se busca un
-              hito visual dentro del parque.
-            </p>
-            <p class="marca__chips">
-              <span class="chip">Redes de trepa</span>
-              <span class="chip">Pirámides</span>
-              <span class="chip">Recorridos en altura</span>
-            </p>
-          </li>
+      <article class="marca marca--izq" id="ropecamp">
+        <div class="marca__fotos">
+          <img src="assets/img/marcas/ropecamp-piramide.webp" width="900" height="675"
+               loading="lazy" decoding="async"
+               alt="Pirámide de cuerdas Ropecamp de gran altura instalada frente al mar." />
+          <img src="assets/img/marcas/ropecamp-domo-rojo.webp" width="900" height="675"
+               loading="lazy" decoding="async"
+               alt="Domo de redes rojas de Ropecamp sobre superficie de caucho en un parque urbano." />
+          <img src="assets/img/marcas/ropecamp-red-arena.webp" width="900" height="675"
+               loading="lazy" decoding="async"
+               alt="Estructura de red y tubo amarillo y azul de Ropecamp sobre arena." />
+        </div>
+        <div class="marca__tarjeta">
+          <span class="tag tag--grass">Estructuras de cuerda</span>
+          <h2 class="marca__nombre">Ropecamp</h2>
+          <p class="marca__texto">
+            Estructuras de aventura en cuerda y tubo, con una tecnología de
+            cable patentada que sostiene redes de trepa, pirámides y recorridos
+            en altura. Son los juegos que mejor funcionan cuando se busca un
+            hito visual dentro del parque.
+          </p>
+          <p class="marca__chips">
+            <span class="chip">Redes de trepa</span>
+            <span class="chip">Pirámides</span>
+            <span class="chip">Recorridos en altura</span>
+          </p>
+        </div>
+      </article>
 
-        </ul>
-      </div>
     </section>
 
     <section class="cierre" aria-labelledby="cierre-title">

@@ -1711,33 +1711,67 @@ body.no-scroll { overflow: hidden; }
 .cierre p { margin: 14px 0 26px; color: var(--ink-soft); }
 
 /* ---------- fabricantes aliados (marcas.html) ----------
-   Una lista, no un escaparate: el cliente pidio bajarle protagonismo a las
-   marcas, asi que cada una entra como ficha de texto, sin logos ni fotos que
-   compitan con el trabajo propio de Balerco.                              */
-.marcas { padding: clamp(28px, 4vw, 56px) 0 clamp(8px, 2vw, 24px); background: var(--white); }
-.marcas__inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gap); }
-.marcas__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(16px, 2.2vw, 24px); }
-@media (min-width: 900px) { .marcas__lista { grid-template-columns: repeat(3, 1fr); } }
+   Cada marca es una banda con el mismo gesto que el destacado de la portada:
+   la imagen manda y la ficha va encima. Las fotos son del trabajo de cada
+   fabricante, tomadas de sus propias paginas del sitio anterior.          */
+.marcas { padding: clamp(28px, 4vw, 48px) 0 0; background: var(--white); }
 
 .marca {
-  background: var(--valor-fondo);
-  border-radius: var(--radius-sm);
-  padding: clamp(22px, 2.6vw, 32px);
+  position: relative;
+  /* --maxw + canal: así el mosaico arranca en el mismo borde que el titular
+     de la página, no 40px más adentro. */
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 0 var(--gap);
   /* el ancla aterriza debajo de la barra fija, no detras de ella */
   scroll-margin-top: clamp(96px, 14vh, 150px);
 }
-.marca__meta {
-  margin: 0; font-weight: 700; font-size: .78rem; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--sky-deep);
+.marca + .marca { margin-top: clamp(28px, 4vw, 56px); }
+
+.marca__fotos {
+  display: grid; gap: 8px;
+  border-radius: var(--radius); overflow: hidden;
+}
+.marca__fotos img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.marca__tarjeta {
+  background: var(--dest-bg);
+  border-radius: calc(var(--radius) - 8px);
+  padding: clamp(22px, 2.6vw, 32px);
+  color: var(--dest-ink);
 }
 .marca__nombre {
-  margin: 10px 0 0; font-family: var(--font-display);
-  font-size: clamp(1.3rem, 2.4vw, 1.75rem); line-height: 1.15;
+  margin: 12px 0 0; font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.12; color: var(--dest-ink);
 }
-.marca__texto { margin: 12px 0 0; color: var(--ink-soft); line-height: 1.6; }
-.marca__chips { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.marca__texto { margin: 12px 0 0; color: var(--dest-soft); line-height: 1.6; font-size: .95rem; }
+.marca__chips { margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
 /* .chip hereda --panel de los acordeones del home; aqui no existe ese token */
-.marca__chips .chip { margin-top: 0; background: #E4E7EC; }
+.marca__chips .chip { margin-top: 0; background: #DADCDE; color: var(--dest-ink); }
+
+/* --- hasta 1039px: una sola foto y la ficha debajo. Con tres fotos en fila
+       la banda no queda lo bastante alta para contener la ficha, que se
+       desbordaba 32px y se montaba sobre la banda siguiente. --- */
+@media (max-width: 1039px) {
+  .marca__fotos { grid-template-columns: 1fr; }
+  .marca__fotos img:nth-child(n + 2) { display: none; }
+  .marca__fotos img { aspect-ratio: 16 / 10; }
+  .marca__tarjeta { margin-top: -28px; position: relative; z-index: 1;
+                    margin-inline: clamp(10px, 3vw, 24px); }
+}
+
+/* --- escritorio: mosaico de tres y la ficha flotando a un costado --- */
+@media (min-width: 1040px) {
+  .marca__fotos { grid-template-columns: repeat(3, 1fr); }
+  .marca__fotos img { aspect-ratio: 3 / 4; }
+  .marca__tarjeta {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    width: min(430px, 38%);
+    box-shadow: 0 18px 44px rgba(22, 34, 59, .22);
+  }
+  .marca--izq .marca__tarjeta { left: calc(var(--gap) + clamp(18px, 2.4vw, 34px)); }
+  .marca--der .marca__tarjeta { right: calc(var(--gap) + clamp(18px, 2.4vw, 34px)); }
+}
 
 /* ---------- enlace discreto a los fabricantes, al pie de Productos ---------- */
 .products__aliados {
