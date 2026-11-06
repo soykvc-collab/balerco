@@ -909,7 +909,10 @@ p { margin: 0; }
 
 /* ---------- PROCESO ---------- */
 /* ---- banda que reemplaza la galería en la portada ---------------------- */
-.verproyectos { padding: clamp(40px, 6vw, 72px) 0; background: var(--white); }
+/* Un solo token para el aire de la banda: el de arriba lo pone el relleno de
+   la sección y el de abajo el margen de la foto. Con valores distintos (72
+   contra 28) la tarjeta quedaba 44px descentrada en su franja blanca. */
+.verproyectos { --vp-aire: clamp(40px, 6vw, 72px); padding: var(--vp-aire) 0; background: var(--white); }
 .verproyectos__inner {
   /* --content-w, no --maxw: así esta tarjeta y la del destacado comparten
      borde. Con --maxw salía 40px más ancha por lado y las dos cajas grises
@@ -959,7 +962,7 @@ p { margin: 0; }
 }
 
 /* La foto de proyectos: a sangre, cuadrada en movil y apaisada en escritorio. */
-.verproyectos__foto { margin: clamp(18px, 3.4vw, 28px) 0 0; }
+.verproyectos__foto { margin: var(--vp-aire) 0 0; }
 .verproyectos__foto img {
   display: block; width: 100%; height: auto;
   aspect-ratio: 1 / 1; object-fit: cover;
