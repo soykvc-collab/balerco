@@ -56,10 +56,27 @@
   var heroVideo = hero && hero.querySelector(".hero__video");
   var prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (heroVideo) {
-    // Asegura la reproducción (autoplay silenciado)
-    var tryPlay = heroVideo.play();
-    if (tryPlay && tryPlay.catch) tryPlay.catch(function () {});
+  /* ---- El video del hero solo se descarga donde compensa ----
+     Pesa más que todo el resto de la portada junta. En un teléfono eso son
+     megas del plan de datos de la persona para un fondo decorativo, así que
+     ahí se queda el póster, que es el mismo fotograma. Se descarga en
+     pantallas anchas, si la persona no pidió ahorro de datos, no está en una
+     red lenta y no pidió menos movimiento.                                */
+  if (heroVideo && heroVideo.getAttribute("data-src")) {
+    var red = navigator.connection || {};
+    var vale = window.matchMedia("(min-width: 760px)").matches &&
+               !red.saveData &&
+               !/(^|-)2g$/.test(red.effectiveType || "") &&
+               !prefersReduce;
+    if (vale) {
+      var hs = document.createElement("source");
+      hs.src = heroVideo.getAttribute("data-src");
+      hs.type = "video/mp4";
+      heroVideo.appendChild(hs);
+      heroVideo.load();
+      var tryPlay = heroVideo.play();
+      if (tryPlay && tryPlay.catch) tryPlay.catch(function () {});
+    }
   }
 
   if (hero && heroStage) {
