@@ -1589,6 +1589,37 @@ body.no-scroll { overflow: hidden; }
   display: grid; gap: clamp(12px, 1.6vw, 20px);
   grid-template-columns: 1fr;
 }
+/* En móvil las fotos no se apilan: se deslizan con el dedo. Cuatro proyectos
+   por tres fotos serían doce imágenes seguidas y la página se vuelve un
+   pasillo. Cada tira se detiene en una foto y deja asomar la siguiente, que
+   es lo que le dice al dedo que hay más. */
+@media (max-width: 759px) {
+  .proyecto__fotos {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 82%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* sitio para el anillo de foco, que si no lo recorta el desbordamiento */
+    padding: 4px;
+    margin-inline: -4px;
+  }
+  .proyecto__fotos::-webkit-scrollbar { display: none; }
+  .proyecto__fotos:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+  .foto-zoom { scroll-snap-align: center; }
+}
+
+.proyecto__pista {
+  margin: 12px 0 0;
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+@media (min-width: 760px) {
+  .proyecto__pista { display: none; }
+}
+
 @media (min-width: 760px) {
   .proyecto__fotos { grid-template-columns: 1fr 1fr; }
   .foto-zoom--ancha { grid-column: 1 / -1; }
