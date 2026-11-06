@@ -539,16 +539,21 @@ p { margin: 0; }
 .products > .products__head { order: 2; }   /* solo aquí: el título va bajo el acordeón */
 .products__head {
   margin-top: clamp(28px, 4vw, 44px);
+  /* .products es flex-column: con solo `margin: 0 auto` la cabecera se encogía
+     al ancho de su contenido y quedaba ~42px adentro del acordeón. El width
+     la devuelve al mismo canal que el resto de la sección. */
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
     "title tag"
-    "title sub";
+    "title sub"
+    "title link";
   column-gap: clamp(24px, 5vw, 64px);
   row-gap: 12px;
 }
-/* izquierda: el título solo · derecha: etiqueta + párrafo como un bloque, centrado junto al título */
+/* izquierda: el título solo · derecha: etiqueta, párrafo y enlace como un bloque, centrado junto al título */
 .products__head .section-title { grid-area: title; align-self: center; margin-top: 0; }
 .products__head .tag { grid-area: tag; align-self: end; justify-self: start; }
 .products__head .section-sub { grid-area: sub; align-self: start; margin-top: 0; max-width: 46ch; }
@@ -1401,9 +1406,10 @@ body.no-scroll { overflow: hidden; }
   .feature__panel { position: static; width: auto; border-radius: 0; }
   .products__head {
     grid-template-columns: 1fr;
-    grid-template-areas: "tag" "title" "sub";
+    grid-template-areas: "tag" "title" "sub" "link";
   }
   .products__head .section-sub { margin-top: 4px; }
+  .products__aliados { margin-top: 6px; }
   .why__track { height: auto; }
   .why__stage { position: static; min-height: 0; padding: 0; }
   .why__grid { grid-template-columns: repeat(2, 1fr); }
@@ -1683,12 +1689,12 @@ body.no-scroll { overflow: hidden; }
 
 /* ---------- enlace discreto a los fabricantes, al pie de Productos ---------- */
 .products__aliados {
-  /* .products es flex-column y su titular lleva order:2, asi que el enlace
-     necesita order:3 para quedar al final de la seccion y no entre medias. */
-  order: 3;
-  width: 100%; max-width: var(--maxw); box-sizing: border-box;
-  margin: clamp(16px, 2.2vw, 26px) auto 0;
-  padding: 0 var(--gap);
+  /* cierra la columna derecha, debajo del subtítulo: así no abre una tercera
+     fila suelta entre la sección y el destacado. */
+  grid-area: link;
+  align-self: start;
+  justify-self: start;
+  margin: 2px 0 0;
 }
 .products__aliados a {
   display: inline-flex; align-items: center; gap: 8px;
