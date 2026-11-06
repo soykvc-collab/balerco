@@ -203,10 +203,15 @@
 
       function fillColumn(col) {
         var base = Array.prototype.slice.call(col.children);   // juego original
-        var need = galleryEl.clientHeight;
+        /* En móvil las columnas son filas, así que hay que medir a lo ancho.
+           Midiendo siempre el alto, en el teléfono la condición no se cumplía
+           nunca y el bucle clonaba hasta el tope: 312 imágenes para doce
+           fotos. */
+        var esH = window.matchMedia("(max-width: 699px)").matches;
+        var need = esH ? galleryEl.clientWidth : galleryEl.clientHeight;
         var guard = 0;
         // repetimos el juego hasta cubrir la ventana visible…
-        while (col.scrollHeight < need && guard++ < 12) {
+        while ((esH ? col.scrollWidth : col.scrollHeight) < need && guard++ < 12) {
           base.forEach(function (child) { col.appendChild(cloneItem(child)); });
         }
         // …y luego duplicamos todo: la animación a -50% cierra el bucle sin salto
@@ -264,7 +269,14 @@
 
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
       function quieto() {
-        return reduce.matches ||
+        /* En móvil el carrusel NO se mueve solo. Ahí las fotos llevan
+           scroll-snap para que el dedo se detenga en cada una, y el snap
+           devolvía al sitio cada paso del automático: el motor escribía
+           catorce veces por segundo y el navegador lo deshacía. Además,
+           fotos que se mueven solas mientras la persona intenta tocarlas
+           es justo lo que no se quiere en un teléfono. */
+        return horizontal ||
+               reduce.matches ||
                document.hidden ||
                galleryEl.classList.contains("is-paused") ||
                Date.now() < tocando ||
@@ -277,7 +289,15 @@
         if (!quieto() && dt) {
           columnas.forEach(function (col) {
             if (largo(col.el) < 1) return;
-            col.el[eje()] += col.signo * VEL * dt / 1000;
+            /* scrollTop/scrollLeft redondean lo que se les asigna, así que a
+               14 px/s el avance de cada cuadro (0.22 px) se perdía entero y
+               el carrusel se quedaba quieto. Guardamos el sobrante y solo
+               escribimos cuando ya suma un píxel completo. */
+            col.resto = (col.resto || 0) + col.signo * VEL * dt / 1000;
+            var paso = col.resto > 0 ? Math.floor(col.resto) : Math.ceil(col.resto);
+            if (!paso) return;
+            col.resto -= paso;
+            col.el[eje()] += paso;
             enrollar(col.el, col.signo);
           });
         }

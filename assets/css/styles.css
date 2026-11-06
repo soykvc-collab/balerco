@@ -1256,7 +1256,9 @@ p { margin: 0; }
 }
 
 /* ---------- PROYECTOS (galería tipo rayuela / golosa) ---------- */
-.gallery-section { padding: clamp(48px, 7vw, 90px) 0 clamp(56px, 8vw, 96px); }
+/* El borde de arriba libra la barra fija, igual que .pagehead, porque la miga
+   de pan y el titular ahora viven aquí. */
+.gallery-section { padding: clamp(128px, 17vh, 184px) 0 clamp(56px, 8vw, 96px); }
 .gallery-layout {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -1461,6 +1463,9 @@ body.no-scroll { overflow: hidden; }
     scroll-snap-type: x proximity;
   }
   .gallery__item { width: 62vw; max-width: 280px; scroll-snap-align: center; }
+  /* Aquí el carrusel no avanza solo, se desliza con el dedo, así que un
+     botón de pausa no tendría qué pausar. */
+  .gallery__media > .motion-toggle { display: none; }
   .footer__inner { grid-template-columns: 1fr; }
   /* El tope de 40 caracteres esta pensado para la columna angosta del pie en
      escritorio. Aqui el pie va en una sola columna y ese tope dejaba el
