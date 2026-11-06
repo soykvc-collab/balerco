@@ -1258,7 +1258,9 @@ p { margin: 0; }
 /* ---------- PROYECTOS (galería tipo rayuela / golosa) ---------- */
 /* El borde de arriba libra la barra fija, igual que .pagehead, porque la miga
    de pan y el titular ahora viven aquí. */
-.gallery-section { padding: clamp(128px, 17vh, 184px) 0 clamp(56px, 8vw, 96px); }
+/* Abajo casi no lleva borde: el primer proyecto ya trae el suyo y entre los
+   dos dejaban 156 px de blanco, que leen como un hueco. */
+.gallery-section { padding: clamp(128px, 17vh, 184px) 0 clamp(4px, 1vw, 16px); }
 .gallery-layout {
   max-width: var(--maxw);
   margin: 0 auto;
