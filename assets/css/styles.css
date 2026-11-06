@@ -1452,6 +1452,10 @@ body.no-scroll { overflow: hidden; }
   }
   .gallery__item { width: 62vw; max-width: 280px; scroll-snap-align: center; }
   .footer__inner { grid-template-columns: 1fr; }
+  /* El tope de 40 caracteres esta pensado para la columna angosta del pie en
+     escritorio. Aqui el pie va en una sola columna y ese tope dejaba el
+     parrafo cortado a la derecha en pantallas de 420 a 560 px. */
+  .footer__pitch { max-width: none; }
   .hero__actions { flex-wrap: wrap; }        /* en móvil los botones se apilan */
   .hero__actions .btn { width: 100%; justify-content: center; }
 }
