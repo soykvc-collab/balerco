@@ -9,6 +9,7 @@
   --cream:      #FFFFFF;   /* fondo base de la página (blanco) */
   --cream-2:    #F3F4F6;   /* gris casi blanco solo para separar UI pequeña (formulario, hover, menú) */
   --ink:        #16223B;
+  --slate:      #30353D;   /* pizarra del pie y del destacado */
   --ink-soft:   #3a465e;
   --white:      #FFFFFF;
 
@@ -39,7 +40,7 @@
 
   --maxw: 1320px;   /* el contenedor del sitio: más ancho = márgenes menos agresivos
                        y el hero encoge menos, porque su tarjeta final es este mismo borde */
-  --gap: clamp(16px, 4vw, 40px);
+  --gap: clamp(24px, 4vw, 40px);
   /* ancho interior real del contenido (contenedor − canal) → todos los bloques alinean al mismo borde */
   --content-w: calc(var(--maxw) - 2 * var(--gap));
   /* cuánto se mete la barra del nav respecto al borde de la tarjeta del hero:
@@ -117,8 +118,11 @@ p { margin: 0; }
 }
 .section-title {
   font-size: clamp(1.45rem, 4.84vw, 3.24rem);
-  max-width: 16ch;
+  max-width: none;
   margin-top: 14px;
+}
+@media (min-width: 760px) {
+  .section-title { max-width: 16ch; }
 }
 .section-sub {
   margin-top: 16px;
@@ -139,6 +143,7 @@ p { margin: 0; }
   background: var(--sun);
 }
 .tag--sun   { background: var(--sun); }
+.tag--orange{ background: var(--orange); }
 .tag--sky   { background: var(--sky); }
 .tag--grass { background: var(--grass); }
 .tag--berry { background: var(--berry-deep); }
@@ -198,7 +203,9 @@ p { margin: 0; }
   padding: 13px 22px;
 }
 .btn--ghost:hover { background: var(--ink); color: #fff; box-shadow: inset 0 0 0 2px var(--ink); transform: translate(-2px,-2px); }
-.btn--wa { --btn-bg: var(--grass); --btn-fg: #fff; }
+/* El rotulo va en una sola linea, como en el comparativo: cabe de sobra
+   en los 323 px que deja la tarjeta en un telefono de 375. */
+.btn--wa { --btn-bg: var(--grass); --btn-fg: #fff; white-space: nowrap; }
 /* sobre una banda de color el naranja del botón principal se pierde */
 .btn--sobre-color { --btn-bg: var(--white); --btn-fg: var(--ink); }
 
@@ -703,7 +710,7 @@ p { margin: 0; }
   /* Paleta del destacado, medida sobre el comparativo del 4 de noviembre. */
   --dest-bg:   #E8E9EA;   /* fondo de la tarjeta */
   --dest-pill: #A2A3A3;   /* medido sobre el comparativo */
-  --dest-ink:  #30353D;   /* titulares, etiquetas y pie: contraste 11.4:1 */
+  --dest-ink:  var(--slate);   /* titulares, etiquetas y pie: contraste 11.4:1 */
   --dest-soft: #57595B;   /* descripciones: contraste 6.5:1 */
 }
 .feature { padding: clamp(40px, 6vw, 72px) var(--gap) 0; }
@@ -1087,7 +1094,7 @@ p { margin: 0; }
   padding: clamp(24px, 3vw, 40px) clamp(30px, 3.4vw, 54px)
            clamp(24px, 3vw, 40px) clamp(95px, 10vw, 190px);
   border-radius: var(--radius-pill);
-  background: var(--grass);
+  background: var(--sky);                /* el mismo azul de "Que hacemos" */
   color: #fff;
   font-family: var(--font-display);
   font-weight: 700;
@@ -1158,12 +1165,10 @@ p { margin: 0; }
 .contact__intro > p { margin-top: 16px; color: var(--ink-soft); max-width: 42ch; }
 .contact__details { list-style: none; padding: 0; margin: 26px 0; display: grid; gap: 16px; }
 .contact__details li { display: flex; align-items: center; gap: 14px; }
-.contact__details li > div { display: flex; flex-direction: column; }
-.contact__details strong { font-weight: 700; font-size: .95rem; }
 .contact__details a, .contact__details li span:not(.contact__ico) {
   text-decoration: none;
-  font-weight: 500;
-  color: var(--ink-soft);
+  font-weight: 700;
+  color: var(--ink);
 }
 .contact__details a:hover { color: var(--orange-deep); }
 .contact__ico {
@@ -1199,7 +1204,7 @@ p { margin: 0; }
 .form__note.is-err { color: var(--berry); }
 
 /* ---------- FOOTER ---------- */
-.footer { background: var(--ink); color: var(--cream); padding: clamp(48px,7vw,84px) var(--gap) 24px; }
+.footer { background: var(--slate); color: var(--cream); padding: clamp(48px,7vw,84px) var(--gap) 24px; }
 .footer__inner {
   max-width: var(--content-w);
   margin: 0 auto;
@@ -1208,19 +1213,19 @@ p { margin: 0; }
   gap: 40px;
 }
 .brand-logo--footer { height: 56px; width: auto; }
-.footer__pitch { margin-top: 18px; max-width: 40ch; color: #c7d0e0; }
+.footer__pitch { margin-top: 18px; max-width: 40ch; color: #F1F2F3; }
 .footer__social { display: flex; gap: 12px; margin-top: 20px; }
 .footer__social a {
   width: 42px; height: 42px; border-radius: 50%;
   display: grid; place-items: center;
-  background: rgba(255,255,255,.08); color: #fff;
+  background: rgba(255,255,255,.12); color: #fff;
   transition: background .18s var(--ease), transform .18s var(--ease);
 }
 .footer__social a:hover { background: var(--orange); color: var(--ink); transform: translateY(-3px); }
 
 .footer__col { display: flex; flex-direction: column; gap: 10px; }
 .footer__col h2 { font-size: 1.05rem; color: var(--sun); margin-bottom: 4px; }
-.footer__col a, .footer__col span { text-decoration: none; color: #c7d0e0; }
+.footer__col a, .footer__col span { text-decoration: none; color: #D7D9DC; }
 .footer__col a:hover { color: #fff; }
 
 .footer__bar {
@@ -1229,7 +1234,15 @@ p { margin: 0; }
   padding-top: 22px;
   border-top: 1px solid rgba(255,255,255,.12);
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-  font-size: .9rem; color: #a9b4c7;
+  font-size: .9rem; color: #A6AAB0;
+}
+
+/* En movil el pie va en una sola columna: el logo y las redes al centro,
+   el resto a la izquierda, como en el comparativo. */
+@media (max-width: 560px) {
+  .footer__brand { display: flex; flex-direction: column; }
+  .brand-logo--footer { align-self: center; }
+  .footer__social { align-self: center; }
 }
 
 /* ---------- PROYECTOS (galería tipo rayuela / golosa) ---------- */
