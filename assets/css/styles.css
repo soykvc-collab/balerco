@@ -680,10 +680,13 @@ p { margin: 0; }
 
 /* ---------- DESTACADO: video + tarjeta naranja clara ---------- */
 :root {
-  --peach:      #FFF1E6;   /* fondo de la tarjeta */
-  --peach-pill: #FFD2B5;
-  --rust:       #A6400D;   /* texto sobre --peach: contraste 5.6:1 */
-  --rust-deep:  #8A3408;   /* texto secundario: contraste 7.6:1 */
+  /* Paleta del destacado, medida sobre el comparativo del 4 de noviembre. */
+  --dest-bg:   #E8E9EA;   /* fondo de la tarjeta */
+  --dest-pill: #767A7E;   /* el comparativo trae #B2B2B2, pero con el texto
+                             blanco encima queda en 2.2:1 y no se lee; este
+                             gris mantiene el mismo tono y sube a 4.9:1 */
+  --dest-ink:  #30353D;   /* titulares, etiquetas y pie: contraste 11.4:1 */
+  --dest-soft: #57595B;   /* descripciones: contraste 6.5:1 */
 }
 .feature { padding: clamp(40px, 6vw, 72px) var(--gap) 0; }
 .feature__card {
@@ -703,17 +706,17 @@ p { margin: 0; }
   right: clamp(16px, 2vw, 24px);
   bottom: clamp(16px, 2vw, 24px);
   width: min(420px, 38%);
-  background: var(--peach);
+  background: var(--dest-bg);
   border-radius: calc(var(--radius) - 8px);
   padding: clamp(24px, 3vw, 36px);
   display: flex;
   flex-direction: column;
-  color: var(--rust);
+  color: var(--dest-ink);
 }
 .feature__tag {
   align-self: center;
-  background: var(--peach-pill);
-  color: var(--rust-deep);
+  background: var(--dest-pill);
+  color: #fff;
   font-weight: 600;
   font-size: .84rem;
   padding: 7px 15px;
@@ -722,8 +725,16 @@ p { margin: 0; }
 .feature__title {
   margin-top: 14px;
   font-size: clamp(1.52rem, 2.42vw, 1.98rem);
-  color: var(--rust);
+  color: var(--dest-ink);
   text-align: center;
+}
+/* El renglón que va pegado al título, en el mismo tono. */
+.feature__sub {
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: .98rem;
+  font-weight: 600;
+  color: var(--dest-ink);
 }
 .feature__pillars {
   list-style: none;
@@ -734,14 +745,13 @@ p { margin: 0; }
   gap: 20px 20px;
 }
 .feature__pillars li { display: flex; flex-direction: column; gap: 2px; }
-.feature__pillars strong { font-size: 1.02rem; font-weight: 700; color: var(--rust); }
-.feature__pillars span { font-size: .88rem; line-height: 1.4; color: var(--rust-deep); }
+.feature__pillars strong { font-size: 1.02rem; font-weight: 700; color: var(--dest-ink); }
+.feature__pillars span { font-size: .88rem; line-height: 1.4; color: var(--dest-soft); }
 .feature__meta {
   margin-top: auto;
   padding-top: 24px;
-  text-align: center;
 }
-.feature__meta span { font-size: .95rem; font-weight: 600; color: var(--rust-deep); }
+.feature__meta span { font-size: .95rem; font-weight: 600; color: var(--dest-ink); }
 
 .feature__play {
   position: absolute;
@@ -1309,7 +1319,7 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 960px) {
   .hero__br { display: none; }
   .mission__body { grid-template-columns: 1fr; }
-  .feature__card { min-height: 0; display: flex; flex-direction: column; background: var(--peach); }
+  .feature__card { min-height: 0; display: flex; flex-direction: column; background: var(--dest-bg); }
   .feature__video { position: relative; aspect-ratio: 16 / 9; height: auto; }
   .feature__play { bottom: auto; top: calc((100vw - 2 * var(--gap)) * 9 / 16 - 60px); }
   .feature__panel { position: static; width: auto; border-radius: 0; }
