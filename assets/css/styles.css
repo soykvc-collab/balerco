@@ -77,7 +77,9 @@ body {
   color: var(--ink);
   background: var(--cream);
   line-height: 1.65;
-  font-size: 17px;
+  /* 14px en móvil, que es lo que pide el comparativo, subiendo
+     hasta los 17px de siempre en escritorio. */
+  font-size: clamp(14px, 0.4vw + 12.6px, 17px);
   overflow-x: hidden;
 }
 
@@ -114,7 +116,7 @@ p { margin: 0; }
   padding: 0 var(--gap);
 }
 .section-title {
-  font-size: clamp(1.9rem, 4.84vw, 3.24rem);
+  font-size: clamp(1.45rem, 4.84vw, 3.24rem);
   max-width: 16ch;
   margin-top: 14px;
 }
@@ -122,7 +124,7 @@ p { margin: 0; }
   margin-top: 16px;
   max-width: 52ch;
   color: var(--ink-soft);
-  font-size: 1.06rem;
+  font-size: clamp(.88rem, .55vw + .75rem, 1.06rem);
 }
 
 /* ---------- Etiquetas (pills) ---------- */
@@ -325,7 +327,7 @@ p { margin: 0; }
 .hero__chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: clamp(14px, 1.6vw, 20px); }
 /* El titular es el protagonista */
 .hero__title {
-  font-size: clamp(2.18rem, 4.65vw, 3.96rem);
+  font-size: clamp(2.03rem, 4.65vw, 3.96rem);
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.03em;
@@ -474,7 +476,7 @@ p { margin: 0; }
 }
 .mission__body p {
   color: #fff;
-  font-size: clamp(1.09rem, 1.86vw, 1.44rem);
+  font-size: clamp(.88rem, 1.86vw, 1.44rem);
   line-height: 1.45;
 }
 .mission__body strong { color: #fff; font-weight: 700; }
@@ -665,7 +667,7 @@ p { margin: 0; }
   clip-path: inset(0 0 0 0);
   transform: translateX(0);
 }
-.panel__text h3 { font-size: clamp(1.42rem, 2.23vw, 1.8rem); color: #fff; }
+.panel__text h3 { font-size: clamp(1.35rem, 2.23vw, 1.8rem); color: #fff; }
 .panel__text p  { color: rgba(255,255,255,.9); margin-top: 8px; max-width: 42ch; }
 .chip {
   display: inline-block;
@@ -682,9 +684,7 @@ p { margin: 0; }
 :root {
   /* Paleta del destacado, medida sobre el comparativo del 4 de noviembre. */
   --dest-bg:   #E8E9EA;   /* fondo de la tarjeta */
-  --dest-pill: #767A7E;   /* el comparativo trae #B2B2B2, pero con el texto
-                             blanco encima queda en 2.2:1 y no se lee; este
-                             gris mantiene el mismo tono y sube a 4.9:1 */
+  --dest-pill: #A2A3A3;   /* medido sobre el comparativo */
   --dest-ink:  #30353D;   /* titulares, etiquetas y pie: contraste 11.4:1 */
   --dest-soft: #57595B;   /* descripciones: contraste 6.5:1 */
 }
@@ -724,7 +724,7 @@ p { margin: 0; }
 }
 .feature__title {
   margin-top: 14px;
-  font-size: clamp(1.52rem, 2.42vw, 1.98rem);
+  font-size: clamp(1.44rem, 2.42vw, 1.98rem);
   color: var(--dest-ink);
   text-align: center;
 }
@@ -732,7 +732,7 @@ p { margin: 0; }
 .feature__sub {
   margin: 8px 0 0;
   text-align: center;
-  font-size: .98rem;
+  font-size: .88rem;
   font-weight: 600;
   color: var(--dest-ink);
 }
@@ -745,13 +745,14 @@ p { margin: 0; }
   gap: 20px 20px;
 }
 .feature__pillars li { display: flex; flex-direction: column; gap: 2px; }
-.feature__pillars strong { font-size: 1.02rem; font-weight: 700; color: var(--dest-ink); }
-.feature__pillars span { font-size: .88rem; line-height: 1.4; color: var(--dest-soft); }
+.feature__pillars strong { font-size: .91rem; font-weight: 700; color: var(--dest-ink); }
+.feature__pillars span { font-size: .82rem; line-height: 1.4; color: var(--dest-soft); }
 .feature__meta {
   margin-top: auto;
   padding-top: 24px;
+  text-align: center;
 }
-.feature__meta span { font-size: .95rem; font-weight: 600; color: var(--dest-ink); }
+.feature__meta span { font-size: .88rem; font-weight: 600; color: var(--dest-ink); }
 
 .feature__play {
   position: absolute;
@@ -889,7 +890,7 @@ p { margin: 0; }
 .pagehead h1 { margin-top: 12px; }
 .pagehead__lead {
   margin-top: 16px; max-width: 46rem;
-  font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.6; color: var(--ink-soft);
+  font-size: clamp(.88rem, 1.5vw, 1.2rem); line-height: 1.6; color: var(--ink-soft);
 }
 .migas { font-size: .86rem; color: var(--ink-soft); margin-bottom: 18px; }
 .migas a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid rgba(22,34,59,.25); }
@@ -1120,17 +1121,32 @@ p { margin: 0; }
   overflow: hidden;
 }
 .contact__intro { padding: clamp(28px,4vw,52px); }
-.contact__title { font-size: clamp(1.71rem, 3.72vw, 2.7rem); margin-top: 14px; max-width: 16ch; }
+.contact__title { font-size: clamp(1.54rem, 3.72vw, 2.7rem); margin-top: 14px; max-width: 16ch; }
 .contact__intro > p { margin-top: 16px; color: var(--ink-soft); max-width: 42ch; }
-.contact__details { list-style: none; padding: 0; margin: 26px 0; display: grid; gap: 14px; }
-.contact__details li { display: flex; align-items: center; gap: 12px; }
-.contact__details a { text-decoration: none; font-weight: 600; }
+.contact__details { list-style: none; padding: 0; margin: 26px 0; display: grid; gap: 16px; }
+.contact__details li { display: flex; align-items: center; gap: 14px; }
+.contact__details li > div { display: flex; flex-direction: column; }
+.contact__details strong { font-weight: 700; font-size: .95rem; }
+.contact__details a, .contact__details li span:not(.contact__ico) {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
 .contact__details a:hover { color: var(--orange-deep); }
-.contact__ico { font-size: 1.15rem; }
+.contact__ico {
+  flex: 0 0 auto;
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: #F1F2F4;
+  color: var(--ink);
+}
 
 .form { padding: clamp(28px,4vw,52px); background: var(--cream-2); display: grid; gap: 16px; align-content: start; }
 .form__row { display: grid; gap: 6px; }
 .form__row label { font-family: var(--font-display); font-weight: 600; font-size: .95rem; }
+/* Los campos NO bajan de 16px: por debajo de eso Safari en iPhone hace
+   zoom solo al tocarlos y descuadra la página. */
 .form__row input, .form__row textarea {
   font-family: var(--font-body);
   font-size: 1rem;
@@ -1365,7 +1381,7 @@ body.no-scroll { overflow: hidden; }
 }
 
 @media (max-width: 560px) {
-  body { font-size: 16px; }
+  /* el tamaño de cuerpo ya lo resuelve el clamp de arriba */
   .hero__trust { grid-template-columns: repeat(2, 1fr); }
   .why__grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
