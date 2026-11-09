@@ -1945,6 +1945,13 @@ body.no-scroll { overflow: hidden; }
 }
 /* La foto lleva proporción fija: así la fila no se descuadra cuando una
    imagen pesa distinto y, sobre todo, no hay salto de layout al cargar. */
+/* height:auto no es decorativo. El <img> trae width="1400" height="1050" para
+   reservar el hueco y evitar el salto al cargar, pero ese atributo cuenta como
+   alto declarado, y aspect-ratio solo actúa cuando una de las dos medidas está
+   en auto. Sin esto la foto se dibujaba a sus 1050 px reales y cada tarjeta
+   medía 1297 px de alto. */
+.tipo img,
+.pagehead__foto img { height: auto; }
 .tipo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
 .tipo__body { padding: clamp(20px, 2.2vw, 26px); }
 .tipo__body h3 { margin: 0 0 8px; font-size: clamp(18px, 1.4vw, 21px); color: var(--ink); }
@@ -2054,3 +2061,39 @@ body.no-scroll { overflow: hidden; }
   text-decoration-thickness: 2px;
 }
 .panel__link:hover { text-decoration-thickness: 3px; }
+
+/* El margen lateral se estaba aplicando dos veces: una en el contenedor de la
+   sección y otra en .section-head, que vive dentro. Eran 40 px de desfase
+   entre el encabezado de la página y el de cada sección. El contenedor ya
+   centra y ya deja aire; aquí dentro .section-head solo tiene que ocupar
+   el ancho que le dan. */
+.tipos__inner > .section-head,
+.edades__inner > .section-head,
+.faq__inner > .section-head {
+  max-width: none;
+  padding: 0;
+}
+
+/* ---- Encabezado de página a dos columnas (páginas de producto) ----
+   El titular lleva max-width 16ch por diseño en todo el sitio, así que en una
+   pantalla ancha dejaba media página vacía. En las páginas de producto esa
+   mitad la ocupa una foto de obra. */
+@media (min-width: 900px) {
+  .pagehead__inner--producto {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: center;
+  }
+}
+.pagehead__foto { margin-top: 28px; }
+@media (min-width: 900px) { .pagehead__foto { margin-top: 0; } }
+.pagehead__foto img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-toy);
+}

@@ -42,7 +42,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/lenis.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=158" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=160" />
 
   <!-- ============================================================
        SEO — DATOS ESTRUCTURADOS (JSON-LD)
@@ -153,14 +153,6 @@
         },
         {
           "@type": "Question",
-          "name": "¿Cuánto cuesta un parque infantil?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No hay precio de lista porque cada proyecto es distinto, pero cuatro cosas mueven la cifra: el número de módulos, la altura de los juegos —que define el espesor del piso y a veces pesa más que la estructura misma—, si el equipo es de producción propia o importado, y si hay que preparar el terreno."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "¿Qué piso lleva un parque infantil?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -243,7 +235,8 @@
   <main id="main">
     <!-- ===================== ENCABEZADO DE PÁGINA ===================== -->
     <section class="pagehead" aria-labelledby="ph-title">
-      <div class="pagehead__inner">
+      <div class="pagehead__inner pagehead__inner--producto">
+        <div class="pagehead__texto">
         <nav class="migas" aria-label="Ruta">
           <a href="index.html">Inicio</a> <span aria-hidden="true">›</span>
           <a href="index.html#productos">Productos</a> <span aria-hidden="true">›</span>
@@ -257,6 +250,14 @@
           es producción propia y parte viene de fabricantes europeos; en la
           cotización siempre sabes cuál es cuál.
         </p>
+        </div>
+        <!-- La foto no es decorativa: el titular ocupa 16ch por diseño y dejaba
+             media pantalla vacía a la derecha. Aquí entra obra real. -->
+        <div class="pagehead__foto">
+          <img src="assets/img/proyectos/ninos-toboganes-tubo.webp"
+               alt="Dos toboganes de tubo naranjas sobre una superficie de caucho pintada, en un parque instalado por Balerco"
+               width="1400" height="1050" fetchpriority="high" decoding="async" />
+        </div>
       </div>
     </section>
 
@@ -265,10 +266,10 @@
       <div class="tipos__inner">
         <div class="section-head">
           <span class="tag tag--sky">Qué se puede instalar</span>
-          <h2 class="section-title" id="tipos-title">Cinco maneras de resolver un parque</h2>
+          <h2 class="section-title" id="tipos-title">Con qué se arma un parque</h2>
           <p class="section-sub">
-            Casi nunca es una sola. La mayoría de los proyectos combinan dos o tres
-            de estas líneas según el área disponible y el presupuesto.
+            Casi ningún proyecto usa una sola de estas líneas. La mayoría combina
+            dos o tres según el área disponible, las edades y el presupuesto.
           </p>
         </div>
 
@@ -278,8 +279,8 @@
             <div class="tipo__body">
               <h3>Modulares</h3>
               <p>Torres, toboganes, puentes, rampas y paneles de actividades que se
-                combinan como piezas. Es la línea más flexible: el mismo catálogo
-                resuelve un patio de 40 m² y una plaza de 400.</p>
+                combinan como piezas. Es la más flexible de todas: el mismo
+                catálogo resuelve un patio de 40 m² y una plaza de 400.</p>
             </div>
           </article>
 
@@ -288,8 +289,8 @@
             <div class="tipo__body">
               <h3>Temáticos</h3>
               <p>Una estructura que cuenta algo: una ballena, un camión, un avión,
-                un castillo. Son los que convierten un parque en un punto de
-                referencia del barrio y los que más se fotografían.</p>
+                un castillo. Son los que convierten un parque en el punto de
+                referencia del barrio, y los que más se fotografían.</p>
             </div>
           </article>
 
@@ -297,10 +298,9 @@
             <img src="assets/img/proyectos/ninos-piramide-escalada.webp" alt="Niños trepando por una pirámide de cuerdas en un parque infantil" loading="lazy" width="1400" height="1050" />
             <div class="tipo__body">
               <h3>Cuerda y trepa</h3>
-              <p>Redes, pirámides y recorridos en altura de <a href="marcas.html">Ropecamp</a>,
-                con tecnología de cable patentada. Ocupan poca huella en planta y
-                dan mucho juego en vertical, que es justo lo que falta cuando el
-                área es pequeña.</p>
+              <p>Redes, pirámides y recorridos en altura de <a href="marcas.html">Ropecamp</a>.
+                Ocupan poca huella en planta y dan mucho juego en vertical, que es
+                justo lo que falta cuando el área disponible es pequeña.</p>
             </div>
           </article>
 
@@ -309,9 +309,8 @@
             <div class="tipo__body">
               <h3>Juego inclusivo</h3>
               <p>Módulos pensados para que un niño en silla de ruedas juegue con los
-                demás, no al lado. Si el parque debe ser incluyente lo exige la
-                <strong>Ley 2180 de 2021</strong>: rampas, pasamanos y superficies
-                que permitan el acceso.</p>
+                demás, no al lado. Rampas, pasamanos y superficies que permitan
+                llegar hasta el juego y subirse a él.</p>
             </div>
           </article>
 
@@ -321,8 +320,17 @@
               <h3>Digital e interactivo</h3>
               <p>Areneros de realidad aumentada y superficies que responden al
                 movimiento, de <a href="marcas.html">Breeze Creative</a>. Es la
-                línea con la que un parque suma algo que no se puede copiar con
-                una estructura más.</p>
+                línea con la que un parque suma algo que no se copia con otra
+                estructura.</p>
+            </div>
+          </article>
+          <article class="tipo">
+            <img src="assets/img/proyectos/juan-amarillo-piso-pintado.webp" alt="Superficie continua de caucho de colores con diseño de flores en un parque infantil" loading="lazy" width="1400" height="1050" />
+            <div class="tipo__body">
+              <h3>Superficie de seguridad</h3>
+              <p>Caucho continuo, grama sintética o arena, con el espesor que pide
+                la altura de cada juego. Es lo que convierte una caída en un susto,
+                y casi siempre se decide demasiado tarde.</p>
             </div>
           </article>
         </div>
@@ -330,19 +338,23 @@
     </section>
 
     <!-- ===================== POR EDADES =====================
-         Este eje es útil de verdad para quien compra y además encaja con el
-         RETEPARQUES, que define los parques infantiles para niños de 0 a 12.
-         Nada de medidas concretas aquí: las alturas y las distancias las fija
-         la ficha técnica de cada módulo, no una página web. -->
+         Eje útil de verdad para quien compra. Aquí no se cita normativa a
+         propósito: en una página de producto suena a circular interna, y para
+         eso está como-trabajamos.html. La entradilla recoge lo que Balerco dice
+         de sí misma en su propio sitio —la imaginación que abre la puerta a la
+         aventura— para que la página hable con su voz y no con la mía.
+         Tampoco van medidas concretas: las alturas y las distancias las fija la
+         ficha técnica de cada módulo, no una página web. -->
     <section class="edades" aria-labelledby="edades-title">
       <div class="edades__inner">
         <div class="section-head">
           <span class="tag tag--berry">Por edades</span>
           <h2 class="section-title" id="edades-title">Un parque no se diseña para «niños»</h2>
           <p class="section-sub">
-            El <strong>RETEPARQUES</strong> cubre a los niños de 0 a 12 años, y entre
-            un extremo y el otro hay tres parques distintos. Mezclarlos en una sola
-            estructura es la causa más frecuente de que un módulo termine sin usar.
+            En Balerco la imaginación le abre la puerta a la aventura — y esa puerta
+            no es la misma a los dos años que a los diez. Entre un extremo y el otro
+            hay tres parques distintos, y mezclarlos en una sola estructura es la
+            causa más frecuente de que un módulo termine sin usar.
           </p>
         </div>
         <div class="edades__grid">
@@ -420,16 +432,6 @@
               por la <strong>NTC 5176</strong>, y si el parque debe ser incluyente se
               suma la <strong>Ley 2180 de 2021</strong>.
               <a href="como-trabajamos.html#normativa">Lo explicamos eslabón por eslabón aquí</a>.</p></div>
-          </details>
-          <details class="qa">
-            <summary><h3>¿Cuánto cuesta un parque infantil?</h3></summary>
-            <div class="qa__body"><p>No hay precio de lista porque cada proyecto es distinto, pero sí hay
-              cuatro cosas que mueven la cifra y conviene conocerlas antes de pedir
-              cotizaciones: el <strong>número de módulos</strong>, la
-              <strong>altura</strong> de los juegos —que define el espesor del piso y
-              a veces pesa más que la estructura misma—, si el equipo es de
-              <strong>producción propia o importado</strong>, y si hay que preparar el
-              terreno. Cuéntanos el área y para qué edades, y armamos la propuesta.</p></div>
           </details>
           <details class="qa">
             <summary><h3>¿Qué piso lleva un parque infantil?</h3></summary>
