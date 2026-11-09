@@ -66,7 +66,7 @@
      siempre está debajo.                                                  */
   /* Fondo del hero: "foto" deja la imagen real con el Ken Burns del CSS,
      "video" engancha los mp4. Se cambia solo aquí.                      */
-  var HERO_FONDO = "foto";
+  var HERO_FONDO = "video";
 
   if (HERO_FONDO === "video" && heroVideo && heroVideo.getAttribute("data-src")) {
     var red = navigator.connection || {};
