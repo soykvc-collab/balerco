@@ -69,13 +69,23 @@
                !/(^|-)2g$/.test(red.effectiveType || "") &&
                !prefersReduce;
     if (vale) {
-      var hs = document.createElement("source");
-      hs.src = heroVideo.getAttribute("data-src");
-      hs.type = "video/mp4";
-      heroVideo.appendChild(hs);
+      /* Safari: un <source> agregado por JS a un <video> con preload="none"
+         no siempre se engancha. Asignar .src directo sí es confiable en los
+         dos motores. Y el muted va también como propiedad: Safari lee la
+         propiedad, no el atributo, al decidir si deja arrancar solo.        */
+      heroVideo.muted = true;
+      heroVideo.playsInline = true;
+      heroVideo.src = heroVideo.getAttribute("data-src");
       heroVideo.load();
-      var tryPlay = heroVideo.play();
-      if (tryPlay && tryPlay.catch) tryPlay.catch(function () {});
+
+      /* Safari rechaza play() si todavía no hay un cuadro listo, así que
+         se reintenta cuando el archivo avisa que ya puede reproducir.      */
+      var arrancar = function () {
+        var p = heroVideo.play();
+        if (p && p.catch) p.catch(function () {});
+      };
+      arrancar();
+      heroVideo.addEventListener("canplay", arrancar, { once: true });
     }
   }
 
@@ -539,13 +549,18 @@
     var cargarFeatureVideo = function () {
       if (lazyVideo.dataset.loaded) return;
       lazyVideo.dataset.loaded = "1";
-      var src = document.createElement("source");
-      src.src = lazyVideo.getAttribute("data-src");
-      src.type = "video/mp4";
-      lazyVideo.appendChild(src);
+      /* Mismo motivo que en el hero: .src directo en vez de <source>,
+         muted como propiedad y reintento en canplay, para Safari.          */
+      lazyVideo.muted = true;
+      lazyVideo.playsInline = true;
+      lazyVideo.src = lazyVideo.getAttribute("data-src");
       lazyVideo.load();
-      var pl = lazyVideo.play();
-      if (pl && pl.catch) pl.catch(function () {});
+      var arrancarFeature = function () {
+        var pl = lazyVideo.play();
+        if (pl && pl.catch) pl.catch(function () {});
+      };
+      arrancarFeature();
+      lazyVideo.addEventListener("canplay", arrancarFeature, { once: true });
     };
     if ("IntersectionObserver" in window) {
       var vio = new IntersectionObserver(function (entries) {
