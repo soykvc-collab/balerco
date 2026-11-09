@@ -326,18 +326,21 @@ p { margin: 0; }
    porque el movimiento debe notarse solo si uno se queda mirando.
    Solo transform: no toca el layout y corre en la GPU.                  */
 @keyframes heroKenBurns {
-  from { transform: scale(1.08) translate3d(-1.1%,  0.7%, 0); }
-  to   { transform: scale(1.18) translate3d( 1.1%, -1.0%, 0); }
+  from { transform: scale(1.08) translate3d(-2.0%,  1.1%, 0); }
+  to   { transform: scale(1.26) translate3d( 2.0%, -1.5%, 0); }
 }
 /* En teléfono la foto ya viene recortada a vertical: si encima se acerca
    tanto como en escritorio, se pierden el tobogán y los niños, que son
    justo lo que hace que se lea como parque. Mismo gesto, menos recorrido. */
+/* El mínimo no puede bajar de 1.08: en una pantalla de 375 px el sobrante
+   es la mitad del acercamiento, y con menos de eso el desplazamiento
+   lateral deja asomar el borde de la imagen. Medido, no estimado. */
 @keyframes heroKenBurnsMovil {
-  from { transform: scale(1.04) translate3d(-0.8%,  0.5%, 0); }
-  to   { transform: scale(1.10) translate3d( 0.8%, -0.6%, 0); }
+  from { transform: scale(1.08) translate3d(-1.0%,  0.7%, 0); }
+  to   { transform: scale(1.18) translate3d( 1.0%, -0.9%, 0); }
 }
 .hero__img {
-  animation: heroKenBurns 32s ease-in-out infinite alternate;
+  animation: heroKenBurns 26s ease-in-out infinite alternate;
   will-change: transform;
 }
 @media (max-width: 759px) {

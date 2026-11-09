@@ -53,50 +53,12 @@
   /* ---- Hero: el video se encoge a tarjeta al hacer scroll ---- */
   var hero = document.querySelector(".hero");
   var heroStage = hero && hero.querySelector(".hero__stage");
-  var heroVideo = hero && hero.querySelector(".hero__video");
   var prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---- Cada pantalla recibe su propio corte del video ----
-     El de escritorio es 16:9 y pesa 2,5 MB: recortado a un teléfono se ve
-     un muro, y son muchos megas del plan de datos de la persona. El de
-     móvil es vertical, usa solo el tramo abierto del recorrido (donde se
-     entiende que es un parque) y pesa 522 KB.
-     Aun así no se descarga si la persona pidió ahorro de datos, está en una
-     red lenta o pidió menos movimiento: en esos casos queda la imagen, que
-     siempre está debajo.                                                  */
-  /* Fondo del hero: "foto" deja la imagen real con el Ken Burns del CSS,
-     "video" engancha los mp4. Se cambia solo aquí.                      */
-  var HERO_FONDO = "video";
-
-  if (HERO_FONDO === "video" && heroVideo && heroVideo.getAttribute("data-src")) {
-    var red = navigator.connection || {};
-    var angosto = window.matchMedia("(max-width: 759px)").matches;
-    var fuente = angosto ? heroVideo.getAttribute("data-src-movil")
-                         : heroVideo.getAttribute("data-src");
-    var vale = !!fuente &&
-               !red.saveData &&
-               !/(^|-)2g$/.test(red.effectiveType || "") &&
-               !prefersReduce;
-    if (vale) {
-      /* Safari: un <source> agregado por JS a un <video> con preload="none"
-         no siempre se engancha. Asignar .src directo sí es confiable en los
-         dos motores. Y el muted va también como propiedad: Safari lee la
-         propiedad, no el atributo, al decidir si deja arrancar solo.        */
-      heroVideo.muted = true;
-      heroVideo.playsInline = true;
-      heroVideo.src = fuente;
-      heroVideo.load();
-
-      /* Safari rechaza play() si todavía no hay un cuadro listo, así que
-         se reintenta cuando el archivo avisa que ya puede reproducir.      */
-      var arrancar = function () {
-        var p = heroVideo.play();
-        if (p && p.catch) p.catch(function () {});
-      };
-      arrancar();
-      heroVideo.addEventListener("canplay", arrancar, { once: true });
-    }
-  }
+  /* El fondo del hero es la foto real, animada con el Ken Burns del CSS.
+     Aqui vivia el cargador de los mp4 generados con IA: se descarto porque
+     las caras y la hiedra se deshacian entre fotogramas. Si algun dia hay
+     metraje real, el cargador completo esta en el commit 6a6d5ae.        */
 
   if (hero && heroStage) {
     function heroVh() { return window.innerHeight || document.documentElement.clientHeight; }
@@ -106,10 +68,6 @@
       var sp = scrolled / range;
       sp = sp < 0 ? 0 : sp > 1 ? 1 : sp;
       hero.style.setProperty("--sp", sp.toFixed(4));
-      if (heroVideo && heroVideo.paused && scrolled < heroVh()) {
-        var pp = heroVideo.play();
-        if (pp && pp.catch) pp.catch(function () {});
-      }
     }
     if (lenis) {
       // Lenis ya suaviza el scroll → mapeo directo, sin segundo suavizado (evita el lag)
