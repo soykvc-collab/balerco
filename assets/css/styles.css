@@ -318,6 +318,35 @@ p { margin: 0; }
   width: 100%; height: 100%;
   object-fit: cover;
 }
+
+/* ---- Ken Burns sobre la foto real ----
+   El acercamiento nunca baja de 1.08, así que el desplazamiento lateral
+   siempre cae dentro del sobrante y jamás asoma un borde. Va de ida y
+   vuelta (alternate) para que no haya un salto al reiniciar, y son 32s
+   porque el movimiento debe notarse solo si uno se queda mirando.
+   Solo transform: no toca el layout y corre en la GPU.                  */
+@keyframes heroKenBurns {
+  from { transform: scale(1.08) translate3d(-1.1%,  0.7%, 0); }
+  to   { transform: scale(1.18) translate3d( 1.1%, -1.0%, 0); }
+}
+/* En teléfono la foto ya viene recortada a vertical: si encima se acerca
+   tanto como en escritorio, se pierden el tobogán y los niños, que son
+   justo lo que hace que se lea como parque. Mismo gesto, menos recorrido. */
+@keyframes heroKenBurnsMovil {
+  from { transform: scale(1.04) translate3d(-0.8%,  0.5%, 0); }
+  to   { transform: scale(1.10) translate3d( 0.8%, -0.6%, 0); }
+}
+.hero__img {
+  animation: heroKenBurns 32s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@media (max-width: 759px) {
+  .hero__img { animation-name: heroKenBurnsMovil; }
+}
+/* Quien pidió menos movimiento ve la foto quieta, sin recorte extra. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__img { animation: none; transform: none; }
+}
 /* El velo tenia la parte oscura abajo, que es donde estaba el texto. Ahora el
    bloque va centrado, asi que la zona oscura sube con el: sin esto el titular
    cae sobre el cielo y se vuelve ilegible. */

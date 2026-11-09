@@ -64,7 +64,11 @@
      Aun así no se descarga si la persona pidió ahorro de datos, está en una
      red lenta o pidió menos movimiento: en esos casos queda la imagen, que
      siempre está debajo.                                                  */
-  if (heroVideo && heroVideo.getAttribute("data-src")) {
+  /* Fondo del hero: "foto" deja la imagen real con el Ken Burns del CSS,
+     "video" engancha los mp4. Se cambia solo aquí.                      */
+  var HERO_FONDO = "foto";
+
+  if (HERO_FONDO === "video" && heroVideo && heroVideo.getAttribute("data-src")) {
     var red = navigator.connection || {};
     var angosto = window.matchMedia("(max-width: 759px)").matches;
     var fuente = angosto ? heroVideo.getAttribute("data-src-movil")

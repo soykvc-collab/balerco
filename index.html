@@ -42,7 +42,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/lenis.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=144" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=145" />
 
   <!-- ============================================================
        SEO — DATOS ESTRUCTURADOS (JSON-LD)
@@ -145,15 +145,15 @@
                  paso es el elemento más grande de la portada: conviene que cargue
                  con prioridad en vez de esperar al video. -->
             <picture>
-              <!-- En teléfono el 16:9 se recorta tanto que solo se ve un muro.
-                   Este recorte vertical sale de la foto original del cliente y
-                   enseña la torre entera, el tobogán y los niños. El corte en
-                   760px es el mismo que usa el JS para decidir si baja el video. -->
+              <!-- Las dos salen de la foto original del cliente, 5196x3464.
+                   En teléfono el horizontal se recorta tanto que solo se ve un
+                   muro, así que ahí va un corte vertical con la torre entera,
+                   el tobogán y los niños. El movimiento lo pone el CSS. -->
               <source media="(max-width: 759px)"
                       srcset="assets/img/hero-movil-castillo.webp"
                       width="1080" height="1920" />
-              <img class="hero__img" src="assets/img/hero-poster-castillo.webp"
-                   width="1920" height="1080" alt="" aria-hidden="true"
+              <img class="hero__img" src="assets/img/hero-castillo.webp"
+                   width="2000" height="1333" alt="" aria-hidden="true"
                    fetchpriority="high" decoding="async" />
             </picture>
 
@@ -564,6 +564,6 @@
   </div>
 
   <script src="assets/js/lenis.min.js" defer></script>
-  <script src="assets/js/main.js?v=44" defer></script>
+  <script src="assets/js/main.js?v=45" defer></script>
 </body>
 </html>
