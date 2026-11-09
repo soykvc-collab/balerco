@@ -1861,3 +1861,60 @@ body.no-scroll { overflow: hidden; }
 }
 .products__aliados a:hover { color: var(--orange-deep); }
 .products__aliados svg { flex: none; }
+
+/* ---------- NORMATIVA (página Cómo trabajamos) ----------
+   Cuatro tarjetas numeradas. Van en <ol> porque son una cadena: el orden
+   importa y cada eslabón depende del anterior. */
+.norma { padding: clamp(48px, 7vw, 88px) 0; background: var(--cream-2); }
+.norma__inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gap); }
+.norma__cadena {
+  list-style: none;
+  margin: clamp(26px, 3.5vw, 44px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+@media (min-width: 900px) { .norma__cadena { grid-template-columns: 1fr 1fr; } }
+.eslabon {
+  position: relative;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-toy);
+  padding: clamp(24px, 2.8vw, 34px);
+}
+.eslabon__num {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .12em;
+  color: var(--grass-deep);
+  margin-bottom: 10px;
+}
+.eslabon h3 {
+  margin: 0 0 10px;
+  font-size: clamp(19px, 1.5vw, 23px);
+  line-height: 1.25;
+  color: var(--ink);
+}
+.eslabon p { margin: 0; color: var(--ink-soft); line-height: 1.65; }
+.eslabon strong { color: var(--ink); font-weight: 700; }
+/* La línea de abajo dice de quién es la responsabilidad del eslabón. Es el
+   dato que más tranquiliza a un administrador, así que va destacada. */
+.eslabon__quien {
+  margin-top: 14px !important;
+  padding-top: 12px;
+  border-top: 1px solid rgba(22, 34, 59, .12);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink) !important;
+}
+.norma__nota {
+  margin: 18px 0 0;
+  padding: clamp(20px, 2.4vw, 26px);
+  border: 2px dashed rgba(22, 34, 59, .28);
+  border-radius: var(--radius);
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
