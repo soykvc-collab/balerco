@@ -362,6 +362,12 @@ p { margin: 0; }
   from { transform: scale(1.03); }
   to   { transform: scale(1.11); }
 }
+/* El archivo del recorte lleva el borde difuminado unos 2 px hacia adentro.
+   Antes su canal alfa era binario — medido: cero píxeles intermedios, un
+   acantilado de opaco a transparente —, y un borde así delata cualquier
+   remuestreo subpíxel. Difuminado hacia adentro, la silueta se funde con el
+   mismo castillo de la foto de abajo, que es idéntico píxel a píxel, así que
+   el degradado no se ve: solo deja de vibrar. */
 .hero__capa {
   /* Crece desde su propia base, no desde el centro del encuadre. Si creciera
      desde el centro, al aumentar el recorrido la base del castillo bajaría
@@ -372,6 +378,14 @@ p { margin: 0; }
      interior, la forma crecida contiene siempre a la original. */
   transform-origin: 50% 92%;
   animation: heroCapaExtra 26s ease-in-out infinite alternate;
+  /* La capa necesita su propia superficie en la GPU. Sin esto el navegador la
+     vuelve a dibujar dentro de la capa del contenedor en cada fotograma, y
+     como su escala cambia continuamente, el borde del recorte cae cada vez en
+     una fracción de píxel distinta: eso es la vibración. Con superficie propia
+     se dibuja una sola vez y la GPU la transforma, así que el borde se desliza
+     en lugar de rehacerse. */
+  will-change: transform;
+  backface-visibility: hidden;
 }
 /* En móvil la foto es otro recorte y la capa no encaja; además el <img>
    se queda en el GIF de 43 bytes, así que no cuesta nada. */
