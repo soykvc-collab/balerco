@@ -359,10 +359,18 @@ p { margin: 0; }
    Como no hay desplazamiento propio y la escala es siempre mayor que 1,
    la capa cubre por completo al castillo de la foto de abajo. */
 @keyframes heroCapaExtra {
-  from { transform: scale(1.037); }
-  to   { transform: scale(1.063); }
+  from { transform: scale(1.03); }
+  to   { transform: scale(1.11); }
 }
 .hero__capa {
+  /* Crece desde su propia base, no desde el centro del encuadre. Si creciera
+     desde el centro, al aumentar el recorrido la base del castillo bajaría
+     respecto a la arena y parecería despegarse del suelo. Anclado aquí, el
+     castillo se abre hacia arriba como si la cámara se acercara.
+     El punto cae dentro de la silueta, así que la capa sigue conteniendo por
+     completo al castillo de la foto de abajo: al escalar desde un punto
+     interior, la forma crecida contiene siempre a la original. */
+  transform-origin: 50% 92%;
   animation: heroCapaExtra 26s ease-in-out infinite alternate;
 }
 /* En móvil la foto es otro recorte y la capa no encaja; además el <img>
