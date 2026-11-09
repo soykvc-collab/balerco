@@ -42,7 +42,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/lenis.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=151" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=152" />
 
   <!-- ============================================================
        SEO — DATOS ESTRUCTURADOS (JSON-LD)
@@ -144,39 +144,18 @@
                  iPhone el hero salía vacío. Como <img> no hay ambigüedad, y de
                  paso es el elemento más grande de la portada: conviene que cargue
                  con prioridad en vez de esperar al video. -->
-            <!-- Las dos capas van dentro de un mismo contenedor y es ÉL quien
-                 lleva el movimiento. Antes cada una tenía su propia animación
-                 y se dimensionaban por caminos distintos (object-fit contra
-                 background-size): al hacer scroll el marco cambia de ancho,
-                 cada una redondeaba a píxel por su lado y los bordes del
-                 recorte vibraban. Con un solo transform compartido no pueden
-                 desfasarse; la capa solo añade la diferencia de escala. -->
-            <div class="hero__planos" aria-hidden="true">
-              <picture>
-                <!-- Las dos salen de la foto original del cliente, 5196x3464.
-                     En teléfono el horizontal se recorta tanto que solo se ve
-                     un muro, así que ahí va un corte vertical con la torre
-                     entera, el tobogán y los niños. -->
-                <source media="(max-width: 759px)"
-                        srcset="assets/img/hero-movil-castillo.webp"
-                        width="1080" height="1920" />
-                <img class="hero__img" src="assets/img/hero-castillo.webp"
-                     width="2000" height="1333" alt="" aria-hidden="true"
-                     fetchpriority="high" decoding="async" />
-              </picture>
-
-              <!-- El castillo recortado. En móvil el <img> cae en el GIF
-                   transparente de 43 bytes incrustado aquí, así que el
-                   teléfono no pide el archivo de verdad. -->
-              <picture>
-                <source media="(min-width: 760px)"
-                        srcset="assets/img/hero-castillo-capa.webp"
-                        width="2000" height="1333" />
-                <img class="hero__capa" alt="" aria-hidden="true" decoding="async"
-                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
-              </picture>
-            </div>
-
+            <picture>
+              <!-- Las dos salen de la foto original del cliente, 5196x3464.
+                   En teléfono el horizontal se recorta tanto que solo se ve
+                   un muro, así que ahí va un corte vertical con la torre
+                   entera, el tobogán y los niños. -->
+              <source media="(max-width: 759px)"
+                      srcset="assets/img/hero-movil-castillo.webp"
+                      width="1080" height="1920" />
+              <img class="hero__img" src="assets/img/hero-castillo.webp"
+                   width="2000" height="1333" alt="" aria-hidden="true"
+                   fetchpriority="high" decoding="async" />
+            </picture>
 
             <div class="hero__scrim" aria-hidden="true"></div>
 

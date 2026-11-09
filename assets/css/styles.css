@@ -310,92 +310,37 @@ p { margin: 0; }
   background: var(--ink);
   will-change: left, right, bottom, border-radius;
 }
-/* Las dos capas ocupan exactamente el mismo hueco y con el mismo
-   mecanismo de encaje. Que compartan object-fit no es un detalle: si cada
-   una se dimensiona por su lado, redondean a píxel distinto y el borde del
-   recorte vibra contra la foto. */
-.hero__img,
-.hero__capa {
+.hero__img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
 }
 
-/* ---- Ken Burns sobre la foto real ----
-   El acercamiento nunca baja de 1.08, así que el desplazamiento lateral
-   siempre cae dentro del sobrante y jamás asoma un borde. Va de ida y
-   vuelta (alternate) para que no haya un salto al reiniciar, y son 32s
-   porque el movimiento debe notarse solo si uno se queda mirando.
-   Solo transform: no toca el layout y corre en la GPU.                  */
-@keyframes heroKenBurns {
-  from { transform: scale(1.08) translate3d(-2.0%,  1.1%, 0); }
-  to   { transform: scale(1.26) translate3d( 2.0%, -1.5%, 0); }
+/* ---- Acercamiento lento sobre la foto del cliente ----
+   Solo escala, sin desplazamiento: al no moverse de lado nunca puede asomar
+   un borde, por pequeño que sea el acercamiento. Va de ida y vuelta
+   (alternate) para que no haya salto al reiniciar, y 28s porque el gesto
+   debe notarse solo si uno se queda mirando. Solo transform: no toca el
+   layout y corre en la GPU.                                             */
+@keyframes heroZoom {
+  from { transform: scale(1.02); }
+  to   { transform: scale(1.10); }
 }
-/* En teléfono la foto ya viene recortada a vertical: si encima se acerca
-   tanto como en escritorio, se pierden el tobogán y los niños, que son
-   justo lo que hace que se lea como parque. Mismo gesto, menos recorrido. */
-/* El mínimo no puede bajar de 1.08: en una pantalla de 375 px el sobrante
-   es la mitad del acercamiento, y con menos de eso el desplazamiento
-   lateral deja asomar el borde de la imagen. Medido, no estimado. */
-@keyframes heroKenBurnsMovil {
-  from { transform: scale(1.08) translate3d(-1.0%,  0.7%, 0); }
-  to   { transform: scale(1.18) translate3d( 1.0%, -0.9%, 0); }
+/* En teléfono la foto ya viene recortada a vertical y mucho más cerca: con
+   el mismo recorrido se perderían el tobogán y los niños, que son justo lo
+   que hace que se lea como parque. Mismo gesto, menos recorrido. */
+@keyframes heroZoomMovil {
+  from { transform: scale(1.02); }
+  to   { transform: scale(1.07); }
 }
-/* El movimiento lo lleva el contenedor, no cada capa: así las dos comparten
-   un único transform y no pueden desfasarse ni redondear a píxel por su
-   cuenta mientras el marco del hero se encoge con el scroll. */
-.hero__planos {
-  position: absolute; inset: 0;
-  animation: heroKenBurns 26s ease-in-out infinite alternate;
+.hero__img {
+  animation: heroZoom 28s ease-in-out infinite alternate;
   will-change: transform;
 }
 @media (max-width: 759px) {
-  .hero__planos { animation-name: heroKenBurnsMovil; }
+  .hero__img { animation-name: heroZoomMovil; }
 }
-
-/* La capa hereda todo el movimiento del contenedor y solo añade este poco
-   de acercamiento extra. Es la diferencia entre las dos escalas de antes
-   (1.12/1.08 y 1.34/1.26), y basta para separar los planos.
-   Como no hay desplazamiento propio y la escala es siempre mayor que 1,
-   la capa cubre por completo al castillo de la foto de abajo. */
-@keyframes heroCapaExtra {
-  from { transform: scale(1.03); }
-  to   { transform: scale(1.11); }
-}
-/* El archivo del recorte lleva el borde difuminado unos 2 px hacia adentro.
-   Antes su canal alfa era binario — medido: cero píxeles intermedios, un
-   acantilado de opaco a transparente —, y un borde así delata cualquier
-   remuestreo subpíxel. Difuminado hacia adentro, la silueta se funde con el
-   mismo castillo de la foto de abajo, que es idéntico píxel a píxel, así que
-   el degradado no se ve: solo deja de vibrar. */
-.hero__capa {
-  /* Crece desde su propia base, no desde el centro del encuadre. Si creciera
-     desde el centro, al aumentar el recorrido la base del castillo bajaría
-     respecto a la arena y parecería despegarse del suelo. Anclado aquí, el
-     castillo se abre hacia arriba como si la cámara se acercara.
-     El punto cae dentro de la silueta, así que la capa sigue conteniendo por
-     completo al castillo de la foto de abajo: al escalar desde un punto
-     interior, la forma crecida contiene siempre a la original. */
-  transform-origin: 50% 92%;
-  animation: heroCapaExtra 26s ease-in-out infinite alternate;
-  /* La capa necesita su propia superficie en la GPU. Sin esto el navegador la
-     vuelve a dibujar dentro de la capa del contenedor en cada fotograma, y
-     como su escala cambia continuamente, el borde del recorte cae cada vez en
-     una fracción de píxel distinta: eso es la vibración. Con superficie propia
-     se dibuja una sola vez y la GPU la transforma, así que el borde se desliza
-     en lugar de rehacerse. */
-  will-change: transform;
-  backface-visibility: hidden;
-}
-/* En móvil la foto es otro recorte y la capa no encaja; además el <img>
-   se queda en el GIF de 43 bytes, así que no cuesta nada. */
-@media (max-width: 759px) { .hero__capa { display: none; } }
-/* Sin movimiento no hay profundidad que mostrar, y la foto ya está completa. */
-@media (prefers-reduced-motion: reduce) {
-  .hero__planos { animation: none; }
-  .hero__capa { display: none; }
-}
-/* Quien pidió menos movimiento ve la foto quieta, sin recorte extra. */
+/* Quien pidió menos movimiento ve la foto quieta. */
 @media (prefers-reduced-motion: reduce) {
   .hero__img { animation: none; transform: none; }
 }
