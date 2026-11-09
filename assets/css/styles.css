@@ -319,22 +319,24 @@ p { margin: 0; }
 /* ---- Acercamiento lento sobre la foto del cliente ----
    Solo escala, sin desplazamiento: al no moverse de lado nunca puede asomar
    un borde, por pequeño que sea el acercamiento. Va de ida y vuelta
-   (alternate) para que no haya salto al reiniciar, y 28s porque el gesto
-   debe notarse solo si uno se queda mirando. Solo transform: no toca el
+   (alternate) para que no haya salto al reiniciar. 22s y un recorrido de
+   16 puntos: antes eran 28s y 8 puntos, y el movimiento era tan lento
+   (0.29% por segundo) que se leía como una foto quieta. Ahora avanza a
+   0.73% por segundo, casi el triple, y se nota sin marear. Solo transform: no toca el
    layout y corre en la GPU.                                             */
 @keyframes heroZoom {
   from { transform: scale(1.02); }
-  to   { transform: scale(1.10); }
+  to   { transform: scale(1.18); }
 }
 /* En teléfono la foto ya viene recortada a vertical y mucho más cerca: con
    el mismo recorrido se perderían el tobogán y los niños, que son justo lo
    que hace que se lea como parque. Mismo gesto, menos recorrido. */
 @keyframes heroZoomMovil {
   from { transform: scale(1.02); }
-  to   { transform: scale(1.07); }
+  to   { transform: scale(1.12); }
 }
 .hero__img {
-  animation: heroZoom 28s ease-in-out infinite alternate;
+  animation: heroZoom 22s ease-in-out infinite alternate;
   will-change: transform;
 }
 @media (max-width: 759px) {
