@@ -310,10 +310,12 @@ p { margin: 0; }
   background: var(--ink);
   will-change: left, right, bottom, border-radius;
 }
-/* La imagen y el video ocupan el mismo hueco. La imagen va debajo y se ve
-   siempre; donde el video carga, lo tapa. Así nunca hay un hero vacío. */
+/* Las dos capas ocupan exactamente el mismo hueco y con el mismo
+   mecanismo de encaje. Que compartan object-fit no es un detalle: si cada
+   una se dimensiona por su lado, redondean a píxel distinto y el borde del
+   recorte vibra contra la foto. */
 .hero__img,
-.hero__video {
+.hero__capa {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
