@@ -157,12 +157,13 @@
                    fetchpriority="high" decoding="async" />
             </picture>
 
-            <!-- VIDEO: reemplaza el archivo en assets/video/ para cambiarlo -->
-            <!-- Sin autoplay ni source: el JS engancha el archivo solo donde
-                 compensa descargarlo. En móvil se queda la imagen de arriba. -->
+            <!-- VIDEO: reemplaza los archivos en assets/video/ para cambiarlo -->
+            <!-- Sin autoplay ni source: el JS elige el corte según el ancho y
+                 lo engancha. El de móvil es vertical y pesa una quinta parte. -->
             <video class="hero__video" muted loop playsinline preload="none"
                    aria-hidden="true"
-                   data-src="assets/video/hero-castillo.mp4"></video>
+                   data-src="assets/video/hero-castillo.mp4"
+                   data-src-movil="assets/video/hero-movil-castillo.mp4"></video>
             <div class="hero__scrim" aria-hidden="true"></div>
 
             <div class="hero__content">
@@ -563,6 +564,6 @@
   </div>
 
   <script src="assets/js/lenis.min.js" defer></script>
-  <script src="assets/js/main.js?v=43" defer></script>
+  <script src="assets/js/main.js?v=44" defer></script>
 </body>
 </html>

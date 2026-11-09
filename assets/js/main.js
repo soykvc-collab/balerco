@@ -56,15 +56,20 @@
   var heroVideo = hero && hero.querySelector(".hero__video");
   var prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---- El video del hero solo se descarga donde compensa ----
-     Pesa más que todo el resto de la portada junta. En un teléfono eso son
-     megas del plan de datos de la persona para un fondo decorativo, así que
-     ahí se queda el póster, que es el mismo fotograma. Se descarga en
-     pantallas anchas, si la persona no pidió ahorro de datos, no está en una
-     red lenta y no pidió menos movimiento.                                */
+  /* ---- Cada pantalla recibe su propio corte del video ----
+     El de escritorio es 16:9 y pesa 2,5 MB: recortado a un teléfono se ve
+     un muro, y son muchos megas del plan de datos de la persona. El de
+     móvil es vertical, usa solo el tramo abierto del recorrido (donde se
+     entiende que es un parque) y pesa 522 KB.
+     Aun así no se descarga si la persona pidió ahorro de datos, está en una
+     red lenta o pidió menos movimiento: en esos casos queda la imagen, que
+     siempre está debajo.                                                  */
   if (heroVideo && heroVideo.getAttribute("data-src")) {
     var red = navigator.connection || {};
-    var vale = window.matchMedia("(min-width: 760px)").matches &&
+    var angosto = window.matchMedia("(max-width: 759px)").matches;
+    var fuente = angosto ? heroVideo.getAttribute("data-src-movil")
+                         : heroVideo.getAttribute("data-src");
+    var vale = !!fuente &&
                !red.saveData &&
                !/(^|-)2g$/.test(red.effectiveType || "") &&
                !prefersReduce;
@@ -75,7 +80,7 @@
          propiedad, no el atributo, al decidir si deja arrancar solo.        */
       heroVideo.muted = true;
       heroVideo.playsInline = true;
-      heroVideo.src = heroVideo.getAttribute("data-src");
+      heroVideo.src = fuente;
       heroVideo.load();
 
       /* Safari rechaza play() si todavía no hay un cuadro listo, así que
