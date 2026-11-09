@@ -346,6 +346,32 @@ p { margin: 0; }
 @media (max-width: 759px) {
   .hero__img { animation-name: heroKenBurnsMovil; }
 }
+
+/* ---- Segunda capa: el castillo recortado ----
+   Mismo desplazamiento que el fondo, pero más acercamiento. Al crecer más
+   rápido se separa del plano de atrás y aparece profundidad: paralaje real,
+   con píxeles reales. Como el desplazamiento es idéntico y la escala siempre
+   mayor, esta capa cubre por completo al castillo de la foto de abajo — por
+   eso no hay doble imagen ni hace falta rellenar nada. */
+@keyframes heroKenBurnsCapa {
+  from { transform: scale(1.12) translate3d(-2.0%,  1.1%, 0); }
+  to   { transform: scale(1.34) translate3d( 2.0%, -1.5%, 0); }
+}
+/* Va como fondo CSS y no como <img> a propósito: en móvil esta capa no
+   aplica, y un <img> oculto con display:none se descarga igual. Declarado
+   solo dentro de la media query, el teléfono nunca pide el archivo. */
+.hero__capa { position: absolute; inset: 0; }
+@media (min-width: 760px) {
+  .hero__capa {
+    background: url("../img/hero-castillo-capa.webp") center / cover no-repeat;
+    animation: heroKenBurnsCapa 26s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+/* Sin movimiento no hay profundidad que mostrar, y la foto ya está completa. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__capa { background-image: none; animation: none; }
+}
 /* Quien pidió menos movimiento ve la foto quieta, sin recorte extra. */
 @media (prefers-reduced-motion: reduce) {
   .hero__img { animation: none; transform: none; }

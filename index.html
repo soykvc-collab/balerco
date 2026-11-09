@@ -42,7 +42,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/lenis.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=146" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=147" />
 
   <!-- ============================================================
        SEO — DATOS ESTRUCTURADOS (JSON-LD)
@@ -156,6 +156,15 @@
                    width="2000" height="1333" alt="" aria-hidden="true"
                    fetchpriority="high" decoding="async" />
             </picture>
+
+            <!-- El castillo recortado, encima de la foto completa y creciendo
+                 un poco más rápido que ella: eso separa los planos y da
+                 profundidad real, que es lo único que aportaba el video de IA.
+                 Va siempre más escalado que el fondo, así que tapa al castillo
+                 de la foto de abajo y nunca se ve doble. Solo en escritorio:
+                 en móvil la foto es otro recorte y este no encaja. -->
+            <div class="hero__capa" aria-hidden="true"></div>
+
             <div class="hero__scrim" aria-hidden="true"></div>
 
             <div class="hero__content">
