@@ -339,38 +339,37 @@ p { margin: 0; }
   from { transform: scale(1.08) translate3d(-1.0%,  0.7%, 0); }
   to   { transform: scale(1.18) translate3d( 1.0%, -0.9%, 0); }
 }
-.hero__img {
+/* El movimiento lo lleva el contenedor, no cada capa: así las dos comparten
+   un único transform y no pueden desfasarse ni redondear a píxel por su
+   cuenta mientras el marco del hero se encoge con el scroll. */
+.hero__planos {
+  position: absolute; inset: 0;
   animation: heroKenBurns 26s ease-in-out infinite alternate;
   will-change: transform;
 }
 @media (max-width: 759px) {
-  .hero__img { animation-name: heroKenBurnsMovil; }
+  .hero__planos { animation-name: heroKenBurnsMovil; }
 }
 
-/* ---- Segunda capa: el castillo recortado ----
-   Mismo desplazamiento que el fondo, pero más acercamiento. Al crecer más
-   rápido se separa del plano de atrás y aparece profundidad: paralaje real,
-   con píxeles reales. Como el desplazamiento es idéntico y la escala siempre
-   mayor, esta capa cubre por completo al castillo de la foto de abajo — por
-   eso no hay doble imagen ni hace falta rellenar nada. */
-@keyframes heroKenBurnsCapa {
-  from { transform: scale(1.12) translate3d(-2.0%,  1.1%, 0); }
-  to   { transform: scale(1.34) translate3d( 2.0%, -1.5%, 0); }
+/* La capa hereda todo el movimiento del contenedor y solo añade este poco
+   de acercamiento extra. Es la diferencia entre las dos escalas de antes
+   (1.12/1.08 y 1.34/1.26), y basta para separar los planos.
+   Como no hay desplazamiento propio y la escala es siempre mayor que 1,
+   la capa cubre por completo al castillo de la foto de abajo. */
+@keyframes heroCapaExtra {
+  from { transform: scale(1.037); }
+  to   { transform: scale(1.063); }
 }
-/* Va como fondo CSS y no como <img> a propósito: en móvil esta capa no
-   aplica, y un <img> oculto con display:none se descarga igual. Declarado
-   solo dentro de la media query, el teléfono nunca pide el archivo. */
-.hero__capa { position: absolute; inset: 0; }
-@media (min-width: 760px) {
-  .hero__capa {
-    background: url("../img/hero-castillo-capa.webp") center / cover no-repeat;
-    animation: heroKenBurnsCapa 26s ease-in-out infinite alternate;
-    will-change: transform;
-  }
+.hero__capa {
+  animation: heroCapaExtra 26s ease-in-out infinite alternate;
 }
+/* En móvil la foto es otro recorte y la capa no encaja; además el <img>
+   se queda en el GIF de 43 bytes, así que no cuesta nada. */
+@media (max-width: 759px) { .hero__capa { display: none; } }
 /* Sin movimiento no hay profundidad que mostrar, y la foto ya está completa. */
 @media (prefers-reduced-motion: reduce) {
-  .hero__capa { background-image: none; animation: none; }
+  .hero__planos { animation: none; }
+  .hero__capa { display: none; }
 }
 /* Quien pidió menos movimiento ve la foto quieta, sin recorte extra. */
 @media (prefers-reduced-motion: reduce) {
