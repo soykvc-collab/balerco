@@ -11,3 +11,8 @@ desktop.ini
 # Temporales
 *.log
 *.tmp
+
+# Material de trabajo que no se publica: pesaba 46 MB en la raiz y
+# reventaba el despliegue de Pages en syncing_files. Sigue en el disco.
+BalercoFinalVersions.mp4
+*.mov
