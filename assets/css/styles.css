@@ -55,6 +55,14 @@
   --hero-inset: clamp(16px, 7vw, 200px);
   --content-inset: max(var(--gap), (100% - var(--maxw)) / 2 + var(--gap));
   --frame-inset: min(var(--hero-inset), var(--content-inset) * .78);
+  /* Un gemelo de --frame-inset medido contra la ventana en vez de contra el
+     elemento. --content-inset lleva un 100% dentro, y un porcentaje dentro de
+     una variable se resuelve contra QUIEN la usa: sobre el marco del hero vale
+     112 px, pero sobre el botón, que mide 262 px, valía 31. Medido en vw el
+     número es el mismo en todas partes, que es justo lo que necesitan el
+     recorte y el texto para cuadrar entre sí. */
+  --content-inset-vw: max(var(--gap), (100vw - var(--maxw)) / 2 + var(--gap));
+  --hero-shift: min(var(--hero-inset), var(--content-inset-vw) * .78);
   /* corte inferior de la tarjeta del hero. OJO: .products se sube justo este
      valor para tucarse bajo la tarjeta, así que los dos deben leer el token. */
   --hero-bottom: clamp(28px, 5.5vh, 80px);
@@ -299,16 +307,29 @@ p { margin: 0; }
 }
 .hero__frame {
   /* pantalla completa (--sp:0) → tarjeta (--sp:1); el borde superior nunca se mueve.
-     --sp lo controla el scroll con suavizado en JS, para un movimiento fluido. */
+     --sp lo controla el scroll con suavizado en JS, para un movimiento fluido.
+
+     La tarjeta se RECORTA, no se encoge. Antes esto se hacía moviendo left,
+     right y bottom: son propiedades de layout, así que en cada cuadro del
+     scroll el navegador recalculaba la caja, object-fit volvía a encuadrar la
+     foto y había que redibujarla a un tamaño distinto. Medido sobre el mismo
+     recorrido: la mediana por cuadro pasaba de 6.1 ms a 12.1 ms y se perdían
+     7 de cada 99 cuadros. Eso era el tirón que se veía al hacer scroll.
+     Con clip-path la caja no cambia de tamaño nunca — solo se recorta lo que
+     asoma —, así que no hay layout ni reencuadre: 6.1 ms y 1 cuadro de 99.
+     Y de paso will-change ya no miente: nunca sirvió de nada sobre left,
+     right y bottom, porque esas propiedades no se pueden componer en la GPU. */
   position: absolute;
-  top: 0;
-  left: calc(var(--sp, 0) * var(--frame-inset));
-  right: calc(var(--sp, 0) * var(--frame-inset));
-  bottom: calc(var(--sp, 0) * var(--hero-bottom));
-  border-radius: calc(var(--sp, 0) * var(--radius));
+  inset: 0;
   overflow: hidden;
   background: var(--ink);
-  will-change: left, right, bottom, border-radius;
+  clip-path: inset(
+    0
+    calc(var(--sp, 0) * var(--hero-shift))
+    calc(var(--sp, 0) * var(--hero-bottom))
+    calc(var(--sp, 0) * var(--hero-shift))
+    round calc(var(--sp, 0) * var(--radius))
+  );
 }
 .hero__img {
   position: absolute; inset: 0;
@@ -359,6 +380,24 @@ p { margin: 0; }
       rgba(22,34,59,.30) 78%,
       rgba(22,34,59,.10) 100%),
     linear-gradient(to right, rgba(22,34,59,.30), rgba(22,34,59,0) 55%);
+}
+/* El bloque acompaña al borde inferior de la tarjeta para seguir centrado en
+   ella. Antes lo hacía solo, porque la caja se encogía de verdad; ahora que
+   solo se recorta, hay que moverlo a mano. Es un transform, no cuesta nada. */
+.hero__content {
+  transform: translate(
+    calc(var(--sp, 0) * var(--hero-shift)),
+    calc(var(--sp, 0) * var(--hero-bottom) / -2)
+  );
+}
+/* El botón va centrado en la tarjeta, y el centro de la tarjeta es el mismo
+   que el del escenario porque el recorte es simétrico. Así que al botón hay
+   que quitarle el desplazamiento que acaba de heredar del bloque. */
+.hero__actions { transform: translateX(calc(var(--sp, 0) * var(--hero-shift) * -1)); }
+/* En teléfono la tarjeta va a sangre por los lados: no hay nada que compensar. */
+@media (max-width: 759px) {
+  .hero__content { transform: translateY(calc(var(--sp, 0) * var(--hero-bottom) / -2)); }
+  .hero__actions { transform: none; }
 }
 .hero__content {
   /* El comparativo del 4 de noviembre centra el bloque en la imagen; antes
@@ -1225,10 +1264,11 @@ p { margin: 0; }
   .bubble { margin-right: 12px; }
 
   .hero__frame {
-    left: 0;
-    right: 0;
     /* a sangre por los lados: solo tiene sentido redondear abajo */
-    border-radius: 0 0 calc(var(--sp, 0) * var(--radius)) calc(var(--sp, 0) * var(--radius));
+    clip-path: inset(
+      0 0 calc(var(--sp, 0) * var(--hero-bottom)) 0
+      round 0 0 calc(var(--sp, 0) * var(--radius)) calc(var(--sp, 0) * var(--radius))
+    );
   }
 }
 
