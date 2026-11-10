@@ -2169,3 +2169,25 @@ body.no-scroll { overflow: hidden; }
 /* El pie de foto acompaña a la imagen, así que también va centrado cuando
    la franja lo está. */
 .obra--texto .obra__foto figcaption { text-align: center; }
+
+/* Las etiquetas del acordeón se parten en dos renglones en el teléfono y
+   dejaban una palabra sola abajo. Dos medidas, y hacen falta las dos:
+   en el HTML, espacio duro dentro de cada término y antes de cada punto,
+   para que ni "Acabados deportivos" se parta por la mitad ni un · empiece
+   renglón; aquí, balance, que reparte el texto entre los renglones en vez
+   de llenar el primero y dejar el resto colgando. Donde no haya soporte
+   para balance, los espacios duros solos ya evitan lo peor. */
+.chip { text-wrap: balance; }
+/* "Calistenia · Circuitos ninja · Biosaludables" necesita 255 px de texto y
+   en un teléfono de 375 le quedaban 251: se partía por cuatro píxeles. Con
+   10 px de relleno en vez de 14 caben 259 y entra de una sola línea. */
+@media (max-width: 759px) {
+  .chip { padding-left: 10px; padding-right: 10px; }
+}
+/* Por debajo de 400 px ni con 10 px de relleno cabe la etiqueta más larga.
+   Un punto menos de cuerpo la mete en un renglón en los teléfonos de 360,
+   que son la mayoría. En los de 320 se parte igual, pero gracias a los
+   espacios duros el corte cae siempre en un · y nunca dentro de un término. */
+@media (max-width: 399px) {
+  .chip { font-size: 12.4px; padding-left: 9px; padding-right: 9px; }
+}
