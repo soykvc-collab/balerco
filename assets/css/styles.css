@@ -2157,21 +2157,6 @@ body.no-scroll { overflow: hidden; }
 .tipo--texto .tipo__body { padding: clamp(24px, 2.6vw, 32px); }
 .tipo--texto .tipo__body h3 { font-size: clamp(19px, 1.5vw, 23px); }
 
-/* La franja de cita sin foto ocupa el ancho entero y centra el bloque. */
-.obra--texto .obra__inner { grid-template-columns: minmax(0, 1fr); justify-items: center; }
-.obra--texto .obra__texto { max-width: 68ch; text-align: center; }
-/* Centrar el texto no centra la caja. El titular lleva max-width 16ch en todo
-   el sitio, asi que su caja se quedaba a la izquierda del bloque de 68ch y el
-   titular salia desplazado respecto a la cita y al parrafo. */
-.obra--texto .obra__texto > * { margin-inline: auto; }
-.obra--texto .section-title { max-width: 22ch; }
-.obra--texto .obra__cita {
-  border-left: none;
-  border-top: 4px solid var(--berry);
-  padding: 18px 0 0;
-  margin-top: 20px;
-}
-.obra--texto .obra__cuerpo { max-width: none; }
 /* En las tarjetas de solo texto el contenido va centrado en vertical. Con
    fotos el alto lo marca la imagen y el texto siempre arranca a la misma
    altura; sin fotos lo marca el texto, y basta un renglón de diferencia
@@ -2179,13 +2164,6 @@ body.no-scroll { overflow: hidden; }
    centrar, esa diferencia se reparte arriba y abajo en vez de acumularse
    abajo, que es donde se nota. */
 .tipo--texto { justify-content: center; }
-/* La franja centrada admite una foto arriba. El ancho es menor que el del
-   texto a propósito: una imagen a sangre dentro de un bloque centrado rompe
-   la columna y hace que el titular parezca descolgado otra vez. */
-.obra--texto .obra__foto { max-width: 760px; width: 100%; margin: 0 auto 26px; }
-/* El pie de foto acompaña a la imagen, así que también va centrado cuando
-   la franja lo está. */
-.obra--texto .obra__foto figcaption { text-align: center; }
 
 /* Las etiquetas del acordeón se parten en dos renglones en el teléfono y
    dejaban una palabra sola abajo. Dos medidas, y hacen falta las dos:
