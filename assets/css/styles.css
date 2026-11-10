@@ -2127,3 +2127,30 @@ body.no-scroll { overflow: hidden; }
   border-radius: var(--radius);
   box-shadow: var(--shadow-toy);
 }
+
+/* ---- Variantes de la plantilla de producto ----
+   Tarjetas sin foto: van a dos columnas y no a tres. Con solo texto, tres
+   columnas dejan renglones demasiado cortos para leer de corrido. */
+@media (min-width: 1040px) {
+  .tipos__grid--texto { grid-template-columns: 1fr 1fr; }
+}
+.tipo--texto .tipo__body { padding: clamp(24px, 2.6vw, 32px); }
+.tipo--texto .tipo__body h3 { font-size: clamp(19px, 1.5vw, 23px); }
+
+/* La franja de cita sin foto ocupa el ancho entero y centra el bloque. */
+.obra--texto .obra__inner { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+.obra--texto .obra__texto { max-width: 68ch; text-align: center; }
+.obra--texto .obra__cita {
+  border-left: none;
+  border-top: 4px solid var(--berry);
+  padding: 18px 0 0;
+  margin-top: 20px;
+}
+.obra--texto .obra__cuerpo { max-width: none; }
+/* En las tarjetas de solo texto el contenido va centrado en vertical. Con
+   fotos el alto lo marca la imagen y el texto siempre arranca a la misma
+   altura; sin fotos lo marca el texto, y basta un renglón de diferencia
+   entre dos tarjetas de la misma fila para que una se vea descolgada. Al
+   centrar, esa diferencia se reparte arriba y abajo en vez de acumularse
+   abajo, que es donde se nota. */
+.tipo--texto { justify-content: center; }
