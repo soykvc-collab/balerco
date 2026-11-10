@@ -2100,8 +2100,13 @@ body.no-scroll { overflow: hidden; }
    principal hacia las páginas de producto, así que tiene que verse como
    enlace y no como texto más. */
 .panel__link {
-  display: inline-block;
-  margin-top: 12px;
+  /* Bloque y no inline-block: pegado a la etiqueta amarilla parecía parte de
+     ella, y el margen superior no separaba nada porque ambos caían en el mismo
+     renglón. En su propia línea el enlace se lee como la acción del panel, y
+     el ancho ajustado deja el subrayado del largo del texto y no de la caja. */
+  display: block;
+  width: fit-content;
+  margin-top: 16px;
   font-weight: 700;
   /* Blanco, no tinta: este enlace cae sobre la foto del panel y en navy se
      perdia contra el fondo. La sombra lo sostiene cuando la foto es clara. */
