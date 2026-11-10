@@ -42,7 +42,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/lenis.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=169" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=170" />
 
   <!-- ============================================================
        SEO — DATOS ESTRUCTURADOS (JSON-LD)
@@ -469,6 +469,19 @@
              2) Reemplaza TU_ID_FORMSPREE por el ID de tu formulario.
              Mientras tanto, el botón abre el correo con los datos. -->
         <form class="form" action="https://formspree.io/f/TU_ID_FORMSPREE" method="POST">
+              <!-- Asunto con el que llega el correo a la bandeja. Sin esto
+                   todos los mensajes entran como "New submission". -->
+              <input type="hidden" name="_subject" value="Balerco — nueva solicitud desde el sitio" />
+              <!-- Trampa para robots: un campo que ningun humano ve y que
+                   los formularios automaticos rellenan igual. Formspree
+                   descarta el envio si viene con algo. -->
+              <p class="form__trampa" aria-hidden="true">
+                <label for="sitio-web">No llenar este campo</label>
+                <input type="text" id="sitio-web" name="_gotcha" tabindex="-1" autocomplete="off" />
+              </p>
+              <!-- Queda constancia de cuando se marco la casilla de datos.
+                   Lo rellena el JS al enviar. -->
+              <input type="hidden" name="fecha_autorizacion" value="" />
           <div class="form__row">
             <label for="nombre">Nombre <abbr title="obligatorio">*</abbr></label>
             <input type="text" id="nombre" name="nombre" autocomplete="name" required placeholder="Tu nombre" />
@@ -565,6 +578,6 @@
   </div>
 
   <script src="assets/js/lenis.min.js" defer></script>
-  <script src="assets/js/main.js?v=47" defer></script>
+  <script src="assets/js/main.js?v=49" defer></script>
 </body>
 </html>

@@ -470,40 +470,87 @@
   }
 
   /* ---- Formulario ----
-     Si aún no has conectado Formspree (la acción contiene TU_ID_FORMSPREE),
-     el envío se hace por correo (mailto) para no perder el mensaje. ---- */
+     Dos caminos. Mientras la accion siga teniendo TU_ID_FORMSPREE, el envio
+     se hace por correo (mailto) para no perder el mensaje. En cuanto se pegue
+     el identificador de Formspree, el mismo codigo pasa a enviar por fetch y
+     el visitante nunca sale del sitio: sin esto, un POST normal lo deja en la
+     pagina de gracias de Formspree, que esta en ingles y no es nuestra.   */
   var form = document.querySelector(".form");
   if (form) {
     var note = form.querySelector(".form__note");
-    form.addEventListener("submit", function (e) {
-      var action = form.getAttribute("action") || "";
-      var notConnected = action.indexOf("TU_ID_FORMSPREE") !== -1;
+    var boton = form.querySelector("button[type=submit]");
 
-      if (notConnected) {
-        e.preventDefault();
+    var aviso = function (texto, clase) {
+      if (!note) return;
+      note.textContent = texto;
+      note.className = "form__note " + clase;
+    };
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var action = form.getAttribute("action") || "";
+
+      /* Constancia de cuando se marco la casilla de tratamiento de datos.
+         Se rellena aqui y no en el HTML para que sea la hora real del envio. */
+      var sello = form.querySelector("[name=fecha_autorizacion]");
+      if (sello) {
+        sello.value = form.autorizacion && form.autorizacion.checked
+          ? new Date().toISOString() : "";
+      }
+
+      /* --- Todavia sin conectar: se abre el correo del visitante --- */
+      if (action.indexOf("TU_ID_FORMSPREE") !== -1) {
         var nombre = (form.nombre && form.nombre.value) || "";
         var email = (form.email && form.email.value) || "";
         var tel = (form.telefono && form.telefono.value) || "";
         var msg = (form.mensaje && form.mensaje.value) || "";
-        /* queda constancia de que marcó la casilla y de cuándo */
         var autorizo = form.autorizacion && form.autorizacion.checked
-          ? "Sí (" + new Date().toLocaleString("es-CO") + ")" : "No";
+          ? "Si (" + new Date().toLocaleString("es-CO") + ")" : "No";
         var body =
           "Nombre: " + nombre + "%0D%0A" +
           "Correo: " + email + "%0D%0A" +
-          "Teléfono: " + tel + "%0D%0A" +
+          "Telefono: " + tel + "%0D%0A" +
           "Autoriza el tratamiento de datos: " + autorizo + "%0D%0A%0D%0A" +
           "Mensaje:%0D%0A" + encodeURIComponent(msg);
         window.location.href =
           "mailto:contactenos@balerco.com.co?subject=" +
-          encodeURIComponent("Nueva solicitud de cotización — " + nombre) +
+          encodeURIComponent("Nueva solicitud de cotizacion — " + nombre) +
           "&body=" + body;
-        if (note) {
-          note.textContent = "Abrimos tu correo para enviar la solicitud. ¡Gracias!";
-          note.className = "form__note is-ok";
-        }
+        aviso("Abrimos tu correo para enviar la solicitud. ¡Gracias!", "is-ok");
+        return;
       }
-      // Si Formspree está conectado, se envía normalmente por POST.
+
+      /* --- Conectado: envio en segundo plano --- */
+      if (boton) { boton.disabled = true; }
+      aviso("Enviando…", "is-wait");
+
+      fetch(action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      }).then(function (r) {
+        if (r.ok) {
+          form.reset();
+          aviso("Listo, recibimos tu mensaje. Te escribimos muy pronto.", "is-ok");
+          return;
+        }
+        /* Formspree devuelve el motivo en JSON; si no, mensaje generico. */
+        return r.json().then(function (d) {
+          var detalle = d && d.errors && d.errors.length
+            ? d.errors.map(function (x) { return x.message; }).join(". ")
+            : "No pudimos enviar el mensaje.";
+          /* El mensaje de Formspree llega unas veces con punto y otras sin
+             el; se normaliza para que no queden dos frases pegadas. */
+          aviso(detalle.replace(/[.s]+$/, "") + ". Escríbenos a contactenos@balerco.com.co.", "is-err");
+        }, function () {
+          aviso("No pudimos enviar el mensaje. Escríbenos a contactenos@balerco.com.co.", "is-err");
+        });
+      }).catch(function () {
+        /* Sin conexion o bloqueado: el mensaje no se pierde, se dice a donde. */
+        aviso("No hay conexión. Escríbenos a contactenos@balerco.com.co y te respondemos igual.", "is-err");
+      }).then(function () {
+        if (boton) { boton.disabled = false; }
+      });
     });
   }
 

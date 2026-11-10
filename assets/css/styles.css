@@ -25,6 +25,7 @@
 
   --orange-2:   #FBB03B;   /* solo decorativo (formas de la misión) */
   --orange-ink: #8A3408;   /* texto secundario sobre fondos claros cálidos */
+  --berry-ink:  #B01E55;   /* cereza legible sobre fondo claro: el --berry no llega a 4.5:1 */
 
   /* tarjetas de "por qué Balerco": un tono, pendiente del manual de marca */
   --valor-fondo: #F7F8FA;
@@ -1325,8 +1326,24 @@ p { margin: 0; }
 .form__row input:focus:not(:focus-visible),
 .form__row textarea:focus:not(:focus-visible) { outline: none; }
 .form__note { min-height: 1em; font-size: .92rem; font-weight: 600; }
-.form__note.is-ok { color: var(--grass); }
-.form__note.is-err { color: var(--berry); }
+/* Los tonos vivos de la marca no dan el contraste minimo sobre el panel del
+   formulario: --grass queda en 2.4:1 y --berry en 3.2:1, medidos. Para texto
+   se usan las versiones oscuras. */
+.form__note.is-ok   { color: var(--grass-deep); }
+.form__note.is-err  { color: var(--berry-ink); }
+.form__note.is-wait { color: var(--ink-soft); }
+
+/* El campo trampa existe para los robots, asi que no puede verse ni recibir
+   el foco, pero tampoco puede llevar display:none: algunos formularios
+   automaticos saltan justamente lo que esta oculto asi. */
+.form__trampa {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 
 /* ---------- FOOTER ---------- */
 .footer { background: var(--slate); color: var(--cream); padding: clamp(48px,7vw,84px) var(--gap) 24px; }
