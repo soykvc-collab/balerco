@@ -2135,7 +2135,7 @@ body.no-scroll { overflow: hidden; }
    Tarjetas sin foto: van a dos columnas y no a tres. Con solo texto, tres
    columnas dejan renglones demasiado cortos para leer de corrido. */
 @media (min-width: 1040px) {
-  .tipos__grid--texto { grid-template-columns: 1fr 1fr; }
+  .tipos__grid--dos { grid-template-columns: 1fr 1fr; }
 }
 .tipo--texto .tipo__body { padding: clamp(24px, 2.6vw, 32px); }
 .tipo--texto .tipo__body h3 { font-size: clamp(19px, 1.5vw, 23px); }
