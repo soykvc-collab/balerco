@@ -2086,7 +2086,10 @@ body.no-scroll { overflow: hidden; }
   display: inline-block;
   margin-top: 12px;
   font-weight: 700;
-  color: var(--ink);
+  /* Blanco, no tinta: este enlace cae sobre la foto del panel y en navy se
+     perdia contra el fondo. La sombra lo sostiene cuando la foto es clara. */
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.45);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 2px;
@@ -2140,6 +2143,11 @@ body.no-scroll { overflow: hidden; }
 /* La franja de cita sin foto ocupa el ancho entero y centra el bloque. */
 .obra--texto .obra__inner { grid-template-columns: minmax(0, 1fr); justify-items: center; }
 .obra--texto .obra__texto { max-width: 68ch; text-align: center; }
+/* Centrar el texto no centra la caja. El titular lleva max-width 16ch en todo
+   el sitio, asi que su caja se quedaba a la izquierda del bloque de 68ch y el
+   titular salia desplazado respecto a la cita y al parrafo. */
+.obra--texto .obra__texto > * { margin-inline: auto; }
+.obra--texto .section-title { max-width: 22ch; }
 .obra--texto .obra__cita {
   border-left: none;
   border-top: 4px solid var(--berry);
@@ -2154,3 +2162,10 @@ body.no-scroll { overflow: hidden; }
    centrar, esa diferencia se reparte arriba y abajo en vez de acumularse
    abajo, que es donde se nota. */
 .tipo--texto { justify-content: center; }
+/* La franja centrada admite una foto arriba. El ancho es menor que el del
+   texto a propósito: una imagen a sangre dentro de un bloque centrado rompe
+   la columna y hace que el titular parezca descolgado otra vez. */
+.obra--texto .obra__foto { max-width: 760px; width: 100%; margin: 0 auto 26px; }
+/* El pie de foto acompaña a la imagen, así que también va centrado cuando
+   la franja lo está. */
+.obra--texto .obra__foto figcaption { text-align: center; }
