@@ -42,7 +42,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/lenis.min.css" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=172" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=173" />
 
   <!-- ============================================================
        SEO — DATOS ESTRUCTURADOS (JSON-LD)
@@ -279,6 +279,56 @@
       </div>
     </section>
 
+    <!-- ===================== GALERÍA =====================
+         Tres piezas que no entran en ninguna de las cuatro tarjetas de
+         arriba y que vale la pena mostrar igual. Cada foto es un botón que
+         abre el visor: la misma pieza que ya usa la página de proyectos
+         (.foto-zoom + #lightbox), así que no hay JavaScript nuevo. -->
+    <section class="galeria" aria-labelledby="galeria-title">
+      <div class="galeria__inner">
+        <div class="section-head">
+          <span class="tag tag--sky">Más ejemplos</span>
+          <h2 class="section-title" id="galeria-title">Otras piezas que hemos instalado</h2>
+          <p class="section-sub">Elementos que no caben en una sola categoría: piezas temáticas, ambientaciones y señalética.</p>
+        </div>
+
+        <div class="galeria__grid">
+          <figure class="galeria__item">
+            <button class="foto-zoom" type="button"
+                    data-full="assets/img/mobiliario/tranvia-tematico.webp"
+                    aria-label="Ampliar: tranvía temático rojo con los escudos de la Alcaldía Mayor de Bogotá y el IDRD, sobre superficie de caucho amarilla">
+              <img src="assets/img/mobiliario/tranvia-tematico.webp" width="1066" height="800"
+                   loading="lazy" decoding="async"
+                   alt="Tranvía temático rojo con rampa y tobogán, con los escudos de la Alcaldía Mayor de Bogotá y el IDRD, sobre superficie de caucho amarilla" />
+            </button>
+            <figcaption>Pieza temática sobre superficie de caucho · Bogotá</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <button class="foto-zoom" type="button"
+                    data-full="assets/img/mobiliario/ambientacion-interior.webp"
+                    aria-label="Ampliar: ambientación temática de interior con fachada clásica y nubes colgantes">
+              <img src="assets/img/mobiliario/ambientacion-interior.webp" width="600" height="450"
+                   loading="lazy" decoding="async"
+                   alt="Ambientación temática de interior con fachada clásica de columnas, relieve esculpido y nubes colgantes" />
+            </button>
+            <figcaption>Ambientación temática de interior</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <button class="foto-zoom" type="button"
+                    data-full="assets/img/mobiliario/senaletica-braille.webp"
+                    aria-label="Ampliar: mano de un niño recorriendo un panel de señalética en braille">
+              <img src="assets/img/mobiliario/senaletica-braille.webp" width="622" height="467"
+                   loading="lazy" decoding="async"
+                   alt="Mano de un niño recorriendo con los dedos un panel de señalética en braille" />
+            </button>
+            <figcaption>Señalética en braille</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== FRANJA ===================== -->
     <section class="obra" aria-labelledby="obra-title">
       <div class="obra__inner">
@@ -411,6 +461,13 @@
       <span>Hecho con cariño en Bogotá 🧡</span>
     </div>
   </footer>
+
+  <!-- Visor de la galería. Lo pide .foto-zoom; sin este nodo el clic no hace
+       nada porque main.js solo engancha si existe #lightbox. -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox__close" type="button" aria-label="Cerrar imagen">&times;</button>
+    <img class="lightbox__img" src="" alt="" />
+  </div>
 
   <script src="assets/js/lenis.min.js" defer></script>
   <script src="assets/js/main.js?v=49" defer></script>

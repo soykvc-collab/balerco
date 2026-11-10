@@ -2191,3 +2191,32 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 399px) {
   .chip { font-size: 12.4px; padding-left: 9px; padding-right: 9px; }
 }
+
+/* ---------- GALERÍA DE PIEZAS (mobiliario urbano) ----------
+   Una banda de tres fotos para lo que no entra en las tarjetas de la rejilla.
+   Reusa .foto-zoom de la página de proyectos, así que la foto ya es un botón
+   que abre el visor: aquí solo se resuelven la caja, las columnas y el pie. */
+.galeria { padding: clamp(40px, 6vw, 76px) 0; background: var(--white); }
+.galeria__inner { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gap); }
+/* Mismo motivo que en .tipos__inner: el contenedor ya deja el margen lateral,
+   y .section-head lo volvía a aplicar dentro. */
+.galeria__inner > .section-head { max-width: none; padding: 0; }
+
+.galeria__grid {
+  display: grid;
+  gap: clamp(14px, 2vw, 22px);
+  margin-top: clamp(26px, 3.5vw, 44px);
+  grid-template-columns: 1fr;
+}
+/* Tres en fila desde tablet. Con tres fotos no hay fila huérfana, así que no
+   hace falta la variante de dos columnas de .tipos__grid. */
+@media (min-width: 760px) {
+  .galeria__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.galeria__item { margin: 0; }
+.galeria__item figcaption {
+  margin-top: 10px;
+  font-size: .85rem;
+  color: var(--ink-soft);
+}
